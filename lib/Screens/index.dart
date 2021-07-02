@@ -1,9 +1,7 @@
 import 'package:azmas/Providers/user/inAppAuth.dart';
-import 'package:azmas/Screens/Custmer/index.dart';
+import 'package:azmas/Widgets/bottomNavbar/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_app_badger/flutter_app_badger.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
 class IndexScreen extends StatefulWidget {
@@ -37,8 +35,20 @@ class _IndexScreenState extends State<IndexScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    int selected = 0;
     if (loggedin)
-      return IndexCustomer();
+      return Stack(
+        children: [
+          if (selected == 0)
+            Scaffold(
+              body: Container(
+                child: Text("dsa"),
+              ),
+            ),
+          // IndexCustomer(),
+          BottomNavigatorWidget()
+        ],
+      );
     else
       return Scaffold(
         body: Center(
