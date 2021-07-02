@@ -1,0 +1,24 @@
+{
+    "language": "English",
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    },
+    "totalBalance": "Total Balance",
+    "hello": "Hello",
+    "welcome": "Welcome Back to AVBirr",
+    "bankAccount": "Bank Account",
+    "etb": "ETB",
+    "transfer": "Transfer",
+    "payments": "Payments",
+    "services": "Services",
+    "tickets": "Tickets",
+    "sendMoney": "Send Money",
+    "scan": "Scan",
+    "showMore": "Show More",
+    "transactions": "Transactions",
+    "all": "All",
+    "analysis": "Analysis",
+    "sendMoney": "Send Money",
+    "receiveMoney": "Receive Money"
+}

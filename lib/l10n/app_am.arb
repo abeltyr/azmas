@@ -1,0 +1,21 @@
+{
+    "language": "አማረኛ",
+    "helloWorld": "ሰላም!",
+    "totalBalance": "ቀሪ ሂሳብ",
+    "hello": "ሰላም",
+    "welcome": "እንኩዋን በደህና መቱ ወደ አቭብር",
+    "bankAccount": "ባንክ አካዉንት",
+    "etb": "ብር",
+    "transfer": "ብር መላክ",
+    "payments": "ክፍያዎች",
+    "services": "አገልግሎት",
+    "tickets": "ትኬት",
+    "sendMoney": "ገንዘብ ላክ",
+    "scan": "ቃኝ",
+    "showMore": "ዘርዝር",
+    "transactions": "ግብይቶች",
+    "all": "ሁሉም",
+    "analysis": "ትንተና",
+    "sendMoney": "ገንዘብ ላክ",
+    "receiveMoney": "ገንዘብ ተቀበል"
+}
