@@ -1,5 +1,6 @@
 import 'package:azmas/Providers/interaction/Transctions.dart';
 import 'package:azmas/Providers/interaction/index.dart';
+import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Providers/interaction/qrScan.dart';
 import 'package:azmas/Providers/lang/index.dart';
 import 'package:azmas/Providers/transfer/index.dart';
@@ -7,9 +8,6 @@ import 'package:azmas/Providers/transfer/transferUsers.dart';
 import 'package:azmas/Providers/transfer/transferuser.dart';
 import 'package:azmas/Providers/user/inAppAuth.dart';
 import 'package:azmas/Providers/user/index.dart';
-import 'package:azmas/Screens/Custmer/QR/index.dart';
-import 'package:azmas/Screens/Custmer/Transfer/index.dart';
-import 'package:azmas/Screens/Custmer/transacrions/index.dart';
 import 'package:azmas/Screens/Shared/Error/index.dart';
 import 'package:azmas/Screens/Shared/Loading/index.dart';
 import 'package:azmas/Screens/index.dart';
@@ -33,12 +31,12 @@ class MyApp extends StatelessWidget {
       '/': (ctx) => IndexScreen(),
       LoadingScreen.routeName: (ctx) => LoadingScreen(),
       ErrorScreen.routeName: (ctx) => ErrorScreen(),
-      TransferScreen.routeName: (ctx) => TransferScreen(),
-      TransactionScreens.routeName: (ctx) => TransactionScreens(),
-      QRScanScreen.routeName: (ctx) => QRScanScreen(),
     };
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(
+          value: NavBarProvider(),
+        ),
         ChangeNotifierProvider.value(
           value: InteractionProvider(),
         ),

@@ -1,4 +1,3 @@
-import 'package:azmas/Model/notification.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,10 +15,11 @@ class HomeScreenTop extends StatelessWidget {
       height: 100,
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: 25,
+        horizontal: 15,
         vertical: 15,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             width: 60,
@@ -70,24 +70,13 @@ class HomeScreenTop extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () async {
-              // print("here");
-              // Provider.of<SendNotificationProvider>(context, listen: false)
-              //     .sendNotification(
-              //   ReceivedNotification(
-              //     id: 0,
-              //     body: "This is your notifcation",
-              //     title: "AvBirr",
-              //     payload: "",
-              //   ),
-              // );
-            },
+            onTap: () async {},
             child: Container(
               width: 35,
               height: 35,
               child: SvgPicture.asset(
                 "assets/icons/Notification.svg",
-                color: PlatformTheme.white,
+                color: PlatformTheme.primaryColorDark,
                 fit: BoxFit.fill,
               ),
             ),

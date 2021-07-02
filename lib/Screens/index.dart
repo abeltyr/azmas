@@ -1,52 +1,33 @@
-import 'package:azmas/Providers/user/inAppAuth.dart';
+import 'package:azmas/Providers/interaction/navbar.dart';
+import 'package:azmas/Screens/Custmer/Home/index.dart';
+import 'package:azmas/Screens/Custmer/Scan/index.dart';
+import 'package:azmas/Screens/Custmer/Ticket/index.dart';
 import 'package:azmas/Widgets/bottomNavbar/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class IndexScreen extends StatefulWidget {
-  static const routeName = "/";
-  @override
-  _IndexScreenState createState() => _IndexScreenState();
-}
-
-class _IndexScreenState extends State<IndexScreen> with WidgetsBindingObserver {
-  bool loggedin = true;
-  @override
-  void initState() {
-    WidgetsBinding.instance?.addObserver(this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
-      final usersProvider =
-          Provider.of<InAppAuthProvider>(context, listen: false);
-      usersProvider.auteticated(SupportState.NotAuthorized);
-    }
-  }
-
+class IndexScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool loggedin = true;
+
     int selected = 0;
+
+    final navBarProvide = Provider.of<NavBarProvider>(context, listen: true);
     if (loggedin)
       return Stack(
         children: [
-          if (selected == 0)
-            Scaffold(
-              body: Container(
-                child: Text("dsa"),
-              ),
-            ),
+          if (navBarProvide.selectedScreen == 0)
+            HomeScreen()
+          else if (navBarProvide.selectedScreen == 1)
+            ScanScreen()
+          else if (navBarProvide.selectedScreen == 2)
+            TicketScreen(),
           // IndexCustomer(),
-          BottomNavigatorWidget()
+          BottomNavigatorWidget(
+            selectedScreen: navBarProvide.selectedScreen,
+          ),
         ],
       );
     else
