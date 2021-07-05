@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 class UserProvider with ChangeNotifier {
   late UserModel _currentUser = UserModel(
     id: "1",
-    avatar: "assets/images/profile.webp",
+    avatar: "https://source.unsplash.com/random",
     account: "2312921390787123",
     firstName: "abel",
     lastName: "lamesgen",

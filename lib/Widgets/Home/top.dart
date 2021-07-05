@@ -1,86 +1,65 @@
 import 'package:azmas/Providers/user/index.dart';
-import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:rive/rive.dart';
 
 class HomeScreenTop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final usersProvider = Provider.of<UserProvider>(context, listen: true);
+    bool imageLoaded = false;
     return Container(
       height: 100,
+      margin: EdgeInsets.only(top: 30),
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: 15,
         vertical: 15,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          Expanded(
+            child: ListView(
+              children: [],
+              scrollDirection: Axis.horizontal,
+            ),
+          ),
           Container(
             width: 60,
             height: 60,
+            margin: EdgeInsets.only(
+              right: 15,
+            ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
-              child: Image.asset(
-                usersProvider.currentUser.avatar,
-                fit: BoxFit.cover,
-              ),
-            ),
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                  usersProvider.currentUser.avatar,
+                  cacheWidth: 200,
+                  cacheHeight: 200,
+                  fit: BoxFit.fill,
+                  loadingBuilder: (
+                    BuildContext context,
+                    Widget child,
+                    ImageChunkEvent? loadingProgress,
+                  ) {
+                    if (loadingProgress != null &&
+                        loadingProgress.cumulativeBytesLoaded ==
+                            loadingProgress.expectedTotalBytes)
+                      imageLoaded = true;
+
+                    if (!imageLoaded) {
+                      return RiveAnimation.asset(
+                          'assets/Animations/loading.riv');
+                    } else if (!imageLoaded && loadingProgress == null) {
+                      return RiveAnimation.asset(
+                          'assets/Animations/loading.riv');
+                    } else
+                      return child;
+                    // if(loadingProgress == ImageChunkEvent.)
+                  },
+                )),
           ),
-          SizedBox(
-            width: 15,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width - 160,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  "${AppLocalizations.of(context)!.hello}, ${usersProvider.currentUser.firstName}",
-                  style: GoogleFonts.lora(
-                    color: PlatformTheme.white,
-                    fontWeight: FontWeight.w500,
-                    wordSpacing: 0.1,
-                    fontSize: 18,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  AppLocalizations.of(context)!.welcome,
-                  style: GoogleFonts.lora(
-                    color: PlatformTheme.white,
-                    fontWeight: FontWeight.w400,
-                    fontSize: Localizations.localeOf(context) == Locale("en")
-                        ? 14
-                        : 12,
-                    wordSpacing: 0.1,
-                  ),
-                )
-              ],
-            ),
-          ),
-          GestureDetector(
-            onTap: () async {},
-            child: Container(
-              width: 35,
-              height: 35,
-              child: SvgPicture.asset(
-                "assets/icons/Notification.svg",
-                color: PlatformTheme.primaryColorDark,
-                fit: BoxFit.fill,
-              ),
-            ),
-          )
         ],
       ),
     );
