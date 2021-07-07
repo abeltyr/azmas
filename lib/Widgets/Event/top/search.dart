@@ -21,9 +21,14 @@ class _SearchButtonState extends State<SearchButton>
   @override
   void initState() {
     super.initState();
+    final eventProvider = Provider.of<EventProvider>(context, listen: false);
     _controller = AnimationController(vsync: this);
     _controller.duration = Duration(milliseconds: 150);
     _searchController = new TextEditingController(text: "");
+    _controller.reset();
+    if (eventProvider.searchTap)
+      _controller.forward();
+    else if (!eventProvider.searchTap) _controller.reverse();
   }
 
   @override
@@ -104,6 +109,7 @@ class _SearchButtonState extends State<SearchButton>
                   decoration: InputTheme().textDecoration(label: "Search"),
                   onSubmitted: (value) {
                     print("search");
+                    //TODO: setup the search api here
                   },
                 ),
               ),

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 class EventProvider with ChangeNotifier {
-  int _selectedTab = 0;
-  bool _searchTap = true;
+  int _selectedTab = 1;
+  bool _searchTap = false;
 
   int get selectedTab {
     return _selectedTab;
@@ -13,7 +13,7 @@ class EventProvider with ChangeNotifier {
   }
 
   void updateSelectedTap(int data) {
-    if (data >= 0 && data <= 2) {
+    if (data >= 0 && data <= 1) {
       _selectedTab = data;
       notifyListeners();
     }
