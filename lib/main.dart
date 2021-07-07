@@ -1,12 +1,8 @@
-import 'package:azmas/Providers/interaction/Transctions.dart';
+import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Providers/interaction/index.dart';
 import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Providers/interaction/qrScan.dart';
 import 'package:azmas/Providers/lang/index.dart';
-import 'package:azmas/Providers/transfer/index.dart';
-import 'package:azmas/Providers/transfer/transferUsers.dart';
-import 'package:azmas/Providers/transfer/transferuser.dart';
-import 'package:azmas/Providers/user/inAppAuth.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Shared/Error/index.dart';
 import 'package:azmas/Screens/Shared/Loading/index.dart';
@@ -47,22 +43,10 @@ class MyApp extends StatelessWidget {
           value: LanguageProvider(),
         ),
         ChangeNotifierProvider.value(
-          value: TransferProvider(),
-        ),
-        ChangeNotifierProvider.value(
-          value: TransferUsersProvider(),
-        ),
-        ChangeNotifierProvider.value(
-          value: TransactionPropsProvider(),
-        ),
-        ChangeNotifierProvider.value(
           value: QRScanPropsProvider(),
         ),
         ChangeNotifierProvider.value(
-          value: InAppAuthProvider(),
-        ),
-        ChangeNotifierProvider.value(
-          value: TransferUserProvider(),
+          value: EventProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

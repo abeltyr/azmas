@@ -21,9 +21,9 @@ class BottomNavigatorWidget extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          color: PlatformTheme.primaryColorDark,
+          color: PlatformTheme.white,
         ),
-        height: 75,
+        height: 65,
         child: Row(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -41,9 +41,9 @@ class BottomNavigatorWidget extends StatelessWidget {
                   selectedScreen == 0
                       ? "assets/Icons/Bold/Home.svg"
                       : "assets/Icons/Broken/Home.svg",
-                  color: PlatformTheme.white,
-                  height: 35,
-                  width: 35,
+                  color: PlatformTheme.secondaryColor,
+                  height: selectedScreen == 0 ? 35 : 30,
+                  width: selectedScreen == 0 ? 35 : 30,
                 ),
               ),
             ),
@@ -59,11 +59,11 @@ class BottomNavigatorWidget extends StatelessWidget {
                 },
                 child: SvgPicture.asset(
                   selectedScreen == 1
-                      ? "assets/Icons/Bold/Scan.svg"
-                      : "assets/Icons/Broken/Scan.svg",
-                  color: PlatformTheme.white,
-                  height: 35,
-                  width: 35,
+                      ? "assets/Icons/Bold/Calendar.svg"
+                      : "assets/Icons/Broken/Calendar.svg",
+                  color: PlatformTheme.secondaryColor,
+                  height: selectedScreen == 1 ? 35 : 30,
+                  width: selectedScreen == 1 ? 35 : 30,
                 ),
               ),
             ),
@@ -79,11 +79,11 @@ class BottomNavigatorWidget extends StatelessWidget {
                 },
                 child: SvgPicture.asset(
                   selectedScreen == 2
-                      ? "assets/Icons/Bold/Ticket.svg"
-                      : "assets/Icons/Broken/Ticket.svg",
-                  color: PlatformTheme.white,
-                  height: 35,
-                  width: 35,
+                      ? "assets/Icons/Bold/Profile.svg"
+                      : "assets/Icons/Broken/Profile.svg",
+                  color: PlatformTheme.secondaryColor,
+                  height: selectedScreen == 2 ? 35 : 30,
+                  width: selectedScreen == 2 ? 35 : 30,
                 ),
               ),
             ),

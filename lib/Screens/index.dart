@@ -1,7 +1,7 @@
 import 'package:azmas/Providers/interaction/navbar.dart';
+import 'package:azmas/Screens/Custmer/Account/index.dart';
+import 'package:azmas/Screens/Custmer/Event/index.dart';
 import 'package:azmas/Screens/Custmer/Home/index.dart';
-import 'package:azmas/Screens/Custmer/Scan/index.dart';
-import 'package:azmas/Screens/Custmer/Ticket/index.dart';
 import 'package:azmas/Widgets/bottomNavbar/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +21,9 @@ class IndexScreen extends StatelessWidget {
           if (navBarProvide.selectedScreen == 0)
             HomeScreen()
           else if (navBarProvide.selectedScreen == 1)
-            ScanScreen()
+            EventScreen()
           else if (navBarProvide.selectedScreen == 2)
-            TicketScreen(),
+            AccountScreen(),
           // IndexCustomer(),
           BottomNavigatorWidget(
             selectedScreen: navBarProvide.selectedScreen,

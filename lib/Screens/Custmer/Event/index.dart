@@ -1,15 +1,16 @@
 import 'package:azmas/Utils/theme.dart';
+import 'package:azmas/Widgets/Event/top/index.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+class EventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: PlatformTheme.primaryColor,
       body: Column(
-        children: [],
+        children: [
+          EventTop(),
+        ],
       ),
     );
   }
