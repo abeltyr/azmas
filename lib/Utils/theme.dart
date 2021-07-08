@@ -4,7 +4,7 @@ class PlatformTheme {
   static const Color white = Color(0xFFFFFFFF);
 
   static const Color primaryColor = Color(0xFFEEF0F4);
-  static const Color primaryColorLight = Color(0xFFFEFEFE);
+  static const Color primaryColorLight = Color(0xFFBBBCC3);
   static const Color primaryColorDark = Color(0xFFAFB1BE);
 
   static const Color secondaryColor = Color(0xFF0A0C10);

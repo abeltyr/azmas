@@ -1,4 +1,5 @@
 import 'package:azmas/Model/calender.dart';
+import 'package:azmas/Model/event.dart';
 import 'package:flutter/foundation.dart';
 
 class CalenderProvider with ChangeNotifier {
@@ -22,7 +23,6 @@ class CalenderProvider with ChangeNotifier {
         _months = [
           ..._months,
           CalenderModel(
-            selected: date == nowDate,
             month: changeData(
               nowDate,
             ),
