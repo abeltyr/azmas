@@ -1,5 +1,14 @@
 import 'package:azmas/Model/group.dart';
 
+enum EventCategory {
+  Education,
+  GetTogether,
+  SchoolEvent,
+  Party,
+  Seminars,
+  Fun,
+}
+
 class EventModel {
   String id;
   String title;
@@ -7,7 +16,7 @@ class EventModel {
   String dateTime;
   String groupId;
   GroupModal? group;
-  String category;
+  EventCategory category;
   String place;
   int attended;
 

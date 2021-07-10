@@ -1,4 +1,4 @@
-import 'package:azmas/Widgets/Home/card/index.dart';
+import 'package:azmas/Widgets/Shared/card/home.dart';
 import 'package:flutter/material.dart';
 
 class EventContentWidget extends StatelessWidget {
@@ -13,7 +13,7 @@ class EventContentWidget extends StatelessWidget {
         itemCount: 5,
         scrollDirection: Axis.horizontal,
         itemBuilder: (ctx, index) {
-          return EventCard();
+          return MainCard();
         },
       ),
     );

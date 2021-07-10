@@ -6,6 +6,7 @@ class PlatformTheme {
   static const Color primaryColor = Color(0xFFEEF0F4);
   static const Color primaryColorLight = Color(0xFFBBBCC3);
   static const Color primaryColorDark = Color(0xFFAFB1BE);
+  static const Color primaryColorTransparent = Color(0x99EEF0F4);
 
   static const Color secondaryColor = Color(0xFF0A0C10);
   static const Color secondaryColorLight = Color(0xFF333333);
@@ -15,7 +16,8 @@ class PlatformTheme {
   static const Color accentColorLight = Color(0xffB37393B);
   static const Color accentColorDark = Color(0xff33403C);
 
-  static const Color thirdColor = Color(0xFF004751);
+  static const Color thirdColor = Color(0xFF272938);
+  static const Color fourthColor = Color(0x990A0C10);
 
   static const Color negative = Color(0xFFFE6464);
   static const Color positive = Color(0xFF6DD596);

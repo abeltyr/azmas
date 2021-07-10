@@ -10,6 +10,9 @@ class CalenderDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: fetch the date event here and store it only here
+    // not live reload just fecth on intial lode and display
+    // it use future builder with loader hear
     int heightVariable = plans.length == 0 ? 1 : plans.length;
     double heightConstant = 110.0;
     double heightDate = heightConstant * heightVariable;

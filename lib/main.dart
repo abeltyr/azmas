@@ -1,4 +1,5 @@
 import 'package:azmas/Providers/calender/index.dart';
+import 'package:azmas/Providers/images/index.dart';
 import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Providers/interaction/index.dart';
 import 'package:azmas/Providers/interaction/navbar.dart';
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: CalenderProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: GetImageProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

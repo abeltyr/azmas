@@ -1,3 +1,4 @@
+import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/material.dart';
 
 class EventSearch extends StatelessWidget {
@@ -7,6 +8,7 @@ class EventSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: heightData,
+      color: PlatformTheme.negative,
       width: MediaQuery.of(context).size.width,
       child: ListView(
         padding: EdgeInsets.zero,

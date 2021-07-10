@@ -1,23 +1,33 @@
-import 'package:flutter/foundation.dart';
+enum GroupCategory {
+  Educational,
+  Friends,
+  Community,
+  Batch,
+  Field,
+  Class,
+  Fun,
+}
 
 class GroupModal {
   String id;
   String title;
-  String description;
+  String? description;
   String avatar;
-  String background;
-  int members;
-  String category;
+  String? background;
+  String? colorTheme;
+  int? members;
+  GroupCategory category;
   bool public;
 
   GroupModal({
     required this.id,
     required this.title,
-    required this.description,
+    this.description,
+    this.colorTheme,
     required this.avatar,
-    required this.background,
-    required this.members,
-    required this.category,
+    this.background,
+    this.members,
+    this.category = GroupCategory.Educational,
     this.public = true,
   });
 }
