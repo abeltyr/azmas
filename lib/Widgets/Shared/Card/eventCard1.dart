@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class EventCard extends StatelessWidget {
+class EventCardWidget1 extends StatelessWidget {
   final String title;
   final String eventImage;
   final String description;
@@ -16,7 +16,7 @@ class EventCard extends StatelessWidget {
   final GroupModal group;
   final String date;
 
-  EventCard({
+  EventCardWidget1({
     required this.title,
     required this.eventImage,
     required this.description,
@@ -43,7 +43,7 @@ class EventCard extends StatelessWidget {
               (description.length < 150
                   ? description.length ~/ 50 * 10.5
                   : 30) -
-              (location.length < 50 ? 15 : 0),
+              (location.length < 50 ? 20 : 15),
           margin: EdgeInsets.only(
             top: 115,
           ),
@@ -94,27 +94,27 @@ class EventCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                   horizontal: 10,
                 ),
-                height: location.length < 50 ? 20 : 40,
+                height: location.length < 50 ? 20 : 25,
                 child: Row(
                   children: [
                     Icon(
                       CupertinoIcons.location,
-                      size: location.length < 50 ? 20 : 32.5,
-                      color: PlatformTheme.secondaryColor,
+                      size: location.length < 50 ? 20 : 25,
+                      color: PlatformTheme.accentColor,
                     ),
                     SizedBox(
                       width: 2.5,
                     ),
                     Container(
-                      width: 285,
+                      width: 250,
                       child: Text(
                         "$location",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.lora(
-                          color: PlatformTheme.secondaryColor,
+                          color: PlatformTheme.accentColor,
                           fontWeight: FontWeight.w400,
-                          fontSize: 12,
+                          fontSize: 10,
                           fontStyle: FontStyle.italic,
                           wordSpacing: 1,
                         ),
@@ -123,7 +123,13 @@ class EventCard extends StatelessWidget {
                   ],
                 ),
               ),
-              BrokenLine(color: PlatformTheme.primaryColor),
+              SizedBox(
+                height: 5,
+              ),
+              BrokenLine(
+                color: PlatformTheme.primaryColor,
+                size: 5,
+              ),
               GroupIndictor(
                 title: "${group.title}",
                 imageUrl: "${group.avatar}",
@@ -169,22 +175,19 @@ class EventCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "${DateFormat.MMMM().format(DateTime.parse(date))}",
+                  "${DateFormat.d().format(DateTime.parse(date))}",
                   style: GoogleFonts.lora(
                     color: PlatformTheme.secondaryColor,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w800,
                     fontSize: 16,
                     wordSpacing: 0.1,
                   ),
                 ),
-                SizedBox(
-                  height: 1.5,
-                ),
                 Text(
-                  "${DateFormat.d().format(DateTime.parse(date))}",
+                  "${DateFormat.MMMM().format(DateTime.parse(date))}",
                   style: GoogleFonts.lora(
                     color: PlatformTheme.secondaryColor,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w800,
                     fontSize: 16,
                     wordSpacing: 0.1,
                   ),

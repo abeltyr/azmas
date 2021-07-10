@@ -13,11 +13,11 @@ class PlatformTheme {
 
   static const Color accentColor = Color(0xFF828486);
   static const Color accentColorOptic = Color(0x99828486);
-  static const Color accentColorLight = Color(0xffB37393B);
+  static const Color accentColorLight = Color(0xff37393B);
   static const Color accentColorDark = Color(0xff33403C);
 
   static const Color thirdColor = Color(0xFF272938);
-  static const Color fourthColor = Color(0x990A0C10);
+  static const Color fourthColor = Color(0xFF7765C6);
 
   static const Color negative = Color(0xFFFE6464);
   static const Color positive = Color(0xFF6DD596);

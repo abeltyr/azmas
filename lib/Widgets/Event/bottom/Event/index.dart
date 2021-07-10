@@ -1,5 +1,6 @@
 import 'package:azmas/Model/group.dart';
-import 'package:azmas/Widgets/Shared/Card/event.dart';
+import 'package:azmas/Widgets/Shared/Card/eventCard1.dart';
+import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';
 import 'package:flutter/material.dart';
 
 class Events extends StatelessWidget {
@@ -20,7 +21,23 @@ class Events extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          EventCard(
+          EventCardWidget2(
+            title: "Title",
+            description:
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            date: "2020-07-07",
+            eventImage: imageData,
+            group: GroupModal(
+              id: "1",
+              avatar: imageData,
+              title: "Group Name",
+            ),
+            location: "Some Where in AAST AASTU sda hguihjh hjghj jh hjh gj",
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          EventCardWidget1(
             title: "Title",
             description:
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -33,6 +50,56 @@ class Events extends StatelessWidget {
             ),
             location:
                 "Some Where in AASTU sda hguihjh hjghj jh hjh  in AASTU sda hguiguihjh hjghj jh hjh  in AASTU sda hguihjh hjghj jh hjh gj",
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          EventCardWidget1(
+            title: "Title",
+            description: "Lorem Ipsum is simply dummy text of the prem Ipsum.",
+            date: "2020-07-07",
+            eventImage: imageData,
+            group: GroupModal(
+              id: "1",
+              avatar: imageData,
+              title: "Group Name",
+            ),
+            location:
+                "Some Where in AASTU sda hguihjh hjghj jh hjh  in AASTU sda hguiguihjh hjghj jh hjh  in AASTU sda hguihjh hjghj jh hjh gj",
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          EventCardWidget1(
+            title: "Title",
+            description:
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            date: "2020-07-07",
+            eventImage: imageData,
+            group: GroupModal(
+              id: "1",
+              avatar: imageData,
+              title: "Group Name",
+            ),
+            location: "Some Where in AASTU sdgj",
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          EventCardWidget1(
+            title: "Title",
+            description: "Lorem Ipsum is simply duum.",
+            date: "2020-07-07",
+            eventImage: imageData,
+            group: GroupModal(
+              id: "1",
+              avatar: imageData,
+              title: "Group Name",
+            ),
+            location: "Some Where in AASTU  hjghj jh hjh gj",
+          ),
+          SizedBox(
+            height: 15,
           ),
           SizedBox(
             height: 90,
