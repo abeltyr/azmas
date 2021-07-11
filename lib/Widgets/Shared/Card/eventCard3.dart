@@ -39,11 +39,6 @@ class EventCardWidget3 extends StatelessWidget {
             ),
           ),
           width: MediaQuery.of(context).size.width - 30,
-          height: 300.0 +
-              (description.length < 150
-                  ? description.length ~/ 50 * 10.5
-                  : 30) -
-              (location.length < 50 ? 20 : 15),
           padding: EdgeInsets.only(
             top: 10,
           ),
@@ -71,19 +66,20 @@ class EventCardWidget3 extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 5,
+              ),
               Container(
-                width: 300,
-                height: 20,
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
                   "$title",
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.lora(
                     color: PlatformTheme.secondaryColor,
                     fontWeight: FontWeight.w700,
-                    fontSize: 20,
-                    wordSpacing: 1,
+                    fontSize: 16,
+                    wordSpacing: 0.5,
                   ),
                 ),
               ),

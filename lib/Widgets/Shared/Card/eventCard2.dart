@@ -40,7 +40,6 @@ class EventCardWidget2 extends StatelessWidget {
               ),
             ),
             width: MediaQuery.of(context).size.width - 30,
-            height: 135,
             margin: EdgeInsets.only(top: 15),
             child: Column(
               children: [
@@ -92,9 +91,6 @@ class EventCardWidget2 extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            // SizedBox(
-                            //   height: 5,
-                            // ),
                             Container(
                               width: double.infinity,
                               child: Text(

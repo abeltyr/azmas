@@ -8,6 +8,7 @@ class Calender extends StatelessWidget {
   Calender({required this.heightData});
   @override
   Widget build(BuildContext context) {
+    //TODO: add a dummy 32 and 0 variable
     return Container(
       height: heightData - 20,
       padding: EdgeInsets.symmetric(
@@ -25,16 +26,18 @@ class Calender extends StatelessWidget {
             height: 10,
           ),
           CalenderTop(),
-          SizedBox(
-            height: 10,
-          ),
           Container(
             height: heightData - 75,
             child: ListView.builder(
                 padding: EdgeInsets.zero,
-                itemCount: 32,
+                itemCount: 33,
                 itemBuilder: (ctx, index) {
-                  if (index == 31)
+                  if (index == 0)
+                    return SizedBox(
+                      height: 10,
+                    );
+
+                  if (index == 32)
                     return SizedBox(
                       height: 85,
                     );
