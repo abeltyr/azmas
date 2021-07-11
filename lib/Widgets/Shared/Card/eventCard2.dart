@@ -27,177 +27,185 @@ class EventCardWidget2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: PlatformTheme.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                7.5,
+    return LayoutBuilder(builder: (ctx, data) {
+      return Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: PlatformTheme.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  7.5,
+                ),
               ),
             ),
-          ),
-          width: MediaQuery.of(context).size.width - 30,
-          height: 145,
-          margin: EdgeInsets.only(top: 15),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    height: 95,
-                    width: 100,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 7.5, vertical: 7.5),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          7.5,
-                        ),
-                      ),
-                      child: Container(
-                        color: PlatformTheme.fourthColor,
-                        height: 30,
-                        width: 30,
-                        child: LoadedImageView(
-                          fitData: BoxFit.fill,
-                          imageUrl: "$eventImage",
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                      child: Container(
-                    height: 100,
-                    padding: EdgeInsets.only(right: 15, top: 7.5),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "$title",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.lora(
-                            color: PlatformTheme.secondaryColor,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 22,
-                            wordSpacing: 1,
+            width: MediaQuery.of(context).size.width - 30,
+            height: 135,
+            margin: EdgeInsets.only(top: 15),
+            child: Column(
+              children: [
+                Container(
+                  // height: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 90,
+                        width: 100,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 7.5, vertical: 5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(
+                              7.5,
+                            ),
                           ),
-                        ),
-                        // SizedBox(
-                        //   height: 5,
-                        // ),
-                        Container(
-                          width: double.infinity,
-                          child: Text(
-                            "$description",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.lora(
-                              color: PlatformTheme.secondaryColorLight,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
-                              wordSpacing: 0.1,
+                          child: Container(
+                            color: PlatformTheme.primaryColorTransparent,
+                            child: LoadedImageView(
+                              fitData: BoxFit.fill,
+                              imageUrl: "$eventImage",
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 18,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                CupertinoIcons.location_solid,
-                                size: 18,
-                                color: PlatformTheme.primaryColorDark,
-                              ),
-                              SizedBox(
-                                width: 2.5,
-                              ),
-                              Container(
-                                width: 200,
-                                child: Text(
-                                  "$location",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.lora(
-                                    color: PlatformTheme.primaryColorDark,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12,
-                                    fontStyle: FontStyle.italic,
-                                    wordSpacing: 1,
-                                  ),
+                      ),
+                      Container(
+                        height: 90,
+                        width: data.maxWidth - 100,
+                        padding: EdgeInsets.only(right: 15, top: 7.5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 22.5,
+                              width: data.maxWidth - 100,
+                              child: Text(
+                                "$title",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.lora(
+                                  color: PlatformTheme.secondaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                  wordSpacing: 0.5,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            // SizedBox(
+                            //   height: 5,
+                            // ),
+                            Container(
+                              width: double.infinity,
+                              child: Text(
+                                "$description",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.lora(
+                                  color: PlatformTheme.secondaryColorLight,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11,
+                                  wordSpacing: 0.1,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              height: 18,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    CupertinoIcons.location_solid,
+                                    size: 18,
+                                    color: PlatformTheme.primaryColorDark,
+                                  ),
+                                  SizedBox(
+                                    width: 2.5,
+                                  ),
+                                  Container(
+                                    width: data.maxWidth - 150,
+                                    child: Text(
+                                      "$location",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.lora(
+                                        color: PlatformTheme.primaryColorDark,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        fontStyle: FontStyle.italic,
+                                        wordSpacing: 1,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    ),
-                  ))
-                ],
-              ),
-              BrokenLine(
-                color: PlatformTheme.primaryColor,
-                size: 5,
-              ),
-              GroupIndictor(
-                title: "${group.title}",
-                imageUrl: "${group.avatar}",
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          right: 0,
-          child: Container(
-            height: 30,
-            width: 90,
-            decoration: BoxDecoration(
-              color: PlatformTheme.accentColorDark,
-              borderRadius: BorderRadius.circular(
-                5,
-              ),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  CupertinoIcons.time_solid,
-                  size: 18,
-                  color: PlatformTheme.white,
-                ),
-                SizedBox(
-                  width: 2.5,
-                ),
-                Container(
-                  child: Text(
-                    "${DateFormat.jm().format(DateTime.parse(date))}",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.lora(
-                      color: PlatformTheme.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      fontStyle: FontStyle.italic,
-                      wordSpacing: 1,
-                    ),
+                      ),
+                    ],
                   ),
+                ),
+                BrokenLine(
+                  color: PlatformTheme.primaryColor,
+                  size: 5,
+                ),
+                GroupIndictor(
+                  title: "${group.title}",
+                  imageUrl: "${group.avatar}",
                 ),
               ],
             ),
           ),
-        ),
-      ],
-    );
+          Positioned(
+            right: 0,
+            child: Container(
+              height: 25,
+              width: 90,
+              decoration: BoxDecoration(
+                color: PlatformTheme.accentColorDark,
+                borderRadius: BorderRadius.circular(
+                  7.5,
+                ),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    CupertinoIcons.time_solid,
+                    size: 18,
+                    color: PlatformTheme.white,
+                  ),
+                  SizedBox(
+                    width: 2.5,
+                  ),
+                  Container(
+                    child: Text(
+                      "${DateFormat.jm().format(DateTime.parse(date))}",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.lora(
+                        color: PlatformTheme.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        fontStyle: FontStyle.italic,
+                        wordSpacing: 1,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
+    });
   }
 }

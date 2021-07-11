@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class EventCardWidget1 extends StatelessWidget {
+class EventCardWidget3 extends StatelessWidget {
   final String title;
   final String eventImage;
   final String description;
@@ -16,7 +16,7 @@ class EventCardWidget1 extends StatelessWidget {
   final GroupModal group;
   final String date;
 
-  EventCardWidget1({
+  EventCardWidget3({
     required this.title,
     required this.eventImage,
     required this.description,
@@ -39,20 +39,38 @@ class EventCardWidget1 extends StatelessWidget {
             ),
           ),
           width: MediaQuery.of(context).size.width - 30,
-          height: 180.0 +
+          height: 300.0 +
               (description.length < 150
                   ? description.length ~/ 50 * 10.5
                   : 30) -
               (location.length < 50 ? 20 : 15),
-          margin: EdgeInsets.only(
-            top: 115,
-          ),
           padding: EdgeInsets.only(
-            top: 40,
+            top: 10,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                height: 150,
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      7.5,
+                    ),
+                  ),
+                  child: Container(
+                    color: PlatformTheme.primaryColorTransparent,
+                    height: 30,
+                    width: 30,
+                    child: LoadedImageView(
+                      fitData: BoxFit.fill,
+                      imageUrl: "$eventImage",
+                    ),
+                  ),
+                ),
+              ),
               Container(
                 width: 300,
                 height: 20,
@@ -137,30 +155,9 @@ class EventCardWidget1 extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          height: 150,
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          width: double.infinity,
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                7.5,
-              ),
-            ),
-            child: Container(
-              color: PlatformTheme.primaryColorTransparent,
-              height: 30,
-              width: 30,
-              child: LoadedImageView(
-                fitData: BoxFit.fill,
-                imageUrl: "$eventImage",
-              ),
-            ),
-          ),
-        ),
         Positioned(
           right: 0,
-          top: 90,
+          top: 100,
           child: Container(
             height: 50,
             width: 50,
