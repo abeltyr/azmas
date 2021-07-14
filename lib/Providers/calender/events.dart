@@ -1,8 +1,7 @@
-import 'package:azmas/Model/calender.dart';
 import 'package:azmas/Model/event.dart';
 import 'package:flutter/foundation.dart';
 
-class EventProvider with ChangeNotifier {
+class CalenderEventProvider with ChangeNotifier {
   List<EventModel> _days = [];
 
   List<EventModel> get days {

@@ -1,4 +1,5 @@
 import 'package:azmas/Providers/calender/index.dart';
+import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Providers/images/index.dart';
 import 'package:azmas/Providers/interaction/eventScreen.dart';
@@ -7,7 +8,7 @@ import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Providers/interaction/qrScan.dart';
 import 'package:azmas/Providers/lang/index.dart';
 import 'package:azmas/Providers/user/index.dart';
-import 'package:azmas/Screens/Custmer/Event/EventDetail.dart';
+import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
 import 'package:azmas/Screens/Shared/Error/index.dart';
 import 'package:azmas/Screens/Shared/Loading/index.dart';
 import 'package:azmas/Screens/index.dart';
@@ -61,6 +62,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: EventSelectedProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: EventProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

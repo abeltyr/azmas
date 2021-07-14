@@ -6,8 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'groupButton.dart';
-
 class EventTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

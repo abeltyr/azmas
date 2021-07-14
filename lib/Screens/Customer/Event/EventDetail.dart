@@ -3,11 +3,10 @@ import 'package:azmas/Model/event.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Utils/enum.dart';
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/Event/EventDetail/date.dart';
-import 'package:azmas/Widgets/Event/EventDetail/top.dart';
-import 'package:azmas/Widgets/Event/EventDetail/topBar.dart';
+import 'package:azmas/Widgets/EventDetail/date.dart';
+import 'package:azmas/Widgets/EventDetail/top.dart';
+import 'package:azmas/Widgets/EventDetail/topBar.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
-import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,6 +37,7 @@ class EventDetailScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // ignore: unnecessary_null_comparison
               if (event == null)
                 Container(
                   margin: EdgeInsets.only(top: 90),

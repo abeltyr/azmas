@@ -13,7 +13,7 @@ class EventCardWidget1 extends StatelessWidget {
   final String eventImage;
   final String description;
   final String location;
-  final GroupModal group;
+  final GroupModal? group;
   final String date;
   final Function onClick;
 
@@ -45,7 +45,6 @@ class EventCardWidget1 extends StatelessWidget {
                   ),
                 ),
               ),
-              width: MediaQuery.of(context).size.width - 30,
               margin: EdgeInsets.only(
                 top: 120,
               ),
@@ -56,7 +55,11 @@ class EventCardWidget1 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    height: 40,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: title.length <= 30 ? 5 : 0,
+                    ),
                     child: Text(
                       "$title",
                       maxLines: 2,
@@ -64,7 +67,7 @@ class EventCardWidget1 extends StatelessWidget {
                       style: GoogleFonts.lora(
                         color: PlatformTheme.secondaryColor,
                         fontWeight: FontWeight.w800,
-                        fontSize: 16,
+                        fontSize: title.length <= 30 ? 20 : 16,
                         wordSpacing: 0.5,
                       ),
                     ),
@@ -73,6 +76,7 @@ class EventCardWidget1 extends StatelessWidget {
                     height: 5,
                   ),
                   Container(
+                    height: 45,
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     width: double.infinity,
                     child: Text(
@@ -82,24 +86,24 @@ class EventCardWidget1 extends StatelessWidget {
                       style: GoogleFonts.lora(
                         color: PlatformTheme.secondaryColorLight,
                         fontWeight: FontWeight.w400,
-                        fontSize: 12,
+                        fontSize: description.length >= 55 ? 12 : 14,
                         wordSpacing: 0.1,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 7.5,
+                    height: 5,
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(
                       horizontal: 10,
                     ),
-                    height: location.length < 50 ? 20 : 25,
+                    height: 35,
                     child: Row(
                       children: [
                         Icon(
                           CupertinoIcons.location,
-                          size: location.length < 50 ? 20 : 25,
+                          size: location.length < 45 ? 20 : 25,
                           color: PlatformTheme.accentColor,
                         ),
                         SizedBox(
@@ -114,7 +118,7 @@ class EventCardWidget1 extends StatelessWidget {
                             style: GoogleFonts.lora(
                               color: PlatformTheme.accentColor,
                               fontWeight: FontWeight.w400,
-                              fontSize: 10,
+                              fontSize: location.length < 45 ? 14 : 12,
                               fontStyle: FontStyle.italic,
                               wordSpacing: 1,
                             ),
@@ -130,9 +134,12 @@ class EventCardWidget1 extends StatelessWidget {
                     color: PlatformTheme.primaryColor,
                     size: 5,
                   ),
-                  GroupIndictor(
-                    title: "${group.title}",
-                    imageUrl: "${group.avatar}",
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: GroupIndictor(
+                      title: "${group!.title}",
+                      imageUrl: "${group!.avatar}",
+                    ),
                   ),
                 ],
               ),
@@ -165,7 +172,7 @@ class EventCardWidget1 extends StatelessWidget {
                 height: 50,
                 width: 50,
                 decoration: BoxDecoration(
-                  color: PlatformTheme.primaryColorTransparent,
+                  color: PlatformTheme.secondaryColorTransparent,
                   borderRadius: BorderRadius.circular(
                     7.5,
                   ),
@@ -177,7 +184,7 @@ class EventCardWidget1 extends StatelessWidget {
                     Text(
                       "${DateFormat.d().format(DateTime.parse(date))}",
                       style: GoogleFonts.lora(
-                        color: PlatformTheme.secondaryColor,
+                        color: PlatformTheme.white,
                         fontWeight: FontWeight.w800,
                         fontSize: 16,
                         wordSpacing: 0.1,
@@ -186,7 +193,7 @@ class EventCardWidget1 extends StatelessWidget {
                     Text(
                       "${DateFormat.MMM().format(DateTime.parse(date))}",
                       style: GoogleFonts.lora(
-                        color: PlatformTheme.secondaryColor,
+                        color: PlatformTheme.white,
                         fontWeight: FontWeight.w800,
                         fontSize: 16,
                         wordSpacing: 0.1,
@@ -195,7 +202,7 @@ class EventCardWidget1 extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         );
       }),

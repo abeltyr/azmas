@@ -2,7 +2,6 @@ import 'package:azmas/Model/event.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GroupButton extends StatelessWidget {
   final EventModel? event;
