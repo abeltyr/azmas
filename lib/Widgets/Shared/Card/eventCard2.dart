@@ -5,6 +5,7 @@ import 'package:azmas/Widgets/Shared/brokenLine.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -13,9 +14,10 @@ class EventCardWidget2 extends StatelessWidget {
   final String eventImage;
   final String description;
   final String location;
-  final GroupModal group;
+  final GroupModal? group;
   final String date;
   final Function onClick;
+  final bool dateType;
 
   EventCardWidget2({
     required this.title,
@@ -25,6 +27,7 @@ class EventCardWidget2 extends StatelessWidget {
     required this.group,
     required this.date,
     required this.onClick,
+    this.dateType = true,
   });
 
   @override
@@ -159,8 +162,8 @@ class EventCardWidget2 extends StatelessWidget {
                     size: 5,
                   ),
                   GroupIndictor(
-                    title: "${group.title}",
-                    imageUrl: "${group.avatar}",
+                    title: "${group!.title}",
+                    imageUrl: "${group!.avatar}",
                   ),
                 ],
               ),
@@ -169,7 +172,7 @@ class EventCardWidget2 extends StatelessWidget {
               right: 0,
               child: Container(
                 height: 25,
-                width: 90,
+                width: !dateType ? 90 : 100,
                 decoration: BoxDecoration(
                   color: PlatformTheme.accentColorDark,
                   borderRadius: BorderRadius.circular(
@@ -180,17 +183,25 @@ class EventCardWidget2 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      CupertinoIcons.time_solid,
-                      size: 18,
-                      color: PlatformTheme.white,
-                    ),
+                    dateType
+                        ? SvgPicture.asset(
+                            "assets/Icons/Broken/Calendar.svg",
+                            color: PlatformTheme.white,
+                            height: 16,
+                            width: 16,
+                          )
+                        : SvgPicture.asset(
+                            "assets/Icons/Broken/Time.svg",
+                            color: PlatformTheme.white,
+                            height: 16,
+                            width: 16,
+                          ),
                     SizedBox(
-                      width: 2.5,
+                      width: 7.5,
                     ),
                     Container(
                       child: Text(
-                        "${DateFormat.jm().format(DateTime.parse(date))}",
+                        "${dateType ? DateFormat.yMMMd().format(DateTime.parse(date)) : DateFormat.jm().format(DateTime.parse(date))}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.lora(
@@ -201,6 +212,9 @@ class EventCardWidget2 extends StatelessWidget {
                           wordSpacing: 1,
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      width: 2.5,
                     ),
                   ],
                 ),

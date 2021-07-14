@@ -2,22 +2,21 @@ import 'package:azmas/Model/event.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
-import 'package:azmas/Widgets/Shared/Card/eventCard1.dart';
+import 'package:azmas/Widgets/Shared/Card/eventCard3.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PopularEventCards extends StatefulWidget {
+class WeekEventCards extends StatefulWidget {
   @override
-  _PopularEventCardsState createState() => _PopularEventCardsState();
+  _WeekEventCardsState createState() => _WeekEventCardsState();
 }
 
-class _PopularEventCardsState extends State<PopularEventCards> {
+class _WeekEventCardsState extends State<WeekEventCards> {
   Function _future = () {};
   @override
   void initState() {
     super.initState();
-    _future =
-        Provider.of<EventProvider>(context, listen: false).getPopularEvents;
+    _future = Provider.of<EventProvider>(context, listen: false).getWeekEvents;
   }
 
   @override
@@ -40,7 +39,7 @@ class _PopularEventCardsState extends State<PopularEventCards> {
                     margin: EdgeInsets.symmetric(
                       horizontal: 7.5,
                     ),
-                    child: EventCardWidget1(
+                    child: EventCardWidget3(
                       title: events[index].title,
                       description: events[index].description,
                       date: events[index].dateTime,

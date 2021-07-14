@@ -110,7 +110,7 @@ class EventCardWidget1 extends StatelessWidget {
                           width: 2.5,
                         ),
                         Container(
-                          width: 250,
+                          width: data.maxWidth - 50,
                           child: Text(
                             "$location",
                             maxLines: 2,

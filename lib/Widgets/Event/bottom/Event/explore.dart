@@ -2,22 +2,22 @@ import 'package:azmas/Model/event.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
-import 'package:azmas/Widgets/Shared/Card/eventCard1.dart';
+import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PopularEventCards extends StatefulWidget {
+class ExploreEventCards extends StatefulWidget {
   @override
-  _PopularEventCardsState createState() => _PopularEventCardsState();
+  _ExploreEventCardsState createState() => _ExploreEventCardsState();
 }
 
-class _PopularEventCardsState extends State<PopularEventCards> {
+class _ExploreEventCardsState extends State<ExploreEventCards> {
   Function _future = () {};
   @override
   void initState() {
     super.initState();
     _future =
-        Provider.of<EventProvider>(context, listen: false).getPopularEvents;
+        Provider.of<EventProvider>(context, listen: false).getExploreEvents;
   }
 
   @override
@@ -28,19 +28,22 @@ class _PopularEventCardsState extends State<PopularEventCards> {
           final List<EventModel>? events = snapshot.data as List<EventModel>?;
           if (snapshot.hasData && snapshot.data != null)
             return Container(
-              height: 335,
+              height: events!.length * 160,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
-                itemCount: events!.length,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: events.length,
                 padding: EdgeInsets.zero,
-                scrollDirection: Axis.horizontal,
                 itemBuilder: (ctx, index) {
                   return Container(
                     width: MediaQuery.of(context).size.width - 100,
                     margin: EdgeInsets.symmetric(
-                      horizontal: 7.5,
+                      vertical: 2.5,
                     ),
-                    child: EventCardWidget1(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15,
+                    ),
+                    child: EventCardWidget2(
                       title: events[index].title,
                       description: events[index].description,
                       date: events[index].dateTime,

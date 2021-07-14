@@ -96,6 +96,7 @@ class CalenderDate extends StatelessWidget {
                                   return Container(
                                     margin: EdgeInsets.symmetric(vertical: 5),
                                     child: EventCardWidget2(
+                                      dateType: false,
                                       title:
                                           "Title Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoreLorem Ipsum is simply dummy text of the printing and typesetting industry. Lore",
                                       description:
