@@ -41,8 +41,8 @@ class LoadedImageView extends StatelessWidget {
           imageCache?.clear();
           return Image.file(
             fileData,
-            cacheHeight: 520,
-            cacheWidth: 520,
+            cacheHeight: 1020,
+            cacheWidth: 1020,
             fit: fitData,
             errorBuilder: (context, _, error) {
               return SmallLoading();

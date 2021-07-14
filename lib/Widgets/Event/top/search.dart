@@ -21,7 +21,8 @@ class _SearchButtonState extends State<SearchButton>
   @override
   void initState() {
     super.initState();
-    final eventProvider = Provider.of<EventProvider>(context, listen: false);
+    final eventProvider =
+        Provider.of<EventInteractionProvider>(context, listen: false);
     _controller = AnimationController(vsync: this);
     _controller.duration = Duration(milliseconds: 150);
     _searchController = new TextEditingController(text: "");
@@ -39,7 +40,8 @@ class _SearchButtonState extends State<SearchButton>
 
   @override
   Widget build(BuildContext context) {
-    final eventProvider = Provider.of<EventProvider>(context, listen: false);
+    final eventProvider =
+        Provider.of<EventInteractionProvider>(context, listen: false);
     return GestureDetector(
       onTap: () {
         _controller.reset();

@@ -10,7 +10,8 @@ import 'package:provider/provider.dart';
 class EventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final eventProvider = Provider.of<EventProvider>(context, listen: true);
+    final eventProvider =
+        Provider.of<EventInteractionProvider>(context, listen: true);
     final double height = MediaQuery.of(context).size.height - 110;
     return Scaffold(
       resizeToAvoidBottomInset: false,

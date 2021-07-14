@@ -12,7 +12,8 @@ class EventTopButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final eventProvider = Provider.of<EventProvider>(context, listen: false);
+    final eventProvider =
+        Provider.of<EventInteractionProvider>(context, listen: false);
 
     return GestureDetector(
       onTap: () {

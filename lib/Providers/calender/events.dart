@@ -19,9 +19,11 @@ class EventProvider with ChangeNotifier {
         category: EventCategory.Fun,
         description: "polasdj ",
         groupId: "sad",
-        place: "here",
+        location: "here",
         title: "asd",
         group: null,
+        image:
+            "https://images.unsplash.com/photo-1625247666944-c93f0ee3da9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1790&q=80",
       ),
       EventModel(
         id: "2",
@@ -30,9 +32,11 @@ class EventProvider with ChangeNotifier {
         category: EventCategory.Fun,
         description: "polasdj ",
         groupId: "sad",
-        place: "here",
+        location: "here",
         title: "asd",
         group: null,
+        image:
+            "https://images.unsplash.com/photo-1625247666944-c93f0ee3da9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1790&q=80",
       ),
     ];
     return _days;

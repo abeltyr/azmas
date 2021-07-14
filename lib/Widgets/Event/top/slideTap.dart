@@ -9,7 +9,8 @@ class SlideTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final eventProvider = Provider.of<EventProvider>(context, listen: false);
+    final eventProvider =
+        Provider.of<EventInteractionProvider>(context, listen: false);
     return AnimatedContainer(
       duration: Duration(
         milliseconds: 150,

@@ -13,22 +13,24 @@ class EventModel {
   String id;
   String title;
   String description;
+  String image;
   String dateTime;
   String groupId;
   GroupModal? group;
   EventCategory category;
-  String place;
-  int attended;
+  String location;
+  int? attended;
 
   EventModel({
     required this.id,
     required this.title,
     required this.description,
+    required this.image,
     required this.dateTime,
     required this.groupId,
     required this.group,
     required this.category,
-    required this.place,
-    required this.attended,
+    required this.location,
+    this.attended,
   });
 }

@@ -10,6 +10,7 @@ class PlatformTheme {
 
   static const Color secondaryColor = Color(0xFF0A0C10);
   static const Color secondaryColorLight = Color(0xFF333333);
+  static const Color secondaryColorTransparent = Color(0x550A0C10);
 
   static const Color accentColor = Color(0xFF828486);
   static const Color accentColorOptic = Color(0x99828486);

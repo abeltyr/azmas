@@ -10,12 +10,12 @@ class CalenderDate extends StatelessWidget {
   final int day;
   CalenderDate({required this.plans, required this.day});
   final String imageData =
-      "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80";
+      "https://images.unsplash.com/photo-1552837418-bf0be889c178?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80";
   @override
   Widget build(BuildContext context) {
     //TODO: fetch the date event here and store it only here
     // not live reload just fecth on intial lode and display
-    // it use future builder with loader hear
+    // it use future builder with loader
     int heightVariable = plans.length == 0 ? 1 : plans.length;
     double heightConstant = 160.0;
     double heightDate = heightConstant * heightVariable;
@@ -23,7 +23,6 @@ class CalenderDate extends StatelessWidget {
         future: null,
         builder: (context, snapshot) {
           return LayoutBuilder(builder: (ctx, data) {
-            print(data.maxWidth);
             return Container(
               height: plans.length == 0 ? 100 : heightDate + 30,
               width: MediaQuery.of(context).size.width - 30,
@@ -42,7 +41,7 @@ class CalenderDate extends StatelessWidget {
                         Container(
                           width: 55,
                           child: Text(
-                            "Day $day",
+                            "Day ${day - 1}",
                             style: GoogleFonts.lora(
                               color: PlatformTheme.secondaryColorLight,
                               fontWeight: FontWeight.w600,
@@ -109,6 +108,7 @@ class CalenderDate extends StatelessWidget {
                                           title: "Group Name",
                                         ),
                                         location: "Some Where in AASTU",
+                                        onClick: () {},
                                       ),
                                     );
                                   }),
