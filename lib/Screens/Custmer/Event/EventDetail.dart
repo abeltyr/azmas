@@ -24,6 +24,11 @@ class EventDetailScreen extends StatelessWidget {
     final eventProvider =
         Provider.of<EventSelectedProvider>(context, listen: false);
     EventModel? event = eventProvider.event;
+    DateTime dateTimeCreatedAt = DateTime.parse(event!.dateTime);
+    DateTime dateTimeNow = DateTime.now();
+
+    final differenceInDays = dateTimeNow.difference(dateTimeCreatedAt).inDays;
+    print('$differenceInDays');
 
     return Scaffold(
       backgroundColor: PlatformTheme.primaryColor,

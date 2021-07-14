@@ -70,7 +70,7 @@ class DateWidget extends StatelessWidget {
         children: [
           detailData(
             dateTimeData:
-                "${DateFormat.yMMMMd().format(DateTime.parse(dateTime))}",
+                "${DateFormat.yMMMd().format(DateTime.parse(dateTime))}",
             title: "Date",
             iconData: "assets/Icons/Broken/Calendar.svg",
           ),

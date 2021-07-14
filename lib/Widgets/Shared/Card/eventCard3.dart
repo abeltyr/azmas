@@ -183,7 +183,7 @@ class EventCardWidget3 extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${DateFormat.MMMM().format(DateTime.parse(date))}",
+                    "${DateFormat.MMM().format(DateTime.parse(date))}",
                     style: GoogleFonts.lora(
                       color: PlatformTheme.secondaryColor,
                       fontWeight: FontWeight.w800,
