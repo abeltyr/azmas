@@ -50,25 +50,14 @@ class _QRScanBottomWidgetState extends State<QRScanBottomWidget>
             borderRadius: BorderRadius.circular(15)),
         margin: EdgeInsets.symmetric(
           horizontal: 25,
-          vertical: 25,
         ),
         padding: EdgeInsets.symmetric(
           horizontal: 25,
           vertical: 5,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              !qrScanProvider.qrScan
-                  ? AppLocalizations.of(context)!.sendMoney
-                  : AppLocalizations.of(context)!.receiveMoney,
-              style: GoogleFonts.lora(
-                color: PlatformTheme.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-              ),
-            ),
             RotationTransition(
               turns: Tween(begin: 1.0, end: 0.0).animate(_controller),
               child: Container(
@@ -76,11 +65,22 @@ class _QRScanBottomWidgetState extends State<QRScanBottomWidget>
                 width: 30,
                 child: SvgPicture.asset(
                   !qrScanProvider.qrScan
-                      ? "assets/icons/Send.svg"
-                      : "assets/icons/MoneyBag.svg",
+                      ? "assets/Icons/Broken/Scan.svg"
+                      : "assets/Icons/Broken/Profile.svg",
                   color: PlatformTheme.white,
                   fit: BoxFit.fill,
                 ),
+              ),
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Text(
+              !qrScanProvider.qrScan ? "Scan" : "My Account",
+              style: GoogleFonts.lora(
+                color: PlatformTheme.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
               ),
             ),
           ],

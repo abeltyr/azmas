@@ -23,6 +23,13 @@ class PlatformTheme {
 
   static const Color negative = Color(0xFFFE6464);
   static const Color positive = Color(0xFF6DD596);
+
+  static const Color textColor1 = Color(0xFF012851);
+  static const Color textColor2 = Color(0xFF4A6682);
+  static const Color textColor3 = Color(0xFFffffff);
+
+  static const Color boxColor = Color(0xFFF6F7FE);
+  static const Color iconColor = Color(0xFF002851);
 }
 
 class DarkerPlatformTheme {

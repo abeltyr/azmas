@@ -1,3 +1,4 @@
+import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +21,20 @@ class TopWidget extends StatelessWidget {
               Navigator.pop(context);
             },
             child: Container(
-              width: 50,
-              height: 50,
-              color: Colors.transparent,
+              height: 40,
+              width: 40,
+              margin: EdgeInsets.only(
+                right: 15,
+                top: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7.5),
+                color: PlatformTheme.thirdColorTransparent,
+              ),
               child: Icon(
-                CupertinoIcons.xmark_circle,
-                color: iconColor,
-                size: 30,
+                CupertinoIcons.xmark,
+                size: 25,
+                color: PlatformTheme.white,
               ),
             ),
           ),

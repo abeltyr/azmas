@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:azmas/Utils/theme.dart';
+import 'package:azmas/Widgets/scanQR/top.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter/material.dart';
@@ -95,49 +96,8 @@ class _QRScanWidgetState extends State<QRScanWidget> {
               //  Lottie.asset('assets/animation/QRscan.json'),
             ),
           ),
-          Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () async {
-                    controller.toggleFlash();
-                    setState(() {
-                      flashLightOn = !flashLightOn;
-                    });
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    alignment: Alignment.bottomCenter,
-                    child: Icon(
-                      flashLightOn ? Icons.flash_off : Icons.flash_on_outlined,
-                      color: PlatformTheme.thirdColor,
-                      size: 30,
-                    ),
-                  ),
-                ),
-                Container(),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    alignment: Alignment.bottomCenter,
-                    color: Colors.transparent,
-                    child: Icon(
-                      CupertinoIcons.xmark_circle,
-                      color: PlatformTheme.thirdColor,
-                      size: 30,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          TopWidget(
+            iconColor: PlatformTheme.primaryColor,
           ),
         ],
       ),

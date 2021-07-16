@@ -1,174 +1,323 @@
+import 'package:azmas/Screens/Customer/Account/Scan/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/socialButton.dart';
 import 'package:azmas/Widgets/Account/top.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
 import 'package:azmas/Widgets/image/index.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class AccountScreen extends StatelessWidget {
+  final description =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+  Widget cardData(
+      {required String icon,
+      required String textData,
+      required Function onClick,
+      bool showMore = true}) {
+    return GestureDetector(
+      onTap: () {
+        onClick();
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        margin: EdgeInsets.symmetric(vertical: 5),
+        child: Row(
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: PlatformTheme.boxColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: SvgPicture.asset(
+                icon,
+                color: PlatformTheme.textColor2,
+                fit: BoxFit.contain,
+              ),
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Expanded(
+              child: Container(
+                child: Text(
+                  "$textData",
+                  style: GoogleFonts.lora(
+                    color: PlatformTheme.textColor2,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20,
+                    wordSpacing: 0.5,
+                  ),
+                ),
+              ),
+            ),
+            if (showMore)
+              Container(
+                child: Icon(
+                  CupertinoIcons.forward,
+                  color: PlatformTheme.textColor2,
+                ),
+              )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final double totalWidth = MediaQuery.of(context).size.width;
     final double totalHeight = MediaQuery.of(context).size.height;
     final double secondImageData = 150;
     return Scaffold(
-      backgroundColor: PlatformTheme.primaryColor,
-      body: Stack(
-        children: [
-          Container(
-            height: totalHeight - 320,
-            margin: EdgeInsets.only(top: 280),
-            child: ListView(
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
-              children: [
-                SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  width: totalWidth,
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 15,
-                  ),
-                  child: Text(
-                    "Abel Lamesgen",
+        backgroundColor: PlatformTheme.primaryColor,
+        body: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                top: 40,
+                left: 15,
+                right: 15,
+              ),
+              height: 85,
+              width: totalWidth,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "username",
                     style: GoogleFonts.lora(
-                      color: PlatformTheme.secondaryColor,
+                      color: PlatformTheme.textColor2,
                       fontWeight: FontWeight.w800,
                       fontSize: 22,
-                      wordSpacing: 1,
+                      wordSpacing: 0.5,
                     ),
                   ),
-                ),
-                Container(
-                  height: 50,
-                  width: totalWidth,
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 15,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  Row(
                     children: [
-                      SocialButton(
-                        icon: "assets/Icons/Instagram.svg",
-                        url: 'https://instagram.com/aveltyr',
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          padding: EdgeInsets.all(7.5),
+                          decoration: BoxDecoration(
+                            color: PlatformTheme.secondaryColorTransparent,
+                            borderRadius: BorderRadius.circular(7.5),
+                          ),
+                          alignment: Alignment.center,
+                          child: SvgPicture.asset(
+                            "assets/Icons/Broken/Accounts.svg",
+                            color: PlatformTheme.white,
+                          ),
+                        ),
                       ),
-                      SocialButton(
-                        icon: "assets/Icons/Twitter.svg",
-                        url: 'https://www.twitter.com/aveltyr',
+                      SizedBox(
+                        width: 15,
                       ),
-                      SocialButton(
-                        icon: "assets/Icons/Telegram.svg",
-                        url: 'https://t.me/aveltyr',
+                      GestureDetector(
+                        onTap: () {
+                          showCupertinoModalBottomSheet(
+                            context: context,
+                            builder: (context) => QRScanScreen(),
+                          );
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7.5),
+                            color: PlatformTheme.secondaryColorTransparent,
+                          ),
+                          child: Icon(
+                            CupertinoIcons.qrcode,
+                            size: 25,
+                            color: PlatformTheme.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                ),
-                Container(
-                  width: totalWidth,
-                  height: 50,
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: (totalWidth - 300) / 2,
-                  ),
-                  child: AzmasButton(
-                    onClick: () {},
-                    color: PlatformTheme.thirdColor,
-                    title: "Be Friend",
-                  ),
-                ),
-                Container(
-                  width: totalWidth,
-                  alignment: Alignment.topLeft,
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 15,
-                  ),
-                  child: Text(
-                    "Info",
-                    style: GoogleFonts.lora(
-                      color: PlatformTheme.secondaryColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                      wordSpacing: 1,
-                    ),
-                  ),
-                ),
-                Container(
-                  width: totalWidth,
-                  alignment: Alignment.topLeft,
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 15,
-                  ),
-                  child: Text(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                    style: GoogleFonts.lora(
-                      color: PlatformTheme.secondaryColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                      wordSpacing: 1,
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            height: 320,
-            color: Colors.transparent,
-            child: Stack(
-              children: [
-                Container(
-                  height: 280,
-                  color: Colors.transparent,
-                  width: totalWidth,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
+            Divider(
+              height: 1,
+              thickness: 1,
+            ),
+            Container(
+              height: totalHeight - 101,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  SizedBox(
+                    height: 2.5,
+                  ),
+                  Container(
+                    width: totalWidth,
+                    height: 110,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15,
                     ),
-                    child: LoadedImageView(
-                      imageUrl:
-                          "https://images.unsplash.com/photo-1482203460252-be3456f7c8d8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(17.5),
+                            border: Border.all(
+                              width: 2,
+                              color: PlatformTheme.secondaryColor,
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: LoadedImageView(
+                              imageUrl:
+                                  "https://images.unsplash.com/photo-1551504436-ea077650a6f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 110,
+                            padding: EdgeInsets.symmetric(vertical: 2.5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Abel Lamesgen",
+                                        style: GoogleFonts.lora(
+                                          color: PlatformTheme.textColor1,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20,
+                                          wordSpacing: 0.5,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                Container(
+                                  height: 50,
+                                  width: totalWidth,
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.symmetric(
+                                    vertical: 5,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SocialButton(
+                                        icon: "assets/Icons/Instagram.svg",
+                                        url: 'https://instagram.com/aveltyr',
+                                      ),
+                                      SocialButton(
+                                        icon: "assets/Icons/Twitter.svg",
+                                        url: 'https://www.twitter.com/aveltyr',
+                                      ),
+                                      SocialButton(
+                                        icon: "assets/Icons/Broken/Send.svg",
+                                        url: 'https://t.me/aveltyr',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: (totalWidth - secondImageData) / 2,
-                  right: (totalWidth - secondImageData) / 2,
-                  child: Container(
-                    width: secondImageData,
-                    height: secondImageData - 5,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: PlatformTheme.primaryColor,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(30),
-                        color: PlatformTheme.primaryColor),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: LoadedImageView(
-                        imageUrl:
-                            "https://images.unsplash.com/photo-1551504436-ea077650a6f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15,
+                    ),
+                    child: Text(
+                      "Bio",
+                      style: GoogleFonts.lora(
+                        color: PlatformTheme.textColor2,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 18,
+                        wordSpacing: 0.5,
                       ),
                     ),
                   ),
-                ),
-                AccountTopBar(),
-              ],
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15,
+                    ),
+                    child: Text(
+                      "${description.substring(0, 200)}",
+                      style: GoogleFonts.lora(
+                        color: PlatformTheme.textColor2,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        wordSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  cardData(
+                    icon: "assets/Icons/Broken/Setting.svg",
+                    textData: "Edit Profile",
+                    onClick: () {},
+                  ),
+                  cardData(
+                    icon: "assets/Icons/Broken/Ticket.svg",
+                    textData: "My Tickets",
+                    onClick: () {},
+                  ),
+                  cardData(
+                    icon: "assets/Icons/Broken/Shield.svg",
+                    textData: "Verify Me",
+                    onClick: () {},
+                  ),
+                  Divider(),
+                  cardData(
+                    icon: "assets/Icons/Broken/Suggestion.svg",
+                    textData: "Suggestion",
+                    onClick: () {},
+                  ),
+                  cardData(
+                    icon: "assets/Icons/Broken/Chat.svg",
+                    textData: "Reach Out",
+                    onClick: () {},
+                  ),
+                  Divider(),
+                  cardData(
+                    icon: "assets/Icons/Broken/Logout.svg",
+                    textData: "Log Out",
+                    onClick: () {},
+                    showMore: false,
+                  ),
+                  SizedBox(
+                    height: 90,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ));
   }
 }
