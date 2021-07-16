@@ -5,7 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 class AzmasButton extends StatefulWidget {
   final Function onClick;
   final String title;
-  const AzmasButton({required this.onClick, required this.title});
+  final Color color;
+  const AzmasButton(
+      {required this.onClick,
+      required this.title,
+      this.color = PlatformTheme.positive});
 
   @override
   _AzmasButtonState createState() => _AzmasButtonState();
@@ -43,7 +47,7 @@ class _AzmasButtonState extends State<AzmasButton> {
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: PlatformTheme.positive,
+              color: widget.color,
               borderRadius: BorderRadius.circular(15),
             ),
             padding: EdgeInsets.symmetric(

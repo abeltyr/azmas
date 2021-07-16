@@ -5,6 +5,7 @@ class UserModel {
   String? phoneNumber;
   String? email;
   String avatar;
+  String? background;
   DateTime? birthDate;
   bool person;
   String account;

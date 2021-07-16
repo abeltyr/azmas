@@ -6,7 +6,7 @@ import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AccountScreen extends StatelessWidget {
+class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double totalWidth = MediaQuery.of(context).size.width;
