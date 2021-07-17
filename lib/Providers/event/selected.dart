@@ -1,5 +1,5 @@
-import 'package:azmas/Model/event.dart';
-import 'package:azmas/Model/group.dart';
+import 'package:azmas/Model/Event/index.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:flutter/foundation.dart';
 
 class EventSelectedProvider with ChangeNotifier {

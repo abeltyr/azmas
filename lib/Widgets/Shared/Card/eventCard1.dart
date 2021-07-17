@@ -1,4 +1,4 @@
-import 'package:azmas/Model/group.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';

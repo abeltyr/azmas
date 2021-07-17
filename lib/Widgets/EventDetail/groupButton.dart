@@ -1,4 +1,4 @@
-import 'package:azmas/Model/event.dart';
+import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/material.dart';

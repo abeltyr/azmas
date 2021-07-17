@@ -1,4 +1,4 @@
-import 'package:azmas/Model/event.dart';
+import 'package:azmas/Model/Event/index.dart';
 
 class EnumSetter {
   String eventCategory(EventCategory? data) {
