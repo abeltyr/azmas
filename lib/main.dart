@@ -28,6 +28,7 @@ void main() async {
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(SettingModelAdapter());
   await Hive.openBox<UserModel>('users');
+  await Hive.openBox<SettingModel>('settings');
   runApp(MyApp());
 }
 

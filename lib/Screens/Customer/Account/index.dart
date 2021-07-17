@@ -283,10 +283,7 @@ class AccountScreen extends StatelessWidget {
                   cardData(
                     icon: "assets/Icons/Broken/Setting.svg",
                     textData: "Edit Profile",
-                    onClick: () {
-                      Provider.of<UserProvider>(context, listen: false)
-                          .getUserLocally();
-                    },
+                    onClick: () {},
                   ),
                   cardData(
                     icon: "assets/Icons/Broken/Ticket.svg",

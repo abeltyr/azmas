@@ -4,21 +4,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class UserProvider with ChangeNotifier {
   UserModel? _currentUser = Hive.box<UserModel>('users').get("currentUser");
+  var userProfile = Hive.box<UserModel>('users');
 
   UserModel? get currentUser {
     return _currentUser;
   }
 
-  void setUser(UserModel user) {
-    _currentUser = user;
-    notifyListeners();
-  }
-
-  Future<UserModel?> getUserLocally() async {
-    var users = Hive.box<UserModel>('users');
-    print(users.get("currentUser"));
-    users.put(
-      "currentUser",
+  Future<void> login() async {
+    setupUser(
       UserModel(
         id: "1",
         avatar: "https://source.unsplash.com/random",
@@ -27,11 +20,28 @@ class UserProvider with ChangeNotifier {
         userName: "ADS",
       ),
     );
-    // print(users.delete("currentUser"));
-    return _currentUser;
+  }
+
+  Future<void> signUp() async {
+    setupUser(
+      UserModel(
+        id: "1",
+        avatar: "https://source.unsplash.com/random",
+        firstName: "abel",
+        lastName: "lamesgen",
+        userName: "ADS",
+      ),
+    );
+  }
+
+  void setupUser(UserModel userData) {
+    userProfile.put(
+      "currentUser",
+      userData,
+    );
   }
 
   void logout() {
-    Hive.box<UserModel>('users')..delete("currentUser");
+    userProfile.delete("currentUser");
   }
 }

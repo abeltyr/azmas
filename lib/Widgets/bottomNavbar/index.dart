@@ -14,9 +14,9 @@ class BottomNavigatorWidget extends StatelessWidget {
     double widthData = (MediaQuery.of(context).size.width - 40) / 2;
     final navBarProvider = Provider.of<NavBarProvider>(context, listen: false);
     Widget tab({
-      required Function onClick,
       required String bold,
       required String broken,
+      required int value,
     }) {
       return Container(
         decoration: BoxDecoration(
@@ -26,10 +26,10 @@ class BottomNavigatorWidget extends StatelessWidget {
         height: double.infinity,
         child: CupertinoButton(
           onPressed: () {
-            onClick();
+            navBarProvider.updateSelectedScreen(value);
           },
           child: SvgPicture.asset(
-            selectedScreen == 1 ? bold : broken,
+            selectedScreen == value ? bold : broken,
             color: PlatformTheme.secondaryColor,
             height: selectedScreen == 1 ? 35 : 30,
             width: selectedScreen == 1 ? 35 : 30,
@@ -62,16 +62,12 @@ class BottomNavigatorWidget extends StatelessWidget {
             tab(
               bold: "assets/Icons/Bold/Calendar.svg",
               broken: "assets/Icons/Broken/Calendar.svg",
-              onClick: () {
-                navBarProvider.updateSelectedScreen(1);
-              },
+              value: 1,
             ),
             tab(
               bold: "assets/Icons/Bold/Profile.svg",
               broken: "assets/Icons/Broken/Profile.svg",
-              onClick: () {
-                navBarProvider.updateSelectedScreen(2);
-              },
+              value: 2,
             ),
           ],
         ),

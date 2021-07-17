@@ -16,16 +16,14 @@ import 'package:provider/provider.dart';
 class IndexScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool loggedin = true;
     return ValueListenableBuilder(
         valueListenable:
             Hive.box<UserModel>('users').listenable(keys: ["currentUser"]),
         builder: (context, box, widget) {
           var boxData = box as Box<UserModel>;
           UserModel? user = boxData.get("currentUser");
-          print(user);
           final navBarProvide =
-              Provider.of<NavBarProvider>(context, listen: false);
+              Provider.of<NavBarProvider>(context, listen: true);
           if (user != null)
             return Stack(
               children: [

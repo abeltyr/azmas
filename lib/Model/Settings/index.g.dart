@@ -17,7 +17,7 @@ class SettingModelAdapter extends TypeAdapter<SettingModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return SettingModel(
-      darkTheme: fields[0] as bool?,
+      intro: fields[0] as bool,
     );
   }
 
@@ -26,7 +26,7 @@ class SettingModelAdapter extends TypeAdapter<SettingModel> {
     writer
       ..writeByte(1)
       ..writeByte(0)
-      ..write(obj.darkTheme);
+      ..write(obj.intro);
   }
 
   @override
