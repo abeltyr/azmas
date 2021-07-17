@@ -12,7 +12,8 @@ class EventTop extends StatelessWidget {
       child: Stack(
         children: [
           SlideTap(),
-          Positioned(right: 0, child: SearchButton()),
+          //TODO: add this back when search is done
+          // Positioned(right: 0, child: SearchButton()),
         ],
       ),
     );

@@ -20,43 +20,14 @@ class EventScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: PlatformTheme.primaryColor,
-      body: Stack(
+      body: Column(
         children: [
+          EventTop(),
           if (eventProvider.selectedTab == 0 && !eventProvider.searchTap)
             Events(heightData: height),
           if (eventProvider.selectedTab == 1 && !eventProvider.searchTap)
             Calender(heightData: height),
           if (eventProvider.searchTap) EventSearch(heightData: height),
-          // EventTop(),
-          Container(
-            height: 100,
-            padding: EdgeInsets.symmetric(
-              horizontal: 15,
-            ),
-            margin: EdgeInsets.only(top: 55),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  child: Text(
-                    "Graduation Day Count Down",
-                    style: GoogleFonts.lora(
-                      color: PlatformTheme.textColor1,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
-                      wordSpacing: 1,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                CountDownWidget(
-                  date: "2021-10-17",
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

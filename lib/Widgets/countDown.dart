@@ -43,7 +43,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
       var tempSecond = ((difference.inSeconds / 60) - difference.inMinutes);
       setState(() {
         days = difference.inDays;
-        hours = (tempHours * 24).toInt();
+        hours = (tempHours * 24).toInt() + 1;
         mins = (tempMins * 60).toInt();
         secs = (tempSecond * 60).toInt();
       });
@@ -60,31 +60,30 @@ class _CountDownWidgetState extends State<CountDownWidget> {
         margin: EdgeInsets.symmetric(
           horizontal: 15,
         ),
-        width: 65,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "$title",
+              "$value",
               textAlign: TextAlign.center,
               style: GoogleFonts.lora(
-                color: PlatformTheme.white,
-                fontWeight: FontWeight.w500,
+                color: PlatformTheme.textColor1,
+                fontWeight: FontWeight.w300,
                 fontSize: 18,
-                wordSpacing: 0.6,
+                wordSpacing: 1,
               ),
             ),
             SizedBox(
               height: 5,
             ),
             Text(
-              "$value",
+              "$title",
               textAlign: TextAlign.center,
               style: GoogleFonts.lora(
-                color: PlatformTheme.white,
-                fontWeight: FontWeight.w300,
+                color: PlatformTheme.textColor1,
+                fontWeight: FontWeight.w500,
                 fontSize: 18,
-                wordSpacing: 1,
+                wordSpacing: 0.6,
               ),
             ),
           ],
@@ -93,38 +92,39 @@ class _CountDownWidgetState extends State<CountDownWidget> {
     }
 
     return Container(
-      height: 60,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: PlatformTheme.thirdColorTransparent,
-        borderRadius: BorderRadius.circular(7.5),
-      ),
+      height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           display(title: "Days", value: days),
           Container(
-            decoration: BoxDecoration(
-              color: PlatformTheme.white,
+            child: Text(
+              ":",
+              style: TextStyle(
+                color: PlatformTheme.textColor1,
+                fontSize: 25,
+              ),
             ),
-            width: 2,
-            height: 20,
           ),
           display(title: "Hrs", value: hours),
           Container(
-            decoration: BoxDecoration(
-              color: PlatformTheme.white,
+            child: Text(
+              ":",
+              style: TextStyle(
+                color: PlatformTheme.textColor1,
+                fontSize: 25,
+              ),
             ),
-            width: 2,
-            height: 20,
           ),
           display(title: "Mins", value: mins),
           Container(
-            decoration: BoxDecoration(
-              color: PlatformTheme.white,
+            child: Text(
+              ":",
+              style: TextStyle(
+                color: PlatformTheme.textColor1,
+                fontSize: 25,
+              ),
             ),
-            width: 2,
-            height: 20,
           ),
           display(title: "Secs", value: secs),
         ],
