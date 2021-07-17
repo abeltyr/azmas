@@ -45,11 +45,11 @@ class _EventsState extends State<Events> {
       child: Column(
         children: [
           SizedBox(
-            height: 40,
+            height: 100,
           ),
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - 40,
+            height: MediaQuery.of(context).size.height - 100,
             color: Colors.transparent,
             child: SmartRefresher(
               enablePullDown: true,
