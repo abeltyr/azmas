@@ -1,4 +1,4 @@
-import 'package:azmas/Model/User/user.dart';
+import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/index.dart';

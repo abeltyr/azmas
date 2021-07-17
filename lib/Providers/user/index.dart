@@ -1,4 +1,4 @@
-import 'package:azmas/Model/User/user.dart';
+import 'package:azmas/Model/User/index.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

@@ -1,4 +1,5 @@
-import 'package:azmas/Model/User/user.dart';
+import 'package:azmas/Model/Settings/index.dart';
+import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/calender/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
@@ -25,6 +26,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(UserModelAdapter());
+  Hive.registerAdapter(SettingModelAdapter());
   await Hive.openBox<UserModel>('users');
   runApp(MyApp());
 }
