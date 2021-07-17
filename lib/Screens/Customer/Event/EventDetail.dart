@@ -1,5 +1,5 @@
 import 'package:azmas/Model/countDown.dart';
-import 'package:azmas/Model/event.dart';
+import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Utils/enum.dart';
 import 'package:azmas/Utils/theme.dart';

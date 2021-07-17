@@ -6,7 +6,7 @@ class EventTop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 55, left: 15, right: 15),
+      margin: EdgeInsets.only(top: 45, left: 15, right: 15),
       height: 55,
       width: MediaQuery.of(context).size.width - 30,
       child: Stack(

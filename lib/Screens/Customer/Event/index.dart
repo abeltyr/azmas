@@ -12,22 +12,18 @@ class EventScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final eventProvider =
         Provider.of<EventInteractionProvider>(context, listen: true);
-    final double height = MediaQuery.of(context).size.height - 110;
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: PlatformTheme.primaryColor,
-      body: Column(
+      body: Stack(
         children: [
-          EventTop(),
-          Stack(
-            children: [
-              if (eventProvider.selectedTab == 0 && !eventProvider.searchTap)
-                Events(heightData: height),
-              if (eventProvider.selectedTab == 1 && !eventProvider.searchTap)
-                Calender(heightData: height),
-              if (eventProvider.searchTap) EventSearch(heightData: height),
-            ],
-          ),
+          if (eventProvider.selectedTab == 0 && !eventProvider.searchTap)
+            Events(heightData: height),
+          if (eventProvider.selectedTab == 1 && !eventProvider.searchTap)
+            Calender(heightData: height),
+          if (eventProvider.searchTap) EventSearch(heightData: height),
+          // EventTop(),
         ],
       ),
     );

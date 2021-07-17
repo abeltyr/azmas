@@ -2,8 +2,6 @@ import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/Scan/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/socialButton.dart';
-import 'package:azmas/Widgets/Account/top.dart';
-import 'package:azmas/Widgets/Shared/Button/index.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +74,6 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double totalWidth = MediaQuery.of(context).size.width;
     final double totalHeight = MediaQuery.of(context).size.height;
-    final double secondImageData = 150;
     return Scaffold(
         backgroundColor: PlatformTheme.primaryColor,
         body: Column(
