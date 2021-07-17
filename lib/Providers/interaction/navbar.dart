@@ -13,4 +13,8 @@ class NavBarProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<int> getSelectedScreen() async {
+    return _selectedScreen;
+  }
 }

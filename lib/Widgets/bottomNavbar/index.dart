@@ -11,8 +11,33 @@ class BottomNavigatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double widthData = (MediaQuery.of(context).size.width - 40) / 3;
+    double widthData = (MediaQuery.of(context).size.width - 40) / 2;
     final navBarProvider = Provider.of<NavBarProvider>(context, listen: false);
+    Widget tab({
+      required Function onClick,
+      required String bold,
+      required String broken,
+    }) {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+        ),
+        width: widthData,
+        height: double.infinity,
+        child: CupertinoButton(
+          onPressed: () {
+            onClick();
+          },
+          child: SvgPicture.asset(
+            selectedScreen == 1 ? bold : broken,
+            color: PlatformTheme.secondaryColor,
+            height: selectedScreen == 1 ? 35 : 30,
+            width: selectedScreen == 1 ? 35 : 30,
+          ),
+        ),
+      );
+    }
+
     return Positioned(
       bottom: 20,
       left: 20,
@@ -27,65 +52,26 @@ class BottomNavigatorWidget extends StatelessWidget {
         child: Row(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              width: widthData,
-              height: double.infinity,
-              child: CupertinoButton(
-                onPressed: () {
-                  navBarProvider.updateSelectedScreen(0);
-                },
-                child: SvgPicture.asset(
-                  selectedScreen == 0
-                      ? "assets/Icons/Bold/Home.svg"
-                      : "assets/Icons/Broken/Home.svg",
-                  color: PlatformTheme.secondaryColor,
-                  height: selectedScreen == 0 ? 35 : 30,
-                  width: selectedScreen == 0 ? 35 : 30,
-                ),
-              ),
+            // tab(
+            //   bold: "assets/Icons/Bold/Home.svg",
+            //   broken: "assets/Icons/Broken/Home.svg",
+            //   onClick: () {
+            //     navBarProvider.updateSelectedScreen(0);
+            //   },
+            // ),
+            tab(
+              bold: "assets/Icons/Bold/Calendar.svg",
+              broken: "assets/Icons/Broken/Calendar.svg",
+              onClick: () {
+                navBarProvider.updateSelectedScreen(1);
+              },
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              width: widthData,
-              height: double.infinity,
-              child: CupertinoButton(
-                onPressed: () {
-                  navBarProvider.updateSelectedScreen(1);
-                },
-                child: SvgPicture.asset(
-                  selectedScreen == 1
-                      ? "assets/Icons/Bold/Calendar.svg"
-                      : "assets/Icons/Broken/Calendar.svg",
-                  color: PlatformTheme.secondaryColor,
-                  height: selectedScreen == 1 ? 35 : 30,
-                  width: selectedScreen == 1 ? 35 : 30,
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              width: widthData,
-              height: double.infinity,
-              child: CupertinoButton(
-                onPressed: () {
-                  navBarProvider.updateSelectedScreen(2);
-                },
-                child: SvgPicture.asset(
-                  selectedScreen == 2
-                      ? "assets/Icons/Bold/Profile.svg"
-                      : "assets/Icons/Broken/Profile.svg",
-                  color: PlatformTheme.secondaryColor,
-                  height: selectedScreen == 2 ? 35 : 30,
-                  width: selectedScreen == 2 ? 35 : 30,
-                ),
-              ),
+            tab(
+              bold: "assets/Icons/Bold/Profile.svg",
+              broken: "assets/Icons/Broken/Profile.svg",
+              onClick: () {
+                navBarProvider.updateSelectedScreen(2);
+              },
             ),
           ],
         ),

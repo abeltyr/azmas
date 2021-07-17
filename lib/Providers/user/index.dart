@@ -1,17 +1,11 @@
-import 'package:azmas/Model/user.dart';
+import 'package:azmas/Model/User/user.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class UserProvider with ChangeNotifier {
-  late UserModel _currentUser = UserModel(
-    id: "1",
-    avatar: "https://source.unsplash.com/random",
-    account: "2312921390787123",
-    firstName: "abel",
-    lastName: "lamesgen",
-    balance: 1900000,
-  );
+  UserModel? _currentUser = Hive.box<UserModel>('users').get("currentUser");
 
-  UserModel get currentUser {
+  UserModel? get currentUser {
     return _currentUser;
   }
 
@@ -20,15 +14,24 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<UserModel> fetchUser() async {
-    // fetch the user from the local or online and send the user back
-    // for now let just manually set it up. uncomment it to get the guest screen
-    // _currentUser = UserModel(id: "sa", email: "SA", phoneNumber: "SA", fullName: "ad");
+  Future<UserModel?> getUserLocally() async {
+    var users = Hive.box<UserModel>('users');
+    print(users.get("currentUser"));
+    users.put(
+      "currentUser",
+      UserModel(
+        id: "1",
+        avatar: "https://source.unsplash.com/random",
+        firstName: "abel",
+        lastName: "lamesgen",
+        userName: "ADS",
+      ),
+    );
+    // print(users.delete("currentUser"));
     return _currentUser;
   }
 
-  void subTract({double data = 0}) async {
-    _currentUser.balance = _currentUser.balance! - data;
-    notifyListeners();
+  void logout() {
+    Hive.box<UserModel>('users')..delete("currentUser");
   }
 }

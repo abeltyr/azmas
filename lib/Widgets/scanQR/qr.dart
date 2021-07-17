@@ -11,8 +11,7 @@ class QRWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final usersProvider = Provider.of<UserProvider>(context, listen: false);
     Map data = {
-      "account": usersProvider.currentUser.account,
-      "avatar": usersProvider.currentUser.avatar,
+      "avatar": usersProvider.currentUser!.avatar,
       "amount": 0,
     };
     return Column(
@@ -22,7 +21,7 @@ class QRWidget extends StatelessWidget {
           eyeStyle: QrEyeStyle(
             eyeShape: QrEyeShape.square,
           ),
-          embeddedImage: AssetImage(usersProvider.currentUser.avatar),
+          embeddedImage: AssetImage(usersProvider.currentUser!.avatar),
           embeddedImageStyle: QrEmbeddedImageStyle(
             size: Size(60, 60),
           ),

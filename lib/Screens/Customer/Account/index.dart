@@ -1,3 +1,4 @@
+import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/Scan/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/socialButton.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:provider/provider.dart';
 
 class AccountScreen extends StatelessWidget {
   final description =
@@ -281,7 +283,10 @@ class AccountScreen extends StatelessWidget {
                   cardData(
                     icon: "assets/Icons/Broken/Setting.svg",
                     textData: "Edit Profile",
-                    onClick: () {},
+                    onClick: () {
+                      Provider.of<UserProvider>(context, listen: false)
+                          .getUserLocally();
+                    },
                   ),
                   cardData(
                     icon: "assets/Icons/Broken/Ticket.svg",
@@ -308,7 +313,10 @@ class AccountScreen extends StatelessWidget {
                   cardData(
                     icon: "assets/Icons/Broken/Logout.svg",
                     textData: "Log Out",
-                    onClick: () {},
+                    onClick: () {
+                      Provider.of<UserProvider>(context, listen: false)
+                          .logout();
+                    },
                     showMore: false,
                   ),
                   SizedBox(

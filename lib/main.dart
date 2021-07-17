@@ -1,3 +1,4 @@
+import 'package:azmas/Model/User/user.dart';
 import 'package:azmas/Providers/calender/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
@@ -19,8 +20,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserModelAdapter());
+  await Hive.openBox<UserModel>('users');
   runApp(MyApp());
 }
 

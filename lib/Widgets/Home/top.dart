@@ -34,7 +34,7 @@ class HomeScreenTop extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
-                  usersProvider.currentUser.avatar,
+                  usersProvider.currentUser!.avatar,
                   cacheWidth: 200,
                   cacheHeight: 200,
                   fit: BoxFit.fill,
