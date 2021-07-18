@@ -9,6 +9,7 @@ class EventTop extends StatelessWidget {
       margin: EdgeInsets.only(top: 45, left: 15, right: 15),
       height: 55,
       width: MediaQuery.of(context).size.width - 30,
+      // alignment: Alignment.center,
       child: Stack(
         children: [
           SlideTap(),

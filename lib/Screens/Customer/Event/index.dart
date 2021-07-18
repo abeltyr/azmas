@@ -1,14 +1,10 @@
-import 'package:azmas/Model/countDown.dart';
 import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Event/bottom/Calender/index.dart';
 import 'package:azmas/Widgets/Event/bottom/Event/index.dart';
 import 'package:azmas/Widgets/Event/bottom/search.dart';
 import 'package:azmas/Widgets/Event/top/index.dart';
-import 'package:azmas/Widgets/EventDetail/top.dart';
-import 'package:azmas/Widgets/countDown.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class EventScreen extends StatelessWidget {

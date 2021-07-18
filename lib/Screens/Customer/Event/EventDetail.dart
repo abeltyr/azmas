@@ -107,7 +107,7 @@ class EventDetailScreen extends StatelessWidget {
                                 ),
                               ),
                               DateWidget(
-                                dateTime: event.dateAndTime,
+                                dateTime: event.eventDate,
                               ),
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 15),

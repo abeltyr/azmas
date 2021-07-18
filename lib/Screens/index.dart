@@ -1,12 +1,10 @@
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/interaction/navbar.dart';
-import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/index.dart';
 import 'package:azmas/Screens/Customer/Event/index.dart';
 import 'package:azmas/Screens/Customer/Home/index.dart';
 import 'package:azmas/Screens/Guest/index.dart';
 import 'package:azmas/Widgets/bottomNavbar/index.dart';
-import 'package:azmas/Widgets/loading/small.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';

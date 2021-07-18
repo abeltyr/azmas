@@ -9,8 +9,10 @@ import 'package:azmas/Widgets/Event/Bottom/Event/explore.dart';
 import 'package:azmas/Widgets/Event/Bottom/Event/popular.dart';
 import 'package:azmas/Widgets/Event/Bottom/Event/week.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCard1.dart';
+import 'package:azmas/Widgets/Shared/Card/eventCardFlex.dart';
 import 'package:azmas/Widgets/countDown.dart';
 import 'package:azmas/Widgets/loading/check.dart';
+import 'package:azmas/Widgets/loading/error.dart';
 import 'package:azmas/Widgets/loading/rocket.dart';
 import 'package:azmas/Widgets/loading/small.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,11 +35,15 @@ class _EventsState extends State<Events> {
       RefreshController(initialRefresh: true);
 
   void _onRefresh() async {
-    // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
-    // if failed,use refreshFailed()
-    await Provider.of<EventProvider>(context, listen: false).insertEvents();
-    _refreshController.refreshCompleted();
+    try {
+      // monitor network fetch
+      await Future.delayed(Duration(milliseconds: 1000));
+      // if failed,use refreshFailed()
+      await Provider.of<EventProvider>(context, listen: false).insertEvents();
+      _refreshController.refreshCompleted();
+    } catch (e) {
+      _refreshController.refreshFailed();
+    }
   }
 
   void _onLoading() async {
@@ -72,6 +78,22 @@ class _EventsState extends State<Events> {
                     Container(height: 30, width: 30, child: CheckLoading()),
                     Text(
                       "Fetched All The Events",
+                      style: GoogleFonts.lora(
+                        color: PlatformTheme.textColor2,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 14,
+                        wordSpacing: 0.5,
+                      ),
+                    ),
+                  ],
+                )),
+                failed: Container(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(height: 30, width: 30, child: ErrorMessage()),
+                    Text(
+                      "Something Went Wrong.",
                       style: GoogleFonts.lora(
                         color: PlatformTheme.textColor2,
                         fontWeight: FontWeight.w800,
@@ -142,10 +164,10 @@ class _EventsState extends State<Events> {
                   else if (events[index] != null) {
                     return Container(
                       margin: EdgeInsets.symmetric(vertical: 10),
-                      child: EventCardWidget1(
+                      child: EventCardFlexWidget(
                         title: events[index]!.title,
                         description: events[index]!.description,
-                        date: events[index]!.dateAndTime,
+                        eventDate: events[index]!.eventDate,
                         eventImage: events[index]!.image,
                         groupId: events[index]!.groupId,
                         location: events[index]!.location,

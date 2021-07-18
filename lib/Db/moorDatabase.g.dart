@@ -533,7 +533,7 @@ class Event extends DataClass implements Insertable<Event> {
   final String title;
   final String description;
   final String image;
-  final String dateAndTime;
+  final DateTime eventDate;
   final String groupId;
   final String category;
   final String location;
@@ -545,7 +545,7 @@ class Event extends DataClass implements Insertable<Event> {
       required this.title,
       required this.description,
       required this.image,
-      required this.dateAndTime,
+      required this.eventDate,
       required this.groupId,
       required this.category,
       required this.location,
@@ -564,8 +564,8 @@ class Event extends DataClass implements Insertable<Event> {
           .mapFromDatabaseResponse(data['${effectivePrefix}description'])!,
       image: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}image'])!,
-      dateAndTime: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}date_and_time'])!,
+      eventDate: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}event_date'])!,
       groupId: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}group_id'])!,
       category: const StringType()
@@ -587,7 +587,7 @@ class Event extends DataClass implements Insertable<Event> {
     map['title'] = Variable<String>(title);
     map['description'] = Variable<String>(description);
     map['image'] = Variable<String>(image);
-    map['date_and_time'] = Variable<String>(dateAndTime);
+    map['event_date'] = Variable<DateTime>(eventDate);
     map['group_id'] = Variable<String>(groupId);
     map['category'] = Variable<String>(category);
     map['location'] = Variable<String>(location);
@@ -603,7 +603,7 @@ class Event extends DataClass implements Insertable<Event> {
       title: Value(title),
       description: Value(description),
       image: Value(image),
-      dateAndTime: Value(dateAndTime),
+      eventDate: Value(eventDate),
       groupId: Value(groupId),
       category: Value(category),
       location: Value(location),
@@ -621,7 +621,7 @@ class Event extends DataClass implements Insertable<Event> {
       title: serializer.fromJson<String>(json['title']),
       description: serializer.fromJson<String>(json['description']),
       image: serializer.fromJson<String>(json['image']),
-      dateAndTime: serializer.fromJson<String>(json['dateAndTime']),
+      eventDate: serializer.fromJson<DateTime>(json['eventDate']),
       groupId: serializer.fromJson<String>(json['groupId']),
       category: serializer.fromJson<String>(json['category']),
       location: serializer.fromJson<String>(json['location']),
@@ -638,7 +638,7 @@ class Event extends DataClass implements Insertable<Event> {
       'title': serializer.toJson<String>(title),
       'description': serializer.toJson<String>(description),
       'image': serializer.toJson<String>(image),
-      'dateAndTime': serializer.toJson<String>(dateAndTime),
+      'eventDate': serializer.toJson<DateTime>(eventDate),
       'groupId': serializer.toJson<String>(groupId),
       'category': serializer.toJson<String>(category),
       'location': serializer.toJson<String>(location),
@@ -653,7 +653,7 @@ class Event extends DataClass implements Insertable<Event> {
           String? title,
           String? description,
           String? image,
-          String? dateAndTime,
+          DateTime? eventDate,
           String? groupId,
           String? category,
           String? location,
@@ -665,7 +665,7 @@ class Event extends DataClass implements Insertable<Event> {
         title: title ?? this.title,
         description: description ?? this.description,
         image: image ?? this.image,
-        dateAndTime: dateAndTime ?? this.dateAndTime,
+        eventDate: eventDate ?? this.eventDate,
         groupId: groupId ?? this.groupId,
         category: category ?? this.category,
         location: location ?? this.location,
@@ -680,7 +680,7 @@ class Event extends DataClass implements Insertable<Event> {
           ..write('title: $title, ')
           ..write('description: $description, ')
           ..write('image: $image, ')
-          ..write('dateAndTime: $dateAndTime, ')
+          ..write('eventDate: $eventDate, ')
           ..write('groupId: $groupId, ')
           ..write('category: $category, ')
           ..write('location: $location, ')
@@ -701,7 +701,7 @@ class Event extends DataClass implements Insertable<Event> {
               $mrjc(
                   image.hashCode,
                   $mrjc(
-                      dateAndTime.hashCode,
+                      eventDate.hashCode,
                       $mrjc(
                           groupId.hashCode,
                           $mrjc(
@@ -720,7 +720,7 @@ class Event extends DataClass implements Insertable<Event> {
           other.title == this.title &&
           other.description == this.description &&
           other.image == this.image &&
-          other.dateAndTime == this.dateAndTime &&
+          other.eventDate == this.eventDate &&
           other.groupId == this.groupId &&
           other.category == this.category &&
           other.location == this.location &&
@@ -734,7 +734,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
   final Value<String> title;
   final Value<String> description;
   final Value<String> image;
-  final Value<String> dateAndTime;
+  final Value<DateTime> eventDate;
   final Value<String> groupId;
   final Value<String> category;
   final Value<String> location;
@@ -746,7 +746,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
     this.title = const Value.absent(),
     this.description = const Value.absent(),
     this.image = const Value.absent(),
-    this.dateAndTime = const Value.absent(),
+    this.eventDate = const Value.absent(),
     this.groupId = const Value.absent(),
     this.category = const Value.absent(),
     this.location = const Value.absent(),
@@ -759,7 +759,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
     required String title,
     required String description,
     required String image,
-    required String dateAndTime,
+    required DateTime eventDate,
     required String groupId,
     required String category,
     required String location,
@@ -770,7 +770,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
         title = Value(title),
         description = Value(description),
         image = Value(image),
-        dateAndTime = Value(dateAndTime),
+        eventDate = Value(eventDate),
         groupId = Value(groupId),
         category = Value(category),
         location = Value(location),
@@ -781,7 +781,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
     Expression<String>? title,
     Expression<String>? description,
     Expression<String>? image,
-    Expression<String>? dateAndTime,
+    Expression<DateTime>? eventDate,
     Expression<String>? groupId,
     Expression<String>? category,
     Expression<String>? location,
@@ -794,7 +794,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
       if (title != null) 'title': title,
       if (description != null) 'description': description,
       if (image != null) 'image': image,
-      if (dateAndTime != null) 'date_and_time': dateAndTime,
+      if (eventDate != null) 'event_date': eventDate,
       if (groupId != null) 'group_id': groupId,
       if (category != null) 'category': category,
       if (location != null) 'location': location,
@@ -809,7 +809,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
       Value<String>? title,
       Value<String>? description,
       Value<String>? image,
-      Value<String>? dateAndTime,
+      Value<DateTime>? eventDate,
       Value<String>? groupId,
       Value<String>? category,
       Value<String>? location,
@@ -821,7 +821,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
       title: title ?? this.title,
       description: description ?? this.description,
       image: image ?? this.image,
-      dateAndTime: dateAndTime ?? this.dateAndTime,
+      eventDate: eventDate ?? this.eventDate,
       groupId: groupId ?? this.groupId,
       category: category ?? this.category,
       location: location ?? this.location,
@@ -846,8 +846,8 @@ class EventsCompanion extends UpdateCompanion<Event> {
     if (image.present) {
       map['image'] = Variable<String>(image.value);
     }
-    if (dateAndTime.present) {
-      map['date_and_time'] = Variable<String>(dateAndTime.value);
+    if (eventDate.present) {
+      map['event_date'] = Variable<DateTime>(eventDate.value);
     }
     if (groupId.present) {
       map['group_id'] = Variable<String>(groupId.value);
@@ -877,7 +877,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
           ..write('title: $title, ')
           ..write('description: $description, ')
           ..write('image: $image, ')
-          ..write('dateAndTime: $dateAndTime, ')
+          ..write('eventDate: $eventDate, ')
           ..write('groupId: $groupId, ')
           ..write('category: $category, ')
           ..write('location: $location, ')
@@ -910,11 +910,10 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
   late final GeneratedColumn<String?> image = GeneratedColumn<String?>(
       'image', aliasedName, false,
       typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _dateAndTimeMeta =
-      const VerificationMeta('dateAndTime');
-  late final GeneratedColumn<String?> dateAndTime = GeneratedColumn<String?>(
-      'date_and_time', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _eventDateMeta = const VerificationMeta('eventDate');
+  late final GeneratedColumn<DateTime?> eventDate = GeneratedColumn<DateTime?>(
+      'event_date', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
   final VerificationMeta _groupIdMeta = const VerificationMeta('groupId');
   late final GeneratedColumn<String?> groupId = GeneratedColumn<String?>(
       'group_id', aliasedName, false,
@@ -947,7 +946,7 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
         title,
         description,
         image,
-        dateAndTime,
+        eventDate,
         groupId,
         category,
         location,
@@ -989,13 +988,11 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
     } else if (isInserting) {
       context.missing(_imageMeta);
     }
-    if (data.containsKey('date_and_time')) {
-      context.handle(
-          _dateAndTimeMeta,
-          dateAndTime.isAcceptableOrUnknown(
-              data['date_and_time']!, _dateAndTimeMeta));
+    if (data.containsKey('event_date')) {
+      context.handle(_eventDateMeta,
+          eventDate.isAcceptableOrUnknown(data['event_date']!, _eventDateMeta));
     } else if (isInserting) {
-      context.missing(_dateAndTimeMeta);
+      context.missing(_eventDateMeta);
     }
     if (data.containsKey('group_id')) {
       context.handle(_groupIdMeta,

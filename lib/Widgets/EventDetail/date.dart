@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class DateWidget extends StatelessWidget {
-  final String dateTime;
+  final DateTime dateTime;
   const DateWidget({
     required this.dateTime,
   });
@@ -69,8 +69,7 @@ class DateWidget extends StatelessWidget {
       child: Wrap(
         children: [
           detailData(
-            dateTimeData:
-                "${DateFormat.yMMMd().format(DateTime.parse(dateTime))}",
+            dateTimeData: "${DateFormat.yMMMd().format(dateTime)}",
             title: "Date",
             iconData: "assets/Icons/Broken/Calendar.svg",
           ),
@@ -78,7 +77,7 @@ class DateWidget extends StatelessWidget {
             width: 25,
           ),
           detailData(
-            dateTimeData: "${DateFormat.jm().format(DateTime.parse(dateTime))}",
+            dateTimeData: "${DateFormat.jm().format(dateTime)}",
             title: "Time",
             iconData: "assets/Icons/Broken/Time.svg",
           ),

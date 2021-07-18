@@ -5,7 +5,7 @@ class Events extends Table {
   TextColumn get title => text()();
   TextColumn get description => text()();
   TextColumn get image => text()();
-  TextColumn get dateAndTime => text()();
+  DateTimeColumn get eventDate => dateTime()();
   TextColumn get groupId => text()();
   TextColumn get category => text()();
   TextColumn get location => text()();

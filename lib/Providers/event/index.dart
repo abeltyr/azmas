@@ -18,12 +18,12 @@ class EventProvider with ChangeNotifier {
 
   Future<void> insertEvents() async {
     await database.groupsDao.insertGroup(Group(
-      id: "1",
+      id: "2",
       category: "GetTogether",
-      title: "Title Ipsum is simply d",
+      title: "Azmas",
       description: "Lorem  PageMaker including versions of Lorem Ipsum.",
       avatar:
-          "https://images.unsplash.com/photo-1552837418-bf0be889c178?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80",
+          "https://images.unsplash.com/photo-1625247666944-c93f0ee3da9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1790&q=80",
       background:
           "https://images.unsplash.com/photo-1625247666944-c93f0ee3da9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1790&q=80",
       colorTheme: "As",
@@ -33,15 +33,16 @@ class EventProvider with ChangeNotifier {
       updatedAt: DateTime.parse("2021-09-07"),
     ));
     await database.eventsDao.insertEvent(Event(
-      id: "3",
+      id: "2",
       category: "GetTogether",
-      title: "Title ",
+      title:
+          "Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title ",
       description:
           "Lorem  PageMaker including versions of Lorem Ipsum. Ipsum is simply d Ipsum is sIpsum is simply dIpsum is simply dIpsum is simply dIpsum is simply dIpsum is simply dIpsum is simply dIpsum is simply dimply d Ipsum is simply d Ipsum is simply d",
-      dateAndTime: "2021-09-07",
+      eventDate: DateTime.parse("2021-6-07 09:30"),
       image:
           "https://images.unsplash.com/photo-1625247666944-c93f0ee3da9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1790&q=80",
-      groupId: "1",
+      groupId: "2",
       location:
           "Some Where in AASTUIpsum is simply dIpsum is simply dIpsum is simply dIpsum is simply dIpsum is simply dIpsum is simply dIpsum is simply d",
       attendees: 0,

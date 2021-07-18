@@ -101,11 +101,29 @@ class EventsDao extends DatabaseAccessor<AppDatabase> with _$EventsDaoMixin {
     return await data.get();
   }
 
+  Stream<List<Event>> watchCalenderEvents() {
+    var data = select(events);
+    data.where((event) {
+      return event.eventDate.hour.isBiggerOrEqualValue(DateTime.now().hour);
+    });
+    data.orderBy([
+      (u) => OrderingTerm(expression: u.updatedAt, mode: OrderingMode.asc),
+    ]);
+    return data.watch();
+  }
+
   Stream<List<Event>> watchEvents() {
     var data = select(events);
+    // data.where(
+    //   (row) {
+    //     final date = row.eventDate;
+    //     return date.year.isSmallerOrEqualValue(DateTime.now().year) &
+    //         date.month.isSmallerOrEqualValue(DateTime.now().month) &
+    //         date.day.isSmallerOrEqualValue(DateTime.now().day);
+    //   },
+    // );
     data.orderBy([
-      (u) => OrderingTerm(expression: u.updatedAt, mode: OrderingMode.desc),
-      (u) => OrderingTerm(expression: u.id)
+      (u) => OrderingTerm(expression: u.eventDate, mode: OrderingMode.asc),
     ]);
     return data.watch();
   }
