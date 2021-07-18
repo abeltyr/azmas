@@ -18,7 +18,7 @@ class _WeekEventCardsState extends State<WeekEventCards> {
   @override
   void initState() {
     super.initState();
-    _future = Provider.of<EventProvider>(context, listen: false).getWeekEvents;
+    // _future = Provider.of<EventProvider>(context, listen: false).getWeekEvents;
   }
 
   @override
@@ -69,12 +69,12 @@ class _WeekEventCardsState extends State<WeekEventCards> {
                           group: events[index].group,
                           location: events[index].location,
                           onClick: () {
-                            final eventProvider =
-                                Provider.of<EventSelectedProvider>(context,
-                                    listen: false);
-                            eventProvider.selectEvent(eventData: events[index]);
-                            Navigator.pushNamed(
-                                context, EventDetailScreen.routeName);
+                            // final eventProvider =
+                            //     Provider.of<EventSelectedProvider>(context,
+                            //         listen: false);
+                            // eventProvider.selectEvent(eventData: events[index]);
+                            // Navigator.pushNamed(
+                            //     context, EventDetailScreen.routeName);
                           },
                         ),
                       );

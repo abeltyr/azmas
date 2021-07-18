@@ -1,5 +1,7 @@
+import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
+import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +13,7 @@ class EventTopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final eventProvider =
         Provider.of<EventSelectedProvider>(context, listen: false);
-    EventModel? event = eventProvider.event;
+    Event? event = eventProvider.event;
     return Container(
       margin: EdgeInsets.only(top: 35),
       width: MediaQuery.of(context).size.width,
@@ -58,15 +60,24 @@ class EventTopBar extends StatelessWidget {
                     50,
                   ),
                 ),
-                child: Container(
-                  color: PlatformTheme.primaryColorTransparent,
-                  height: 30,
-                  width: 30,
-                  child: LoadedImageView(
-                    fitData: BoxFit.fill,
-                    imageUrl: event!.group!.avatar,
-                  ),
-                ),
+                child: FutureBuilder(
+                    future: Provider.of<GroupProvider>(context, listen: false)
+                        .getGroup(event!.groupId),
+                    builder: (context, snapshot) {
+                      Group? group = snapshot.data as Group?;
+                      if (group != null && snapshot.hasData)
+                        return Container(
+                          color: PlatformTheme.primaryColorTransparent,
+                          height: 30,
+                          width: 30,
+                          child: LoadedImageView(
+                            fitData: BoxFit.fill,
+                            imageUrl: group.avatar,
+                          ),
+                        );
+                      else
+                        return Container();
+                    }),
               ),
             ),
           ),

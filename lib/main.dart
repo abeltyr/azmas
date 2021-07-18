@@ -1,3 +1,4 @@
+import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Model/Settings/index.dart';
@@ -5,6 +6,7 @@ import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/calender/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
+import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Providers/images/index.dart';
 import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Providers/interaction/index.dart';
@@ -25,12 +27,13 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+late AppDatabase database;
+
 void main() async {
+  database = AppDatabase();
   await Hive.initFlutter();
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(SettingModelAdapter());
-  Hive.registerAdapter(GroupModalAdapter());
-  Hive.registerAdapter(EventModelAdapter());
   await Hive.openBox<UserModel>('users');
   await Hive.openBox<SettingModel>('settings');
   runApp(MyApp());
@@ -77,6 +80,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: EventProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: GroupProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

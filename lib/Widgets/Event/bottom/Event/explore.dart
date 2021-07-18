@@ -19,8 +19,8 @@ class _ExploreEventCardsState extends State<ExploreEventCards> {
   @override
   void initState() {
     super.initState();
-    _future =
-        Provider.of<EventProvider>(context, listen: false).getExploreEvents;
+    // _future =
+    // Provider.of<EventProvider>(context, listen: false).getExploreEvents;
   }
 
   @override
@@ -74,12 +74,12 @@ class _ExploreEventCardsState extends State<ExploreEventCards> {
                         group: events[index].group,
                         location: events[index].location,
                         onClick: () {
-                          final eventProvider =
-                              Provider.of<EventSelectedProvider>(context,
-                                  listen: false);
-                          eventProvider.selectEvent(eventData: events[index]);
-                          Navigator.pushNamed(
-                              context, EventDetailScreen.routeName);
+                          // final eventProvider =
+                          //     Provider.of<EventSelectedProvider>(context,
+                          //         listen: false);
+                          // eventProvider.selectEvent(eventData: events[index]);
+                          // Navigator.pushNamed(
+                          //     context, EventDetailScreen.routeName);
                         },
                       ),
                     );

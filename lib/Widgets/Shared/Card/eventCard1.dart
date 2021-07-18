@@ -1,4 +1,6 @@
+import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
@@ -7,13 +9,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class EventCardWidget1 extends StatelessWidget {
   final String title;
   final String eventImage;
   final String description;
   final String location;
-  final GroupModal? group;
+  final String groupId;
   final String date;
   final Function onClick;
 
@@ -22,7 +25,7 @@ class EventCardWidget1 extends StatelessWidget {
     required this.eventImage,
     required this.description,
     required this.location,
-    required this.group,
+    required this.groupId,
     required this.date,
     required this.onClick,
   });
@@ -136,10 +139,20 @@ class EventCardWidget1 extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: GroupIndictor(
-                      title: "${group!.title}",
-                      imageUrl: "${group!.avatar}",
-                    ),
+                    child: FutureBuilder(
+                        future:
+                            Provider.of<GroupProvider>(context, listen: false)
+                                .getGroup(groupId),
+                        builder: (context, snapshot) {
+                          Group? group = snapshot.data as Group?;
+                          if (group != null && snapshot.hasData)
+                            return GroupIndictor(
+                              title: "${group.title}",
+                              imageUrl: "${group.avatar}",
+                            );
+                          else
+                            return Container();
+                        }),
                   ),
                 ],
               ),

@@ -18,8 +18,8 @@ class _PopularEventCardsState extends State<PopularEventCards> {
   @override
   void initState() {
     super.initState();
-    _future =
-        Provider.of<EventProvider>(context, listen: false).getPopularEvents;
+    // _future =
+    //     Provider.of<EventProvider>(context, listen: false).getPopularEvents;
   }
 
   @override
@@ -67,15 +67,15 @@ class _PopularEventCardsState extends State<PopularEventCards> {
                           description: events[index].description,
                           date: events[index].dateTime,
                           eventImage: events[index].image,
-                          group: events[index].group,
+                          groupId: events[index].groupId,
                           location: events[index].location,
                           onClick: () {
-                            final eventProvider =
-                                Provider.of<EventSelectedProvider>(context,
-                                    listen: false);
-                            eventProvider.selectEvent(eventData: events[index]);
-                            Navigator.pushNamed(
-                                context, EventDetailScreen.routeName);
+                            // final eventProvider =
+                            //     Provider.of<EventSelectedProvider>(context,
+                            //         listen: false);
+                            // eventProvider.selectEvent(eventData: events[index]);
+                            // Navigator.pushNamed(
+                            //     context, EventDetailScreen.routeName);
                           },
                         ),
                       );
