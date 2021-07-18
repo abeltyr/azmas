@@ -30,7 +30,7 @@ class Events extends StatefulWidget {
 
 class _EventsState extends State<Events> {
   RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+      RefreshController(initialRefresh: true);
 
   void _onRefresh() async {
     // monitor network fetch
@@ -50,6 +50,7 @@ class _EventsState extends State<Events> {
 
   @override
   Widget build(BuildContext context) {
+    List<Event?> events = [];
     return Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height - 100,
@@ -58,8 +59,8 @@ class _EventsState extends State<Events> {
           stream:
               Provider.of<EventProvider>(context, listen: false).watchEvents(),
           builder: (context, snapData) {
-            List<Event?> events = [null, ...snapData.data as List<Event>, null];
-
+            if (snapData.hasData)
+              events = [null, ...snapData.data as List<Event?>, null];
             return SmartRefresher(
               enablePullDown: true,
               header: WaterDropHeader(
@@ -138,7 +139,7 @@ class _EventsState extends State<Events> {
                     return SizedBox(
                       height: 90,
                     );
-                  else {
+                  else if (events[index] != null) {
                     return Container(
                       margin: EdgeInsets.symmetric(vertical: 10),
                       child: EventCardWidget1(
@@ -158,7 +159,8 @@ class _EventsState extends State<Events> {
                         },
                       ),
                     );
-                  }
+                  } else
+                    return SmallLoading();
                 },
               ),
             );
