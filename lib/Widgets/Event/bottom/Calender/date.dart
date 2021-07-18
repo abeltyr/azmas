@@ -88,32 +88,32 @@ class CalenderDate extends StatelessWidget {
                             Container(
                               height: heightDate,
                               width: double.infinity,
-                              child: ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                padding: EdgeInsets.zero,
-                                itemCount: plans.length,
-                                itemBuilder: (ctx, index) {
-                                  return Container(
-                                    margin: EdgeInsets.symmetric(vertical: 5),
-                                    child: EventCardWidget2(
-                                      dateType: false,
-                                      title:
-                                          "Title Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoreLorem Ipsum is simply dummy text of the printing and typesetting industry. Lore",
-                                      description:
-                                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                                      date: "2020-07-07",
-                                      eventImage: imageData,
-                                      group: GroupModal(
-                                        id: "1",
-                                        avatar: imageData,
-                                        title: "Group Name",
-                                      ),
-                                      location: "Some Where in AASTU",
-                                      onClick: () {},
-                                    ),
-                                  );
-                                },
-                              ),
+                              // child: ListView.builder(
+                              //   physics: NeverScrollableScrollPhysics(),
+                              //   padding: EdgeInsets.zero,
+                              //   itemCount: plans.length,
+                              //   itemBuilder: (ctx, index) {
+                              //     return Container(
+                              //       margin: EdgeInsets.symmetric(vertical: 5),
+                              //       child: HorizontalEventCard(
+                              //         dateType: false,
+                              //         title:
+                              //             "Title Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoreLorem Ipsum is simply dummy text of the printing and typesetting industry. Lore",
+                              //         description:
+                              //             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                              //         date: "2020-07-07",
+                              //         eventImage: imageData,
+                              //         group: GroupModal(
+                              //           id: "1",
+                              //           avatar: imageData,
+                              //           title: "Group Name",
+                              //         ),
+                              //         location: "Some Where in AASTU",
+                              //         onClick: () {},
+                              //       ),
+                              //     );
+                              //   },
+                              // ),
                             )
                         ],
                       ),

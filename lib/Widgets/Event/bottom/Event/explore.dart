@@ -66,22 +66,22 @@ class _ExploreEventCardsState extends State<ExploreEventCards> {
                       padding: EdgeInsets.symmetric(
                         horizontal: 15,
                       ),
-                      child: EventCardWidget2(
-                        title: events[index].title,
-                        description: events[index].description,
-                        date: events[index].dateTime,
-                        eventImage: events[index].image,
-                        group: events[index].group,
-                        location: events[index].location,
-                        onClick: () {
-                          // final eventProvider =
-                          //     Provider.of<EventSelectedProvider>(context,
-                          //         listen: false);
-                          // eventProvider.selectEvent(eventData: events[index]);
-                          // Navigator.pushNamed(
-                          //     context, EventDetailScreen.routeName);
-                        },
-                      ),
+                      // child: EventCardWidget2(
+                      //   title: events[index].title,
+                      //   description: events[index].description,
+                      //   date: events[index].dateTime,
+                      //   eventImage: events[index].image,
+                      //   group: events[index].group,
+                      //   location: events[index].location,
+                      //   onClick: () {
+                      //     // final eventProvider =
+                      //     //     Provider.of<EventSelectedProvider>(context,
+                      //     //         listen: false);
+                      //     // eventProvider.selectEvent(eventData: events[index]);
+                      //     // Navigator.pushNamed(
+                      //     //     context, EventDetailScreen.routeName);
+                      //   },
+                      // ),
                     );
                   },
                 ),

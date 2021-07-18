@@ -1,15 +1,11 @@
 import 'package:azmas/Db/moorDatabase.dart';
-import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
-import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/Event/Bottom/Event/explore.dart';
-import 'package:azmas/Widgets/Event/Bottom/Event/popular.dart';
-import 'package:azmas/Widgets/Event/Bottom/Event/week.dart';
-import 'package:azmas/Widgets/Shared/Card/eventCard1.dart';
+import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCardFlex.dart';
+import 'package:azmas/Widgets/Shared/Card/eventCardFlex1.dart';
 import 'package:azmas/Widgets/countDown.dart';
 import 'package:azmas/Widgets/loading/check.dart';
 import 'package:azmas/Widgets/loading/error.dart';
@@ -18,7 +14,6 @@ import 'package:azmas/Widgets/loading/small.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -162,25 +157,69 @@ class _EventsState extends State<Events> {
                       height: 90,
                     );
                   else if (events[index] != null) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: EventCardFlexWidget(
-                        title: events[index]!.title,
-                        description: events[index]!.description,
-                        eventDate: events[index]!.eventDate,
-                        eventImage: events[index]!.image,
-                        groupId: events[index]!.groupId,
-                        location: events[index]!.location,
-                        onClick: () {
-                          final eventProvider =
-                              Provider.of<EventSelectedProvider>(context,
-                                  listen: false);
-                          eventProvider.selectEvent(eventData: events[index]);
-                          Navigator.pushNamed(
-                              context, EventDetailScreen.routeName);
-                        },
-                      ),
-                    );
+                    if (events[index]!.horizontal)
+                      return Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: HorizontalEventCard(
+                          title: events[index]!.title,
+                          description: events[index]!.description,
+                          eventDate: events[index]!.eventDate,
+                          eventImage: events[index]!.image,
+                          groupId: events[index]!.groupId,
+                          location: events[index]!.location,
+                          onClick: () {
+                            final eventProvider =
+                                Provider.of<EventSelectedProvider>(context,
+                                    listen: false);
+                            eventProvider.selectEvent(eventData: events[index]);
+                            Navigator.pushNamed(
+                                context, EventDetailScreen.routeName);
+                          },
+                        ),
+                      );
+                    else if (index % 2 == 0)
+                      return Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: EventCardFlexWidget(
+                          title: events[index]!.title,
+                          description: events[index]!.description,
+                          eventDate: events[index]!.eventDate,
+                          eventImage: events[index]!.image,
+                          groupId: events[index]!.groupId,
+                          location: events[index]!.location,
+                          onClick: () {
+                            final eventProvider =
+                                Provider.of<EventSelectedProvider>(context,
+                                    listen: false);
+                            eventProvider.selectEvent(eventData: events[index]);
+                            Navigator.pushNamed(
+                                context, EventDetailScreen.routeName);
+                          },
+                        ),
+                      );
+                    else
+                      return Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: EventCardFlex1Widget(
+                          title: events[index]!.title,
+                          description: events[index]!.description,
+                          eventDate: events[index]!.eventDate,
+                          eventImage: events[index]!.image,
+                          groupId: events[index]!.groupId,
+                          location: events[index]!.location,
+                          onClick: () {
+                            final eventProvider =
+                                Provider.of<EventSelectedProvider>(context,
+                                    listen: false);
+                            eventProvider.selectEvent(eventData: events[index]);
+                            Navigator.pushNamed(
+                                context, EventDetailScreen.routeName);
+                          },
+                        ),
+                      );
                   } else
                     return SmallLoading();
                 },

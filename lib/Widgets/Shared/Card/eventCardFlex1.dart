@@ -1,4 +1,5 @@
 import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';
@@ -10,7 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class EventCardFlexWidget extends StatelessWidget {
+class EventCardFlex1Widget extends StatelessWidget {
   final String title;
   final String eventImage;
   final String description;
@@ -19,7 +20,7 @@ class EventCardFlexWidget extends StatelessWidget {
   final DateTime eventDate;
   final Function onClick;
 
-  EventCardFlexWidget({
+  EventCardFlex1Widget({
     required this.title,
     required this.eventImage,
     required this.description,
@@ -31,12 +32,12 @@ class EventCardFlexWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        onClick();
-      },
-      child: LayoutBuilder(builder: (context, data) {
-        return Stack(
+    return LayoutBuilder(builder: (context, data) {
+      return GestureDetector(
+        onTap: () {
+          onClick();
+        },
+        child: Stack(
           children: [
             Container(
               decoration: BoxDecoration(
@@ -47,15 +48,34 @@ class EventCardFlexWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              margin: EdgeInsets.only(
-                top: 160,
-              ),
+              width: MediaQuery.of(context).size.width - 30,
               padding: EdgeInsets.only(
-                top: 35,
+                top: 10,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Container(
+                    height: 200,
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    width: double.infinity,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          7.5,
+                        ),
+                      ),
+                      child: Container(
+                        color: PlatformTheme.primaryColorTransparent,
+                        height: 30,
+                        width: 30,
+                        child: LoadedImageView(
+                          fitData: BoxFit.fill,
+                          imageUrl: "$eventImage",
+                        ),
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: 5,
                   ),
@@ -70,7 +90,7 @@ class EventCardFlexWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.lora(
                         color: PlatformTheme.secondaryColor,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                         fontSize: title.length <= 30 ? 20 : 16,
                         wordSpacing: 0.5,
                       ),
@@ -130,56 +150,32 @@ class EventCardFlexWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 2.5,
                   ),
                   BrokenLine(
                     color: PlatformTheme.primaryColor,
                     size: 5,
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: FutureBuilder(
-                      future: Provider.of<GroupProvider>(context, listen: false)
-                          .getGroup(groupId),
-                      builder: (context, snapshot) {
-                        Group? group = snapshot.data as Group?;
-                        if (group != null && snapshot.hasData)
-                          return GroupIndictor(
-                            title: "${group.title}",
-                            imageUrl: "${group.avatar}",
-                          );
-                        else
-                          return Container();
-                      },
-                    ),
+                  FutureBuilder(
+                    future: Provider.of<GroupProvider>(context, listen: false)
+                        .getGroup(groupId),
+                    builder: (context, snapshot) {
+                      Group? group = snapshot.data as Group?;
+                      if (group != null && snapshot.hasData)
+                        return GroupIndictor(
+                          title: "${group.title}",
+                          imageUrl: "${group.avatar}",
+                        );
+                      else
+                        return Container();
+                    },
                   ),
                 ],
               ),
             ),
-            Container(
-              height: 200,
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              width: double.infinity,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(
-                    7.5,
-                  ),
-                ),
-                child: Container(
-                  color: PlatformTheme.primaryColorTransparent,
-                  height: 30,
-                  width: 30,
-                  child: LoadedImageView(
-                    fitData: BoxFit.fill,
-                    imageUrl: "$eventImage",
-                  ),
-                ),
-              ),
-            ),
             Positioned(
               right: 0,
-              top: 140,
+              top: 150,
               child: Container(
                 height: 50,
                 width: 50,
@@ -214,10 +210,10 @@ class EventCardFlexWidget extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            )
           ],
-        );
-      }),
-    );
+        ),
+      );
+    });
   }
 }

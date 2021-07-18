@@ -1,4 +1,6 @@
+import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
@@ -8,24 +10,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-class EventCardWidget2 extends StatelessWidget {
+class HorizontalEventCard extends StatelessWidget {
   final String title;
   final String eventImage;
   final String description;
   final String location;
-  final GroupModal? group;
-  final String date;
+  final String groupId;
+  final DateTime eventDate;
   final Function onClick;
   final bool dateType;
 
-  EventCardWidget2({
+  HorizontalEventCard({
     required this.title,
     required this.eventImage,
     required this.description,
     required this.location,
-    required this.group,
-    required this.date,
+    required this.groupId,
+    required this.eventDate,
     required this.onClick,
     this.dateType = true,
   });
@@ -161,9 +164,19 @@ class EventCardWidget2 extends StatelessWidget {
                     color: PlatformTheme.primaryColor,
                     size: 5,
                   ),
-                  GroupIndictor(
-                    title: "${group!.title}",
-                    imageUrl: "${group!.avatar}",
+                  FutureBuilder(
+                    future: Provider.of<GroupProvider>(context, listen: false)
+                        .getGroup(groupId),
+                    builder: (context, snapshot) {
+                      Group? group = snapshot.data as Group?;
+                      if (group != null && snapshot.hasData)
+                        return GroupIndictor(
+                          title: "${group.title}",
+                          imageUrl: "${group.avatar}",
+                        );
+                      else
+                        return Container();
+                    },
                   ),
                 ],
               ),
@@ -201,7 +214,7 @@ class EventCardWidget2 extends StatelessWidget {
                     ),
                     Container(
                       child: Text(
-                        "${dateType ? DateFormat.yMMMd().format(DateTime.parse(date)) : DateFormat.jm().format(DateTime.parse(date))}",
+                        "${dateType ? DateFormat.yMMMd().format(eventDate) : DateFormat.jm().format(eventDate)}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.lora(

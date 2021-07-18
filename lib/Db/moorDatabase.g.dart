@@ -533,10 +533,12 @@ class Event extends DataClass implements Insertable<Event> {
   final String title;
   final String description;
   final String image;
+  final bool horizontal;
   final DateTime eventDate;
   final String groupId;
   final String category;
   final String location;
+  final double price;
   final int attendees;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -545,10 +547,12 @@ class Event extends DataClass implements Insertable<Event> {
       required this.title,
       required this.description,
       required this.image,
+      required this.horizontal,
       required this.eventDate,
       required this.groupId,
       required this.category,
       required this.location,
+      required this.price,
       required this.attendees,
       required this.createdAt,
       required this.updatedAt});
@@ -564,6 +568,8 @@ class Event extends DataClass implements Insertable<Event> {
           .mapFromDatabaseResponse(data['${effectivePrefix}description'])!,
       image: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}image'])!,
+      horizontal: const BoolType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}horizontal'])!,
       eventDate: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}event_date'])!,
       groupId: const StringType()
@@ -572,6 +578,8 @@ class Event extends DataClass implements Insertable<Event> {
           .mapFromDatabaseResponse(data['${effectivePrefix}category'])!,
       location: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}location'])!,
+      price: const RealType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}price'])!,
       attendees: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}attendees'])!,
       createdAt: const DateTimeType()
@@ -587,10 +595,12 @@ class Event extends DataClass implements Insertable<Event> {
     map['title'] = Variable<String>(title);
     map['description'] = Variable<String>(description);
     map['image'] = Variable<String>(image);
+    map['horizontal'] = Variable<bool>(horizontal);
     map['event_date'] = Variable<DateTime>(eventDate);
     map['group_id'] = Variable<String>(groupId);
     map['category'] = Variable<String>(category);
     map['location'] = Variable<String>(location);
+    map['price'] = Variable<double>(price);
     map['attendees'] = Variable<int>(attendees);
     map['created_at'] = Variable<DateTime>(createdAt);
     map['updated_at'] = Variable<DateTime>(updatedAt);
@@ -603,10 +613,12 @@ class Event extends DataClass implements Insertable<Event> {
       title: Value(title),
       description: Value(description),
       image: Value(image),
+      horizontal: Value(horizontal),
       eventDate: Value(eventDate),
       groupId: Value(groupId),
       category: Value(category),
       location: Value(location),
+      price: Value(price),
       attendees: Value(attendees),
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
@@ -621,10 +633,12 @@ class Event extends DataClass implements Insertable<Event> {
       title: serializer.fromJson<String>(json['title']),
       description: serializer.fromJson<String>(json['description']),
       image: serializer.fromJson<String>(json['image']),
+      horizontal: serializer.fromJson<bool>(json['horizontal']),
       eventDate: serializer.fromJson<DateTime>(json['eventDate']),
       groupId: serializer.fromJson<String>(json['groupId']),
       category: serializer.fromJson<String>(json['category']),
       location: serializer.fromJson<String>(json['location']),
+      price: serializer.fromJson<double>(json['price']),
       attendees: serializer.fromJson<int>(json['attendees']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
       updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
@@ -638,10 +652,12 @@ class Event extends DataClass implements Insertable<Event> {
       'title': serializer.toJson<String>(title),
       'description': serializer.toJson<String>(description),
       'image': serializer.toJson<String>(image),
+      'horizontal': serializer.toJson<bool>(horizontal),
       'eventDate': serializer.toJson<DateTime>(eventDate),
       'groupId': serializer.toJson<String>(groupId),
       'category': serializer.toJson<String>(category),
       'location': serializer.toJson<String>(location),
+      'price': serializer.toJson<double>(price),
       'attendees': serializer.toJson<int>(attendees),
       'createdAt': serializer.toJson<DateTime>(createdAt),
       'updatedAt': serializer.toJson<DateTime>(updatedAt),
@@ -653,10 +669,12 @@ class Event extends DataClass implements Insertable<Event> {
           String? title,
           String? description,
           String? image,
+          bool? horizontal,
           DateTime? eventDate,
           String? groupId,
           String? category,
           String? location,
+          double? price,
           int? attendees,
           DateTime? createdAt,
           DateTime? updatedAt}) =>
@@ -665,10 +683,12 @@ class Event extends DataClass implements Insertable<Event> {
         title: title ?? this.title,
         description: description ?? this.description,
         image: image ?? this.image,
+        horizontal: horizontal ?? this.horizontal,
         eventDate: eventDate ?? this.eventDate,
         groupId: groupId ?? this.groupId,
         category: category ?? this.category,
         location: location ?? this.location,
+        price: price ?? this.price,
         attendees: attendees ?? this.attendees,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
@@ -680,10 +700,12 @@ class Event extends DataClass implements Insertable<Event> {
           ..write('title: $title, ')
           ..write('description: $description, ')
           ..write('image: $image, ')
+          ..write('horizontal: $horizontal, ')
           ..write('eventDate: $eventDate, ')
           ..write('groupId: $groupId, ')
           ..write('category: $category, ')
           ..write('location: $location, ')
+          ..write('price: $price, ')
           ..write('attendees: $attendees, ')
           ..write('createdAt: $createdAt, ')
           ..write('updatedAt: $updatedAt')
@@ -701,17 +723,23 @@ class Event extends DataClass implements Insertable<Event> {
               $mrjc(
                   image.hashCode,
                   $mrjc(
-                      eventDate.hashCode,
+                      horizontal.hashCode,
                       $mrjc(
-                          groupId.hashCode,
+                          eventDate.hashCode,
                           $mrjc(
-                              category.hashCode,
+                              groupId.hashCode,
                               $mrjc(
-                                  location.hashCode,
+                                  category.hashCode,
                                   $mrjc(
-                                      attendees.hashCode,
-                                      $mrjc(createdAt.hashCode,
-                                          updatedAt.hashCode)))))))))));
+                                      location.hashCode,
+                                      $mrjc(
+                                          price.hashCode,
+                                          $mrjc(
+                                              attendees.hashCode,
+                                              $mrjc(
+                                                  createdAt.hashCode,
+                                                  updatedAt
+                                                      .hashCode)))))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -720,10 +748,12 @@ class Event extends DataClass implements Insertable<Event> {
           other.title == this.title &&
           other.description == this.description &&
           other.image == this.image &&
+          other.horizontal == this.horizontal &&
           other.eventDate == this.eventDate &&
           other.groupId == this.groupId &&
           other.category == this.category &&
           other.location == this.location &&
+          other.price == this.price &&
           other.attendees == this.attendees &&
           other.createdAt == this.createdAt &&
           other.updatedAt == this.updatedAt);
@@ -734,10 +764,12 @@ class EventsCompanion extends UpdateCompanion<Event> {
   final Value<String> title;
   final Value<String> description;
   final Value<String> image;
+  final Value<bool> horizontal;
   final Value<DateTime> eventDate;
   final Value<String> groupId;
   final Value<String> category;
   final Value<String> location;
+  final Value<double> price;
   final Value<int> attendees;
   final Value<DateTime> createdAt;
   final Value<DateTime> updatedAt;
@@ -746,10 +778,12 @@ class EventsCompanion extends UpdateCompanion<Event> {
     this.title = const Value.absent(),
     this.description = const Value.absent(),
     this.image = const Value.absent(),
+    this.horizontal = const Value.absent(),
     this.eventDate = const Value.absent(),
     this.groupId = const Value.absent(),
     this.category = const Value.absent(),
     this.location = const Value.absent(),
+    this.price = const Value.absent(),
     this.attendees = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.updatedAt = const Value.absent(),
@@ -759,10 +793,12 @@ class EventsCompanion extends UpdateCompanion<Event> {
     required String title,
     required String description,
     required String image,
+    this.horizontal = const Value.absent(),
     required DateTime eventDate,
     required String groupId,
     required String category,
     required String location,
+    this.price = const Value.absent(),
     this.attendees = const Value.absent(),
     required DateTime createdAt,
     required DateTime updatedAt,
@@ -781,10 +817,12 @@ class EventsCompanion extends UpdateCompanion<Event> {
     Expression<String>? title,
     Expression<String>? description,
     Expression<String>? image,
+    Expression<bool>? horizontal,
     Expression<DateTime>? eventDate,
     Expression<String>? groupId,
     Expression<String>? category,
     Expression<String>? location,
+    Expression<double>? price,
     Expression<int>? attendees,
     Expression<DateTime>? createdAt,
     Expression<DateTime>? updatedAt,
@@ -794,10 +832,12 @@ class EventsCompanion extends UpdateCompanion<Event> {
       if (title != null) 'title': title,
       if (description != null) 'description': description,
       if (image != null) 'image': image,
+      if (horizontal != null) 'horizontal': horizontal,
       if (eventDate != null) 'event_date': eventDate,
       if (groupId != null) 'group_id': groupId,
       if (category != null) 'category': category,
       if (location != null) 'location': location,
+      if (price != null) 'price': price,
       if (attendees != null) 'attendees': attendees,
       if (createdAt != null) 'created_at': createdAt,
       if (updatedAt != null) 'updated_at': updatedAt,
@@ -809,10 +849,12 @@ class EventsCompanion extends UpdateCompanion<Event> {
       Value<String>? title,
       Value<String>? description,
       Value<String>? image,
+      Value<bool>? horizontal,
       Value<DateTime>? eventDate,
       Value<String>? groupId,
       Value<String>? category,
       Value<String>? location,
+      Value<double>? price,
       Value<int>? attendees,
       Value<DateTime>? createdAt,
       Value<DateTime>? updatedAt}) {
@@ -821,10 +863,12 @@ class EventsCompanion extends UpdateCompanion<Event> {
       title: title ?? this.title,
       description: description ?? this.description,
       image: image ?? this.image,
+      horizontal: horizontal ?? this.horizontal,
       eventDate: eventDate ?? this.eventDate,
       groupId: groupId ?? this.groupId,
       category: category ?? this.category,
       location: location ?? this.location,
+      price: price ?? this.price,
       attendees: attendees ?? this.attendees,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
@@ -846,6 +890,9 @@ class EventsCompanion extends UpdateCompanion<Event> {
     if (image.present) {
       map['image'] = Variable<String>(image.value);
     }
+    if (horizontal.present) {
+      map['horizontal'] = Variable<bool>(horizontal.value);
+    }
     if (eventDate.present) {
       map['event_date'] = Variable<DateTime>(eventDate.value);
     }
@@ -857,6 +904,9 @@ class EventsCompanion extends UpdateCompanion<Event> {
     }
     if (location.present) {
       map['location'] = Variable<String>(location.value);
+    }
+    if (price.present) {
+      map['price'] = Variable<double>(price.value);
     }
     if (attendees.present) {
       map['attendees'] = Variable<int>(attendees.value);
@@ -877,10 +927,12 @@ class EventsCompanion extends UpdateCompanion<Event> {
           ..write('title: $title, ')
           ..write('description: $description, ')
           ..write('image: $image, ')
+          ..write('horizontal: $horizontal, ')
           ..write('eventDate: $eventDate, ')
           ..write('groupId: $groupId, ')
           ..write('category: $category, ')
           ..write('location: $location, ')
+          ..write('price: $price, ')
           ..write('attendees: $attendees, ')
           ..write('createdAt: $createdAt, ')
           ..write('updatedAt: $updatedAt')
@@ -910,6 +962,13 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
   late final GeneratedColumn<String?> image = GeneratedColumn<String?>(
       'image', aliasedName, false,
       typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _horizontalMeta = const VerificationMeta('horizontal');
+  late final GeneratedColumn<bool?> horizontal = GeneratedColumn<bool?>(
+      'horizontal', aliasedName, false,
+      typeName: 'INTEGER',
+      requiredDuringInsert: false,
+      defaultConstraints: 'CHECK (horizontal IN (0, 1))',
+      defaultValue: Constant(true));
   final VerificationMeta _eventDateMeta = const VerificationMeta('eventDate');
   late final GeneratedColumn<DateTime?> eventDate = GeneratedColumn<DateTime?>(
       'event_date', aliasedName, false,
@@ -926,6 +985,10 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
   late final GeneratedColumn<String?> location = GeneratedColumn<String?>(
       'location', aliasedName, false,
       typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _priceMeta = const VerificationMeta('price');
+  late final GeneratedColumn<double?> price = GeneratedColumn<double?>(
+      'price', aliasedName, false,
+      typeName: 'REAL', requiredDuringInsert: false, clientDefault: () => 0);
   final VerificationMeta _attendeesMeta = const VerificationMeta('attendees');
   late final GeneratedColumn<int?> attendees = GeneratedColumn<int?>(
       'attendees', aliasedName, false,
@@ -946,10 +1009,12 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
         title,
         description,
         image,
+        horizontal,
         eventDate,
         groupId,
         category,
         location,
+        price,
         attendees,
         createdAt,
         updatedAt
@@ -988,6 +1053,12 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
     } else if (isInserting) {
       context.missing(_imageMeta);
     }
+    if (data.containsKey('horizontal')) {
+      context.handle(
+          _horizontalMeta,
+          horizontal.isAcceptableOrUnknown(
+              data['horizontal']!, _horizontalMeta));
+    }
     if (data.containsKey('event_date')) {
       context.handle(_eventDateMeta,
           eventDate.isAcceptableOrUnknown(data['event_date']!, _eventDateMeta));
@@ -1011,6 +1082,10 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
           location.isAcceptableOrUnknown(data['location']!, _locationMeta));
     } else if (isInserting) {
       context.missing(_locationMeta);
+    }
+    if (data.containsKey('price')) {
+      context.handle(
+          _priceMeta, price.isAcceptableOrUnknown(data['price']!, _priceMeta));
     }
     if (data.containsKey('attendees')) {
       context.handle(_attendeesMeta,

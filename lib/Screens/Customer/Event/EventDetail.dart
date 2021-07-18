@@ -2,6 +2,7 @@ import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/countDown.dart';
 import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
+import 'package:azmas/Screens/Shared/Error/index.dart';
 import 'package:azmas/Utils/enum.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/EventDetail/date.dart';
@@ -213,71 +214,29 @@ class EventDetailScreen extends StatelessWidget {
               ],
             ),
             EventTopBar(),
-            Positioned(
-              bottom: 10,
-              child: Container(
-                height: 75,
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width / 6,
-                  vertical: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: PlatformTheme.primaryColorTransparent,
-                ),
-                child: AzmasButton(
-                  onClick: () {},
-                  title: "Ticket 900 ETB",
+            if (event.price > 0)
+              Positioned(
+                bottom: 10,
+                child: Container(
+                  height: 75,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width / 6,
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: PlatformTheme.primaryColorTransparent,
+                  ),
+                  child: AzmasButton(
+                    onClick: () {},
+                    title: "${event.price} ETB",
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       );
     else
-      return Scaffold(
-        body: SafeArea(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 150,
-                ),
-                NoDataWidget(),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  child: Text(
-                    "Some Thing Went Wrong",
-                    style: GoogleFonts.lora(
-                      color: PlatformTheme.textColor2,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 22,
-                      wordSpacing: 0.5,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 60,
-                ),
-                Container(
-                  width: 300,
-                  height: 50,
-                  child: AzmasButton(
-                      color: PlatformTheme.iconColor,
-                      onClick: () {
-                        Navigator.popAndPushNamed(context, "/");
-                      },
-                      title: "Go Home"),
-                )
-              ],
-            ),
-          ),
-        ),
-      );
+      return ErrorScreen();
   }
 }
