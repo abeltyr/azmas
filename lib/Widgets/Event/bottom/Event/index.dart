@@ -68,6 +68,7 @@ class _EventListsState extends State<EventLists> {
                         height: 30,
                         width: 30,
                         child: AnimationWidget(
+                          repeat: false,
                           assetData: 'assets/Animations/CheckMark.json',
                           durationData: Duration(milliseconds: 350),
                         )),

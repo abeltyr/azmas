@@ -5,10 +5,12 @@ import 'package:lottie/lottie.dart';
 class AnimationWidget extends StatefulWidget {
   final String assetData;
   final Duration durationData;
+  final bool repeat;
 
   AnimationWidget({
     this.durationData = const Duration(milliseconds: 6000),
     this.assetData = 'assets/Animations/Empty.json',
+    this.repeat = true,
   });
 
   @override
@@ -39,9 +41,11 @@ class _AnimationWidgetState extends State<AnimationWidget>
       onLoaded: (composition) {
         // Configure the AnimationController with the duration of the
         // Lottie file and start the animation.
-        _controller
-          ..duration = widget.durationData
-          ..repeat();
+        _controller..duration = widget.durationData;
+        if (widget.repeat)
+          _controller.repeat();
+        else
+          _controller.forward();
       },
     );
   }
