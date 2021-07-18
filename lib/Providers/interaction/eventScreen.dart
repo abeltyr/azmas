@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class EventInteractionProvider with ChangeNotifier {
-  int _selectedTab = 1;
+  int _selectedTab = 0;
   bool _searchTap = false;
 
   int get selectedTab {

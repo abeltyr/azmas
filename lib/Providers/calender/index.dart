@@ -15,7 +15,8 @@ class CalenderProvider with ChangeNotifier {
 
   Future<List<CalenderModel>> getMonths() async {
     _months = [];
-    final date = DateTime.now().month;
+    final dateTime = DateTime.now();
+    final date = dateTime.month;
     for (var i = 0; i < 12; i++) {
       final int nowDate = date + i;
       if (date + i <= 12) {
@@ -25,6 +26,7 @@ class CalenderProvider with ChangeNotifier {
             month: changeData(
               nowDate,
             ),
+            year: "${dateTime.year}",
           )
         ];
       } else
@@ -34,6 +36,7 @@ class CalenderProvider with ChangeNotifier {
             month: changeData(
               nowDate - 12,
             ),
+            year: "${dateTime.year + 1}",
           )
         ];
     }

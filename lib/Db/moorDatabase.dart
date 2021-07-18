@@ -89,15 +89,15 @@ class EventsDao extends DatabaseAccessor<AppDatabase> with _$EventsDaoMixin {
     return await data.getSingle();
   }
 
-  Future<List<Event>> getEvents({
-    int limit = 30,
-    int offset = 0,
-  }) async {
+  Future<List<Event>> getEvents(
+      {required DateTime startDate, required DateTime endDate}) async {
     var data = select(events);
-    data.limit(
-      limit,
-      offset: offset,
-    );
+    data.where((data) {
+      return data.eventDate.isBetweenValues(startDate, endDate);
+    });
+    data.orderBy([
+      (u) => OrderingTerm(expression: u.eventDate, mode: OrderingMode.asc),
+    ]);
     return await data.get();
   }
 

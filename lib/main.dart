@@ -3,6 +3,7 @@ import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Model/Settings/index.dart';
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Providers/calender/getEvent.dart';
 import 'package:azmas/Providers/calender/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
@@ -83,6 +84,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: GroupProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: CalenderEventProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

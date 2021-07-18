@@ -61,7 +61,7 @@ class SlideTap extends StatelessWidget {
                   ),
                   EventTopButton(
                     numValue: 1,
-                    title: "Calander",
+                    title: "Calender",
                   ),
                 ],
               ),

@@ -14,6 +14,7 @@ class CalenderTop extends StatelessWidget {
     return FutureBuilder(
         future: calenderProvider.getMonths(),
         builder: (context, snapshot) {
+          // TODO Add aloader of card animation here if the data collection takes longer
           if (snapshot.hasData) {
             final newCalenderProvider =
                 Provider.of<CalenderProvider>(context, listen: true);

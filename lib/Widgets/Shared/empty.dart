@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:lottie/lottie.dart';
 
-class NoDataWidget extends StatefulWidget {
+class AnimationWidget extends StatefulWidget {
+  final String assetData;
+  final Duration durationData;
+
+  AnimationWidget({
+    this.durationData = const Duration(milliseconds: 6000),
+    this.assetData = 'assets/Animations/Empty.json',
+  });
+
   @override
-  _NoDataWidgetState createState() => _NoDataWidgetState();
+  _AnimationWidgetState createState() => _AnimationWidgetState();
 }
 
-class _NoDataWidgetState extends State<NoDataWidget>
+class _AnimationWidgetState extends State<AnimationWidget>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -26,13 +34,13 @@ class _NoDataWidgetState extends State<NoDataWidget>
   @override
   Widget build(BuildContext context) {
     return Lottie.asset(
-      'assets/Animations/Empty.json',
+      '${widget.assetData}',
       controller: _controller,
       onLoaded: (composition) {
         // Configure the AnimationController with the duration of the
         // Lottie file and start the animation.
         _controller
-          ..duration = Duration(milliseconds: 6000)
+          ..duration = widget.durationData
           ..repeat();
       },
     );

@@ -94,7 +94,7 @@ class _ExploreEventCardsState extends State<ExploreEventCards> {
             // width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-                NoDataWidget(),
+                AnimationWidget(),
                 Container(
                   child: Text(
                     "No Event Were Found please refresh",

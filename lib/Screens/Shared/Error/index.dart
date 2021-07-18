@@ -18,35 +18,41 @@ class ErrorScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                height: 150,
+                height: 50,
               ),
-              NoDataWidget(),
+              AnimationWidget(
+                assetData: 'assets/Animations/404Error.json',
+              ),
               SizedBox(
                 height: 10,
               ),
               Container(
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Text(
-                  "Some Thing Went Wrong",
+                  "Some Thing Went Wrong. Let Go Back Home",
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.lora(
                     color: PlatformTheme.textColor2,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
                     fontSize: 22,
-                    wordSpacing: 0.5,
+                    wordSpacing: 1,
+                    height: 2,
                   ),
                 ),
               ),
               SizedBox(
-                height: 60,
+                height: 20,
               ),
               Container(
                 width: 300,
                 height: 50,
                 child: AzmasButton(
-                    color: PlatformTheme.iconColor,
-                    onClick: () {
-                      Navigator.of(context).popUntil(ModalRoute.withName('/'));
-                    },
-                    title: "Go Home"),
+                  color: PlatformTheme.iconColor,
+                  onClick: () {
+                    Navigator.of(context).popUntil(ModalRoute.withName('/'));
+                  },
+                  title: "Go Home",
+                ),
               )
             ],
           ),

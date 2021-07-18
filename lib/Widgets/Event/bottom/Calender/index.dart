@@ -1,54 +1,160 @@
+import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Providers/calender/getEvent.dart';
 import 'package:azmas/Providers/calender/index.dart';
-import 'package:azmas/Widgets/Event/bottom/Calender/date.dart';
+import 'package:azmas/Providers/event/selected.dart';
+import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
+import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Event/bottom/Calender/top.dart';
+import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';
+import 'package:azmas/Widgets/Shared/brokenLine.dart';
+import 'package:azmas/Widgets/Shared/empty.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CalenderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //TODO: add a dummy 32 and 0 variable
     final calenderProvider =
-        Provider.of<CalenderProvider>(context, listen: false);
-    final date = DateTime.now();
-    DateTime x1 = DateTime(date.year, date.month, 0).toUtc();
-    var y1 =
-        DateTime(date.year, date.month + 1, 0).toUtc().difference(x1).inDays;
-    print("x1 $x1");
-    print(calenderProvider.months.length > calenderProvider.selectedMonths
-        ? calenderProvider.months[calenderProvider.selectedMonths]
-        : "");
-    print("y1 $y1");
-    return Container(
-      height: MediaQuery.of(context).size.height - 100,
+        Provider.of<CalenderProvider>(context, listen: true);
+    final double heightData = MediaQuery.of(context).size.height - 100;
+    List<int> dates = [];
+    List<Event?> events = [];
+    return AnimatedContainer(
+      duration: Duration(
+        milliseconds: 10000,
+      ),
+      height: heightData,
       width: MediaQuery.of(context).size.width,
-      child: ListView(
-        physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
           SizedBox(
             height: 10,
           ),
           CalenderTop(),
           Container(
-            height: MediaQuery.of(context).size.height - 75,
-            child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: 33,
-                itemBuilder: (ctx, index) {
-                  if (index == 0)
-                    return SizedBox(
-                      height: 10,
-                    );
+            height: heightData - 65,
+            child: FutureBuilder(
+              future: Provider.of<CalenderEventProvider>(context, listen: false)
+                  .getDays(
+                month: calenderProvider.months.length > 0
+                    ? calenderProvider
+                        .months[calenderProvider.selectedMonths].month
+                    : "01",
+                year: calenderProvider.months.length > 0
+                    ? calenderProvider
+                        .months[calenderProvider.selectedMonths].year
+                    : "2021",
+              ),
+              builder: (ctx, snapData) {
+                if (snapData.hasData)
+                  events = [...snapData.data as List<Event?>, null];
 
-                  if (index == 32)
-                    return SizedBox(
-                      height: 85,
+                if (snapData.connectionState == ConnectionState.done) {
+                  if (events.length <= 1)
+                    return Container(
+                      height: heightData - 65,
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        children: [
+                          AnimationWidget(
+                            assetData: 'assets/Animations/Empty.json',
+                          ),
+                          Text(
+                            "No Event This Month",
+                            style: GoogleFonts.lora(
+                              color: PlatformTheme.textColor2,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              wordSpacing: 0.1,
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   else
-                    return CalenderDate(plans: [1, 2, 3], day: index + 1);
-                }),
-          ),
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: events.length,
+                      itemBuilder: (ctx, index) {
+                        if (events[index] == null)
+                          return SizedBox(
+                            height: 90,
+                          );
+                        bool showDate = false;
+                        if (!dates.contains(events[index]!.eventDate.day)) {
+                          dates.add(events[index]!.eventDate.day);
+                          showDate = true;
+                        }
+                        return Container(
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Column(
+                            children: [
+                              if (showDate)
+                                Container(
+                                  height: 30,
+                                  width: MediaQuery.of(context).size.width - 30,
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 65,
+                                        child: Text(
+                                          "Day ${events[index]!.eventDate.day}",
+                                          style: GoogleFonts.lora(
+                                            color: PlatformTheme
+                                                .secondaryColorLight,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                            wordSpacing: 0.1,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        // alignment: Alignment.center,
+                                        height: 20,
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                95,
+                                        child: Center(child: BrokenLine()),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              HorizontalEventCard(
+                                dateType: false,
+                                title: events[index]!.title,
+                                description: events[index]!.description,
+                                eventDate: events[index]!.eventDate,
+                                eventImage: events[index]!.image,
+                                groupId: events[index]!.groupId,
+                                location: events[index]!.location,
+                                onClick: () {
+                                  final eventProvider =
+                                      Provider.of<EventSelectedProvider>(
+                                          context,
+                                          listen: false);
+                                  eventProvider.selectEvent(
+                                      eventData: events[index]);
+                                  Navigator.pushNamed(
+                                      context, EventDetailScreen.routeName);
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                } else if (snapData.connectionState == ConnectionState.waiting)
+                  // TODO: added a card loading here
+                  return Container();
+                else
+                  // TODO: added an error page here
+                  return Container();
+              },
+            ),
+          )
         ],
       ),
     );
