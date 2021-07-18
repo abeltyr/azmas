@@ -4,9 +4,7 @@ import 'package:azmas/Widgets/Event/bottom/Calender/top.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Calender extends StatelessWidget {
-  final double heightData;
-  Calender({required this.heightData});
+class CalenderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO: add a dummy 32 and 0 variable
@@ -22,13 +20,7 @@ class Calender extends StatelessWidget {
         : "");
     print("y1 $y1");
     return Container(
-      height: heightData - 20,
-      padding: EdgeInsets.symmetric(
-        horizontal: 10,
-      ),
-      margin: EdgeInsets.only(
-        bottom: 20,
-      ),
+      height: MediaQuery.of(context).size.height - 100,
       width: MediaQuery.of(context).size.width,
       child: ListView(
         physics: NeverScrollableScrollPhysics(),
@@ -39,7 +31,7 @@ class Calender extends StatelessWidget {
           ),
           CalenderTop(),
           Container(
-            height: heightData - 75,
+            height: MediaQuery.of(context).size.height - 75,
             child: ListView.builder(
                 padding: EdgeInsets.zero,
                 itemCount: 33,

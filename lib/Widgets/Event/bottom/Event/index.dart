@@ -17,15 +17,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class Events extends StatefulWidget {
-  final double heightData;
-  Events({required this.heightData});
-
+class EventLists extends StatefulWidget {
   @override
-  _EventsState createState() => _EventsState();
+  _EventListsState createState() => _EventListsState();
 }
 
-class _EventsState extends State<Events> {
+class _EventListsState extends State<EventLists> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: true);
 
