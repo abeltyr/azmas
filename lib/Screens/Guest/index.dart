@@ -2,7 +2,7 @@ import 'package:azmas/Model/Settings/index.dart';
 import 'package:azmas/Screens/Guest/Auth/index.dart';
 import 'package:azmas/Screens/Guest/Intro/index.dart';
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/loading/small.dart';
+import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -31,7 +31,12 @@ class IndexGuest extends StatelessWidget {
           } else if (settings != null && !settings.intro) {
             return AuthIndex();
           } else
-            return Center(child: SmallLoading());
+            return Center(
+              child: AnimationWidget(
+                assetData: 'assets/Animations/Loader-1.json',
+                durationData: Duration(milliseconds: 2500),
+              ),
+            );
         },
       ),
     );

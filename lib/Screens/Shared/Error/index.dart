@@ -1,6 +1,6 @@
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
-import 'package:azmas/Widgets/Shared/empty.dart';
+import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

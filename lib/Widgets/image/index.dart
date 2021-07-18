@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:azmas/Providers/images/index.dart';
-import 'package:azmas/Widgets/loading/small.dart';
+import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -45,11 +45,17 @@ class LoadedImageView extends StatelessWidget {
             cacheWidth: 1020,
             fit: fitData,
             errorBuilder: (context, _, error) {
-              return SmallLoading();
+              return AnimationWidget(
+                assetData: 'assets/Animations/Loader-1.json',
+                durationData: Duration(milliseconds: 2500),
+              );
             },
           );
         }
-        return SmallLoading();
+        return AnimationWidget(
+          assetData: 'assets/Animations/Loader-1.json',
+          durationData: Duration(milliseconds: 2500),
+        );
       },
     );
   }

@@ -6,11 +6,8 @@ import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCardFlex.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCardFlex1.dart';
+import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:azmas/Widgets/countDown.dart';
-import 'package:azmas/Widgets/loading/check.dart';
-import 'package:azmas/Widgets/loading/error.dart';
-import 'package:azmas/Widgets/loading/rocket.dart';
-import 'package:azmas/Widgets/loading/small.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,7 +64,13 @@ class _EventListsState extends State<EventLists> {
                     child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(height: 30, width: 30, child: CheckLoading()),
+                    Container(
+                        height: 30,
+                        width: 30,
+                        child: AnimationWidget(
+                          assetData: 'assets/Animations/CheckMark.json',
+                          durationData: Duration(milliseconds: 350),
+                        )),
                     Text(
                       "Fetched All The Events",
                       style: GoogleFonts.lora(
@@ -83,7 +86,14 @@ class _EventListsState extends State<EventLists> {
                     child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(height: 30, width: 30, child: ErrorMessage()),
+                    Container(
+                      height: 30,
+                      width: 30,
+                      child: AnimationWidget(
+                        assetData: 'assets/Animations/Error.json',
+                        durationData: Duration(milliseconds: 150),
+                      ),
+                    ),
                     Text(
                       "Something Went Wrong.",
                       style: GoogleFonts.lora(
@@ -95,7 +105,10 @@ class _EventListsState extends State<EventLists> {
                     ),
                   ],
                 )),
-                refresh: SmallLoading(),
+                refresh: AnimationWidget(
+                  assetData: 'assets/Animations/Loader-1.json',
+                  durationData: Duration(milliseconds: 2500),
+                ),
                 waterDropColor: PlatformTheme.textColor2,
               ),
               controller: _refreshController,
@@ -136,7 +149,13 @@ class _EventListsState extends State<EventLists> {
                           SizedBox(
                             height: 5,
                           ),
-                          Expanded(child: Center(child: Rocket())),
+                          Expanded(
+                              child: Center(
+                            child: AnimationWidget(
+                              assetData: 'assets/Animations/Rocket.json',
+                              durationData: Duration(milliseconds: 5000),
+                            ),
+                          )),
                           SizedBox(
                             height: 15,
                           ),
@@ -218,7 +237,10 @@ class _EventListsState extends State<EventLists> {
                         ),
                       );
                   } else
-                    return SmallLoading();
+                    return AnimationWidget(
+                      assetData: 'assets/Animations/Loader-1.json',
+                      durationData: Duration(milliseconds: 2500),
+                    );
                 },
               ),
             );

@@ -7,7 +7,7 @@ import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Event/bottom/Calender/top.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
-import 'package:azmas/Widgets/Shared/empty.dart';
+import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
