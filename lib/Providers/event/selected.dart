@@ -1,8 +1,7 @@
 import 'package:azmas/Db/moorDatabase.dart';
-import 'package:azmas/Model/Event/index.dart';
-import 'package:azmas/Model/Group/index.dart';
 import 'package:flutter/foundation.dart';
 
+//TODO: remove this to use stream instead
 class EventSelectedProvider with ChangeNotifier {
   Event? _event;
 

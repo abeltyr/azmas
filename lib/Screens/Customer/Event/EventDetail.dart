@@ -1,15 +1,12 @@
 import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/countDown.dart';
-import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Screens/Shared/Error/index.dart';
-import 'package:azmas/Utils/enum.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/EventDetail/date.dart';
 import 'package:azmas/Widgets/EventDetail/top.dart';
 import 'package:azmas/Widgets/EventDetail/topBar.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
-import 'package:azmas/Widgets/Shared/empty.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

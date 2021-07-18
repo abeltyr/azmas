@@ -1,5 +1,4 @@
 import 'package:azmas/Db/moorDatabase.dart';
-import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';

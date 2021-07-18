@@ -1,6 +1,4 @@
 import 'package:azmas/Db/moorDatabase.dart';
-import 'package:azmas/Model/Event/index.dart';
-import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Model/Settings/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/calender/getEvent.dart';

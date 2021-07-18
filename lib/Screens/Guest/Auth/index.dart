@@ -1,9 +1,7 @@
-import 'package:azmas/Model/Settings/index.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 class AuthIndex extends StatelessWidget {

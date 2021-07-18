@@ -1,6 +1,5 @@
 import 'package:azmas/Db/migration/001-groupMigration.dart';
 import 'package:azmas/Db/migration/002-eventMigration.dart';
-import 'package:flutter/material.dart';
 import 'package:moor/moor.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:moor/ffi.dart';
@@ -12,7 +11,7 @@ part 'moorDatabase.g.dart';
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(join(dbFolder.path, "Database.AWTAR"));
+    final file = File(join(dbFolder.path, "Database.Azmas"));
     return VmDatabase(
       file,
       // logStatements: true,

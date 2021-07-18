@@ -1,5 +1,4 @@
 import 'package:azmas/Db/moorDatabase.dart';
-import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
