@@ -40,7 +40,6 @@ class _IndexScreenState extends State<IndexScreen> {
   @override
   Widget build(BuildContext context) {
     final navBarProvide = Provider.of<NavBarProvider>(context, listen: true);
-    print("here");
     if (navBarProvide.checkIntro) settings = hiveSettings.get("userSettings");
 
     if (settings != null && settings!.intro) {

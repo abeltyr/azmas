@@ -21,23 +21,40 @@ class EventLists extends StatefulWidget {
 
 class _EventListsState extends State<EventLists> {
   RefreshController _refreshController =
-      RefreshController(initialRefresh: true);
+      RefreshController(initialRefresh: false);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    freshEvents();
+  }
 
   void _onRefresh() async {
     try {
-      // monitor network fetch
-      await Future.delayed(Duration(milliseconds: 1000));
-      // if failed,use refreshFailed()
-      await Provider.of<EventProvider>(context, listen: false).insertEvents();
+      print("double here 1");
+      await Future.delayed(Duration(milliseconds: 10000));
+      await freshEvents();
+      print("double here 2");
       _refreshController.refreshCompleted();
     } catch (e) {
       _refreshController.refreshFailed();
     }
   }
 
+  Future<void> freshEvents() async {
+    try {
+      await Provider.of<EventProvider>(context, listen: false).insertEvents();
+    } catch (e) {
+      throw "error";
+    }
+  }
+
   void _onLoading() async {
     // monitor network fetch
+    print("here 1");
     await Future.delayed(Duration(milliseconds: 1000));
+    print("here 2");
     // if failed,use loadFailed(),if no data return,use LoadNodata()
     if (mounted) setState(() {});
     _refreshController.loadComplete();
@@ -58,6 +75,7 @@ class _EventListsState extends State<EventLists> {
               events = [null, ...snapData.data as List<Event?>, null];
             return SmartRefresher(
               enablePullDown: true,
+              enablePullUp: true,
               header: WaterDropHeader(
                 completeDuration: Duration(milliseconds: 1500),
                 complete: Container(

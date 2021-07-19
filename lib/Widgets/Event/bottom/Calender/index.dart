@@ -40,11 +40,11 @@ class CalenderScreen extends StatelessWidget {
                 month: calenderProvider.months.length > 0
                     ? calenderProvider
                         .months[calenderProvider.selectedMonths].month
-                    : "01",
+                    : calenderProvider.changeData(DateTime.now().month),
                 year: calenderProvider.months.length > 0
                     ? calenderProvider
                         .months[calenderProvider.selectedMonths].year
-                    : "2021",
+                    : "${DateTime.now().year}",
               ),
               builder: (ctx, snapData) {
                 if (snapData.hasData)

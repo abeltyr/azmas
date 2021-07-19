@@ -47,6 +47,14 @@ class BottomNavigatorWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           color: PlatformTheme.white,
+          boxShadow: [
+            BoxShadow(
+              color: PlatformTheme.secondaryColor.withOpacity(0.15),
+              spreadRadius: 2.5,
+              blurRadius: 5,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
         ),
         height: 65,
         child: Row(

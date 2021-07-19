@@ -23,7 +23,6 @@ class IntroScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                print("here");
                 var hiveSettings = Hive.box<SettingModel>('settings');
                 hiveSettings.put(
                   "userSettings",

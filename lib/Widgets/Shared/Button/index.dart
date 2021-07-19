@@ -31,10 +31,8 @@ class _AzmasButtonState extends State<AzmasButton> {
             setState(() {
               opacity = 0.7;
             });
-            print("onTapDown.globalPosition ${onTapDown.globalPosition}");
           },
           onTapUp: (onTapUp) {
-            print("onTapUp.globalPosition ${onTapUp.globalPosition}");
             setState(() {
               opacity = 1;
             });

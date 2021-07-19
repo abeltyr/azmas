@@ -14,8 +14,6 @@ class CalenderEventProvider with ChangeNotifier {
     required String month,
     required String year,
   }) async {
-    print("month $month");
-    print("year $year");
     return database.eventsDao.getEvents(
       startDate: DateTime.parse("$year-$month-01"),
       endDate: DateTime.parse("$year-$month-31"),
