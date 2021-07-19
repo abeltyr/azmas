@@ -19,7 +19,8 @@ class PlatformTheme {
 
   static const Color thirdColor = Color(0xFF272938);
   static const Color thirdColorTransparent = Color(0x55272938);
-  static const Color fourthColor = Color(0xFF7765C6);
+
+  static const Color fourthColor = Color(0xFFFF6161);
 
   static const Color negative = Color(0xFFFE6464);
   static const Color positive = Color(0xFF6DD596);

@@ -1,6 +1,9 @@
 import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/login.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/signUp.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -113,9 +116,18 @@ class AuthIndex extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: AzmasButton(
-                                  onClick: () {},
+                                  onClick: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      LoginScreen.routeName,
+                                    );
+                                  },
                                   color: PlatformTheme.textColor1,
                                   title: "Login",
+                                  textColor: PlatformTheme.white,
+                                  textFontSize: 18,
+                                  textFontWeight: FontWeight.w600,
+                                  borderRadiusData: 75,
                                 ),
                               ),
                               SizedBox(
@@ -123,9 +135,18 @@ class AuthIndex extends StatelessWidget {
                               ),
                               Expanded(
                                 child: AzmasButton(
-                                  onClick: () {},
-                                  color: PlatformTheme.positive,
-                                  title: "Sign Up",
+                                  onClick: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      SignUpScreen.routeName,
+                                    );
+                                  },
+                                  color: PlatformTheme.fourthColor,
+                                  title: "Get Started",
+                                  textColor: PlatformTheme.white,
+                                  textFontSize: 18,
+                                  textFontWeight: FontWeight.w600,
+                                  borderRadiusData: 75,
                                 ),
                               ),
                             ],
