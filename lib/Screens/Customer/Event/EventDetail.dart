@@ -1,7 +1,7 @@
 import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/countDown.dart';
 import 'package:azmas/Providers/event/selected.dart';
-import 'package:azmas/Screens/Shared/Error/index.dart';
+import 'package:azmas/Screens/Error/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/EventDetail/date.dart';
 import 'package:azmas/Widgets/EventDetail/top.dart';

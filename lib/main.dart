@@ -13,9 +13,11 @@ import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Providers/interaction/qrScan.dart';
 import 'package:azmas/Providers/lang/index.dart';
 import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/login.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/signUp.dart';
 import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
-import 'package:azmas/Screens/Shared/Error/index.dart';
-import 'package:azmas/Screens/Shared/Loading/index.dart';
+import 'package:azmas/Screens/Error/index.dart';
+import 'package:azmas/Screens/Loading/index.dart';
 import 'package:azmas/Screens/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/l10n/l10n.dart';
@@ -47,6 +49,8 @@ class MyApp extends StatelessWidget {
       LoadingScreen.routeName: (ctx) => LoadingScreen(),
       ErrorScreen.routeName: (ctx) => ErrorScreen(),
       EventDetailScreen.routeName: (ctx) => EventDetailScreen(),
+      LoginScreen.routeName: (ctx) => LoginScreen(),
+      SignUpScreen.routeName: (ctx) => SignUpScreen(),
     };
     return MultiProvider(
       providers: [

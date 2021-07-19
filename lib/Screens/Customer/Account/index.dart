@@ -1,6 +1,6 @@
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/index.dart';
 import 'package:azmas/Screens/Customer/Account/Profile/user.dart';
-import 'package:azmas/Screens/Guest/Auth/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
