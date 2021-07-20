@@ -4,6 +4,7 @@ import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const routeName = "/signUp";
@@ -18,7 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool validationCheck3 = false;
   bool loading = false;
   late String phone;
-  int steps = 0;
+  int steps = 1;
   List<GlobalKey<FormState>> _formKey = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -46,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _emailController = new TextEditingController(text: "");
     _phoneNumberController = new TextEditingController(text: "+251");
     _genderController = new TextEditingController(text: "");
-    _birthDateController = new TextEditingController(text: "");
+    _birthDateController = new TextEditingController();
     _instaController = new TextEditingController(text: "");
     _twitterController = new TextEditingController(text: "");
     _telegramController = new TextEditingController(text: "");

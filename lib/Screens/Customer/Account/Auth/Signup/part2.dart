@@ -1,5 +1,6 @@
 import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
+import 'package:azmas/Widgets/Account/birthDateInput.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -54,57 +55,35 @@ class SignUpForm2 extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            TextFormField(
-              controller: birthDateController,
-              keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
-              maxLines: 1,
-              enableSuggestions: false,
-              autocorrect: false,
-              style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                wordSpacing: 0.1,
-              ),
-              cursorColor: PlatformTheme.accentColorDark,
-              decoration: InputTheme().textInputDecoration(label: "Full Name"),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'This is a required field';
-                }
-                // if (value.length < 8) {
-                //   return 'The password is to short';
-                // }
-                return null;
-              },
+            BirthDateInput(
+              birthDateController: birthDateController,
             ),
             SizedBox(height: 15),
-            TextFormField(
-              controller: genderController,
-              keyboardType: TextInputType.phone,
-              textInputAction: TextInputAction.next,
-              maxLines: 1,
-              enableSuggestions: false,
-              autocorrect: false,
-              style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                wordSpacing: 0.1,
-              ),
-              cursorColor: PlatformTheme.accentColorDark,
-              decoration:
-                  InputTheme().textInputDecoration(label: "Phone number"),
-              validator: (value) {
-                if (value!.length == 0) {
-                  return 'Please enter mobile number';
-                } else if (value.length <= 12) {
-                  return 'Please enter valid mobile number';
-                }
-                return null;
-              },
-            ),
+            // TextFormField(
+            //   controller: genderController,
+            //   keyboardType: TextInputType.phone,
+            //   textInputAction: TextInputAction.next,
+            //   maxLines: 1,
+            //   enableSuggestions: false,
+            //   autocorrect: false,
+            //   style: GoogleFonts.lora(
+            //     color: PlatformTheme.textColor1,
+            //     fontWeight: FontWeight.w600,
+            //     fontSize: 18,
+            //     wordSpacing: 0.1,
+            //   ),
+            //   cursorColor: PlatformTheme.accentColorDark,
+            //   decoration:
+            //       InputTheme().textInputDecoration(label: "Phone number"),
+            //   validator: (value) {
+            //     if (value!.length == 0) {
+            //       return 'Please enter mobile number';
+            //     } else if (value.length <= 12) {
+            //       return 'Please enter valid mobile number';
+            //     }
+            //     return null;
+            //   },
+            // ),
             SizedBox(
               height: 30,
             ),
