@@ -1,3 +1,5 @@
+import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Login/index.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/part1.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/part2.dart';
@@ -7,7 +9,7 @@ import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const routeName = "/signUp";
@@ -33,6 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late TextEditingController _fullNameController;
   late TextEditingController _emailController;
   late TextEditingController _phoneNumberController;
+  late TextEditingController _userNameController;
 
   late TextEditingController _genderController;
   late TextEditingController _birthDateController;
@@ -51,6 +54,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _fullNameController = new TextEditingController(text: "");
     _emailController = new TextEditingController(text: "");
     _phoneNumberController = new TextEditingController(text: "+251");
+    _userNameController = new TextEditingController(text: "");
+
     _genderController = new TextEditingController(text: "");
     _birthDateController = new TextEditingController();
     _birthDateRealValueController = new TextEditingController();
@@ -184,6 +189,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     index: steps,
                     children: [
                       SignUpForm1(
+                        userNameController: _userNameController,
                         fullNameController: _fullNameController,
                         phoneNumberController: _phoneNumberController,
                         emailController: _emailController,
@@ -260,9 +266,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             validationCheck4 = true;
                           });
                           if (_formKey[3].currentState!.validate()) {
-                            setState(() {
-                              loading = true;
-                            });
+                            // setState(() {
+                            //   loading = true;
+                            // });
                             print("Full Name ${_fullNameController.text}");
                             print("email ${_emailController.text}");
                             print("phone ${_phoneNumberController.text}");
@@ -276,6 +282,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             print("password ${_passwordController.text}");
                             print(
                                 "confirm password ${_confirmPasswordController.text}");
+                            Navigator.pop(context);
+                            Provider.of<UserProvider>(context, listen: false)
+                                .setupUser(
+                              UserModel(
+                                userName: _userNameController.text,
+                                avatar: "https://source.unsplash.com/random",
+                                fullName: _fullNameController.text,
+                                email: _emailController.text,
+                                phoneNumber: _phoneNumberController.text,
+                                birthDate: _birthDateRealValueController.text,
+                                createdAt: DateTime.now(),
+                                updatedAt: DateTime.now(),
+                                id: "1",
+                                gender: _genderController.text,
+                                instagram: _instaController.text,
+                                twitter: _twitterController.text,
+                                telegram: _telegramController.text,
+                                verified: true,
+                              ),
+                            );
                           }
                         },
                         backAction: () {

@@ -31,8 +31,8 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       twitter: fields[11] as String?,
       telegram: fields[12] as String?,
       verified: fields[13] as bool?,
-      createdAt: fields[14] as String?,
-      updatedAt: fields[15] as String?,
+      createdAt: fields[14] as DateTime?,
+      updatedAt: fields[15] as DateTime?,
     );
   }
 

@@ -59,23 +59,6 @@ class AuthIndex extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                // GestureDetector(
-                //   onTap: () {
-                //     Provider.of<UserProvider>(context, listen: false)
-                //         .login();
-                //   },
-                //   child: Text(
-                //     "Auth",
-                //     textAlign: TextAlign.center,
-                //     style: GoogleFonts.lora(
-                //       color: PlatformTheme.secondaryColor,
-                //       fontWeight: FontWeight.w800,
-                //       fontSize: 22,
-                //       wordSpacing: 1,
-                //     ),
-                //   ),
-                // ),
               ),
               Positioned(
                 bottom: 90,

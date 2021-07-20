@@ -10,6 +10,7 @@ class SignUpForm1 extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController fullNameController;
   final TextEditingController phoneNumberController;
+  final TextEditingController userNameController;
   final Function action;
   final bool check;
   SignUpForm1({
@@ -17,6 +18,7 @@ class SignUpForm1 extends StatelessWidget {
     required this.fullNameController,
     required this.emailController,
     required this.phoneNumberController,
+    required this.userNameController,
     required this.action,
     required this.check,
   });
@@ -55,9 +57,6 @@ class SignUpForm1 extends StatelessWidget {
                 if (value!.isEmpty) {
                   return 'This is a required field';
                 }
-                // if (value.length < 8) {
-                //   return 'The password is to short';
-                // }
                 return null;
               },
             ),
@@ -83,6 +82,31 @@ class SignUpForm1 extends StatelessWidget {
                   return 'Please enter mobile number';
                 } else if (value.length <= 12) {
                   return 'Please enter valid mobile number';
+                }
+                return null;
+              },
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            TextFormField(
+              controller: userNameController,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.next,
+              maxLines: 1,
+              enableSuggestions: false,
+              autocorrect: false,
+              style: GoogleFonts.lora(
+                color: PlatformTheme.textColor1,
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                wordSpacing: 0.1,
+              ),
+              cursorColor: PlatformTheme.accentColorDark,
+              decoration: InputTheme().textInputDecoration(label: "Username"),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'This is a required field';
                 }
                 return null;
               },

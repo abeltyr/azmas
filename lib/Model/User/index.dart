@@ -33,9 +33,9 @@ class UserModel {
   @HiveField(13)
   bool? verified;
   @HiveField(14)
-  String? createdAt;
+  DateTime? createdAt;
   @HiveField(15)
-  String? updatedAt;
+  DateTime? updatedAt;
 
   UserModel({
     this.id,

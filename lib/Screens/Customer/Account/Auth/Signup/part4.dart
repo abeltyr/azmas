@@ -42,7 +42,7 @@ class SignUpForm4 extends StatelessWidget {
             TextFormField(
               controller: passwordController,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.go,
+              textInputAction: TextInputAction.done,
               maxLines: 1,
               obscureText: true,
               enableSuggestions: false,

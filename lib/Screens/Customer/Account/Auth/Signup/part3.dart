@@ -58,9 +58,6 @@ class SignUpForm3 extends StatelessWidget {
                 if (value!.isEmpty) {
                   return 'This is a required field';
                 }
-                // if (value.length < 8) {
-                //   return 'The password is to short';
-                // }
                 return null;
               },
             ),
@@ -85,9 +82,6 @@ class SignUpForm3 extends StatelessWidget {
                 if (value!.isEmpty) {
                   return 'This is a required field';
                 }
-                // if (value.length < 8) {
-                //   return 'The password is to short';
-                // }
                 return null;
               },
             ),
@@ -95,7 +89,7 @@ class SignUpForm3 extends StatelessWidget {
             TextFormField(
               controller: telegramController,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.go,
               maxLines: 1,
               enableSuggestions: false,
               autocorrect: false,
@@ -112,9 +106,6 @@ class SignUpForm3 extends StatelessWidget {
                 if (value!.isEmpty) {
                   return 'This is a required field';
                 }
-                // if (value.length < 8) {
-                //   return 'The password is to short';
-                // }
                 return null;
               },
             ),

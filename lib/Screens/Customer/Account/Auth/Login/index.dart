@@ -1,3 +1,5 @@
+import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/index.dart';
 import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
@@ -6,6 +8,7 @@ import 'package:azmas/Widgets/Shared/Button/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = "/login";
@@ -181,7 +184,30 @@ class _LoginScreenState extends State<LoginScreen> {
                           Container(
                             height: 50,
                             child: AzmasButton(
-                              onClick: () {},
+                              onClick: () {
+                                Navigator.pop(context);
+                                Provider.of<UserProvider>(context,
+                                        listen: false)
+                                    .setupUser(
+                                  UserModel(
+                                    userName: "Abeltyr",
+                                    avatar:
+                                        "https://source.unsplash.com/random",
+                                    fullName: "Abel lamesgen",
+                                    email: "abellamesgen@gmail.com",
+                                    phoneNumber: "+251911223989",
+                                    birthDate: "1998-07-24 00:00:00.000",
+                                    createdAt: DateTime.now(),
+                                    updatedAt: DateTime.now(),
+                                    id: "1",
+                                    gender: "Male",
+                                    instagram: "aveltyr",
+                                    twitter: "aveltyr",
+                                    telegram: "aveltyr",
+                                    verified: true,
+                                  ),
+                                );
+                              },
                               title: "Login",
                               color: PlatformTheme.textColor1,
                             ),
