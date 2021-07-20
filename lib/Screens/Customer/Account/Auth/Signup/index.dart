@@ -269,19 +269,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // setState(() {
                             //   loading = true;
                             // });
-                            print("Full Name ${_fullNameController.text}");
-                            print("email ${_emailController.text}");
-                            print("phone ${_phoneNumberController.text}");
-                            print("birth Date${_birthDateController.text}");
-                            print(
-                                "birth real ${_birthDateRealValueController.text}");
-                            print("gender ${_genderController.text}");
-                            print("instagram ${_instaController.text}");
-                            print("twitter ${_twitterController.text}");
-                            print("telegram ${_telegramController.text}");
-                            print("password ${_passwordController.text}");
-                            print(
-                                "confirm password ${_confirmPasswordController.text}");
+                            // print("Full Name ${_fullNameController.text}");
+                            // print("email ${_emailController.text}");
+                            // print("phone ${_phoneNumberController.text}");
+                            // print("birth Date${_birthDateController.text}");
+                            // print(
+                            //     "birth real ${_birthDateRealValueController.text}");
+                            // print("gender ${_genderController.text}");
+                            // print("instagram ${_instaController.text}");
+                            // print("twitter ${_twitterController.text}");
+                            // print("telegram ${_telegramController.text}");
+                            // print("password ${_passwordController.text}");
+                            // print(
+                            //     "confirm password ${_confirmPasswordController.text}");
                             Navigator.pop(context);
                             Provider.of<UserProvider>(context, listen: false)
                                 .setupUser(

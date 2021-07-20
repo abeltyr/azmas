@@ -18,9 +18,6 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final description =
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-
     final double totalWidth = MediaQuery.of(context).size.width;
     final double totalHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -39,7 +36,7 @@ class UserProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "username",
+                    "${user.userName}",
                     style: GoogleFonts.lora(
                       color: PlatformTheme.textColor2,
                       fontWeight: FontWeight.w800,
@@ -128,10 +125,7 @@ class UserProfileScreen extends StatelessWidget {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
-                            child: LoadedImageView(
-                              imageUrl:
-                                  "https://images.unsplash.com/photo-1551504436-ea077650a6f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
-                            ),
+                            child: LoadedImageView(imageUrl: user.avatar),
                           ),
                         ),
                         SizedBox(
@@ -150,7 +144,7 @@ class UserProfileScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "Abel Lamesgen",
+                                        "${user.fullName}",
                                         style: GoogleFonts.lora(
                                           color: PlatformTheme.textColor1,
                                           fontWeight: FontWeight.w700,
@@ -175,18 +169,23 @@ class UserProfileScreen extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      SocialButton(
-                                        icon: "assets/Icons/Instagram.svg",
-                                        url: 'https://instagram.com/aveltyr',
-                                      ),
-                                      SocialButton(
-                                        icon: "assets/Icons/Twitter.svg",
-                                        url: 'https://www.twitter.com/aveltyr',
-                                      ),
-                                      SocialButton(
-                                        icon: "assets/Icons/Broken/Send.svg",
-                                        url: 'https://t.me/aveltyr',
-                                      ),
+                                      if (user.instagram != "")
+                                        SocialButton(
+                                          icon: "assets/Icons/Instagram.svg",
+                                          url:
+                                              'https://instagram.com/${user.instagram}',
+                                        ),
+                                      if (user.twitter != "")
+                                        SocialButton(
+                                          icon: "assets/Icons/Twitter.svg",
+                                          url:
+                                              'https://www.twitter.com/${user.twitter}',
+                                        ),
+                                      if (user.telegram != "")
+                                        SocialButton(
+                                          icon: "assets/Icons/Broken/Send.svg",
+                                          url: 'https://t.me/${user.telegram}',
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -216,7 +215,9 @@ class UserProfileScreen extends StatelessWidget {
                       horizontal: 15,
                     ),
                     child: Text(
-                      "${description.substring(0, 200)}",
+                      user.description == null
+                          ? "NO Bio Yet"
+                          : "${user.description!.substring(0, 200)}",
                       style: GoogleFonts.lora(
                         color: PlatformTheme.textColor2,
                         fontWeight: FontWeight.w400,

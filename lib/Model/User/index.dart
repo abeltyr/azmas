@@ -33,8 +33,10 @@ class UserModel {
   @HiveField(13)
   bool? verified;
   @HiveField(14)
-  DateTime? createdAt;
+  String? description;
   @HiveField(15)
+  DateTime? createdAt;
+  @HiveField(16)
   DateTime? updatedAt;
 
   UserModel({
@@ -52,6 +54,7 @@ class UserModel {
     this.twitter,
     this.telegram,
     this.verified = true,
+    this.description,
     this.createdAt,
     this.updatedAt,
   });
