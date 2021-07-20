@@ -15,8 +15,7 @@ class UserProvider with ChangeNotifier {
       UserModel(
         id: "1",
         avatar: "https://source.unsplash.com/random",
-        firstName: "abel",
-        lastName: "lamesgen",
+        fullName: "abel lamesgen",
         userName: "ADS",
       ),
     );
@@ -27,8 +26,7 @@ class UserProvider with ChangeNotifier {
       UserModel(
         id: "1",
         avatar: "https://source.unsplash.com/random",
-        firstName: "abel",
-        lastName: "lamesgen",
+        fullName: "abel lamesgen",
         userName: "ADS",
       ),
     );

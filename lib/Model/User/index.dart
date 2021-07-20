@@ -7,50 +7,47 @@ class UserModel {
   @HiveField(0)
   String? id;
   @HiveField(1)
-  String? firstName;
+  String? fullName;
   @HiveField(2)
-  String? lastName;
-  @HiveField(3)
   String? phoneNumber;
-  @HiveField(4)
+  @HiveField(3)
   String? email;
-  @HiveField(5)
+  @HiveField(4)
   String userName;
-  @HiveField(6)
+  @HiveField(5)
   String avatar;
-  @HiveField(7)
+  @HiveField(6)
   String? background;
-  @HiveField(8)
+  @HiveField(7)
   String? birthDate;
+  @HiveField(8)
+  bool? activated;
   @HiveField(9)
-  bool? active;
+  String? gender;
   @HiveField(10)
-  String? sex;
-  @HiveField(11)
   String? instagram;
-  @HiveField(12)
+  @HiveField(11)
   String? twitter;
-  @HiveField(13)
+  @HiveField(12)
   String? telegram;
-  @HiveField(14)
+  @HiveField(13)
   bool? verified;
-  @HiveField(15)
+  @HiveField(14)
   String? createdAt;
-  @HiveField(16)
+  @HiveField(15)
   String? updatedAt;
 
   UserModel({
     this.id,
-    this.firstName,
-    this.lastName,
+    this.fullName,
     this.phoneNumber,
     this.email,
     required this.userName,
     required this.avatar,
     this.background,
     this.birthDate,
-    this.active = true,
-    this.sex,
+    this.activated = true,
+    this.gender,
     this.instagram,
     this.twitter,
     this.telegram,

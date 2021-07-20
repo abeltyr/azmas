@@ -18,62 +18,59 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
     };
     return UserModel(
       id: fields[0] as String?,
-      firstName: fields[1] as String?,
-      lastName: fields[2] as String?,
-      phoneNumber: fields[3] as String?,
-      email: fields[4] as String?,
-      userName: fields[5] as String,
-      avatar: fields[6] as String,
-      background: fields[7] as String?,
-      birthDate: fields[8] as String?,
-      active: fields[9] as bool?,
-      sex: fields[10] as String?,
-      instagram: fields[11] as String?,
-      twitter: fields[12] as String?,
-      telegram: fields[13] as String?,
-      verified: fields[14] as bool?,
-      createdAt: fields[15] as String?,
-      updatedAt: fields[16] as String?,
+      fullName: fields[1] as String?,
+      phoneNumber: fields[2] as String?,
+      email: fields[3] as String?,
+      userName: fields[4] as String,
+      avatar: fields[5] as String,
+      background: fields[6] as String?,
+      birthDate: fields[7] as String?,
+      activated: fields[8] as bool?,
+      gender: fields[9] as String?,
+      instagram: fields[10] as String?,
+      twitter: fields[11] as String?,
+      telegram: fields[12] as String?,
+      verified: fields[13] as bool?,
+      createdAt: fields[14] as String?,
+      updatedAt: fields[15] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(17)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.firstName)
+      ..write(obj.fullName)
       ..writeByte(2)
-      ..write(obj.lastName)
-      ..writeByte(3)
       ..write(obj.phoneNumber)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.email)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.userName)
-      ..writeByte(6)
+      ..writeByte(5)
       ..write(obj.avatar)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.background)
-      ..writeByte(8)
+      ..writeByte(7)
       ..write(obj.birthDate)
+      ..writeByte(8)
+      ..write(obj.activated)
       ..writeByte(9)
-      ..write(obj.active)
+      ..write(obj.gender)
       ..writeByte(10)
-      ..write(obj.sex)
-      ..writeByte(11)
       ..write(obj.instagram)
-      ..writeByte(12)
+      ..writeByte(11)
       ..write(obj.twitter)
-      ..writeByte(13)
+      ..writeByte(12)
       ..write(obj.telegram)
-      ..writeByte(14)
+      ..writeByte(13)
       ..write(obj.verified)
-      ..writeByte(15)
+      ..writeByte(14)
       ..write(obj.createdAt)
-      ..writeByte(16)
+      ..writeByte(15)
       ..write(obj.updatedAt);
   }
 
