@@ -97,8 +97,6 @@ class SignUpForm2 extends StatelessWidget {
               decoration:
                   InputTheme().textInputDecoration(label: "Phone number"),
               validator: (value) {
-                String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-                RegExp regExp = new RegExp(pattern);
                 if (value!.length == 0) {
                   return 'Please enter mobile number';
                 } else if (value.length <= 12) {
