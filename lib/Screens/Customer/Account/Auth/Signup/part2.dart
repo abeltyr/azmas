@@ -1,11 +1,9 @@
-import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/birthDateInput.dart';
 import 'package:azmas/Widgets/Account/genderInput.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:google_fonts/google_fonts.dart';
 
 class SignUpForm2 extends StatelessWidget {
   final GlobalKey<FormState> formKey;

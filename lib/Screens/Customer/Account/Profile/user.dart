@@ -106,7 +106,7 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                   Container(
                     width: totalWidth,
-                    height: 110,
+                    height: 90,
                     padding: EdgeInsets.symmetric(
                       horizontal: 15,
                     ),
@@ -114,17 +114,17 @@ class UserProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 100,
-                          width: 100,
+                          height: 80,
+                          width: 80,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(17.5),
+                            borderRadius: BorderRadius.circular(8.5),
                             border: Border.all(
-                              width: 2,
-                              color: PlatformTheme.secondaryColor,
+                              width: 1,
+                              color: PlatformTheme.textColor2,
                             ),
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(7.5),
                             child: LoadedImageView(imageUrl: user.avatar),
                           ),
                         ),
@@ -137,56 +137,45 @@ class UserProfileScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(vertical: 2.5),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Container(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "${user.fullName}",
-                                        style: GoogleFonts.lora(
-                                          color: PlatformTheme.textColor1,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 20,
-                                          wordSpacing: 0.5,
-                                        ),
-                                      ),
-                                    ],
+                                  child: Text(
+                                    "${user.fullName}",
+                                    style: GoogleFonts.lora(
+                                      color: PlatformTheme.textColor1,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20,
+                                      wordSpacing: 0.5,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 15,
                                 ),
                                 Container(
-                                  height: 50,
-                                  width: totalWidth,
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.symmetric(
-                                    vertical: 5,
+                                  child: FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Text(
+                                      "${user.email}",
+                                      style: GoogleFonts.lora(
+                                        color: PlatformTheme.textColor2,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 15,
+                                        wordSpacing: 0.5,
+                                      ),
+                                    ),
                                   ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      if (user.instagram != "")
-                                        SocialButton(
-                                          icon: "assets/Icons/Instagram.svg",
-                                          url:
-                                              'https://instagram.com/${user.instagram}',
-                                        ),
-                                      if (user.twitter != "")
-                                        SocialButton(
-                                          icon: "assets/Icons/Twitter.svg",
-                                          url:
-                                              'https://www.twitter.com/${user.twitter}',
-                                        ),
-                                      if (user.telegram != "")
-                                        SocialButton(
-                                          icon: "assets/Icons/Broken/Send.svg",
-                                          url: 'https://t.me/${user.telegram}',
-                                        ),
-                                    ],
+                                ),
+                                Container(
+                                  child: FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Text(
+                                      "${user.phoneNumber}",
+                                      style: GoogleFonts.lora(
+                                        color: PlatformTheme.textColor2,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 15,
+                                        wordSpacing: 0.5,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -224,6 +213,35 @@ class UserProfileScreen extends StatelessWidget {
                         fontSize: 14,
                         wordSpacing: 0.5,
                       ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    height: 50,
+                    width: totalWidth,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.symmetric(
+                      vertical: 5,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (user.instagram != "")
+                          SocialButton(
+                            icon: "assets/Icons/Instagram.svg",
+                            url: 'https://instagram.com/${user.instagram}',
+                          ),
+                        if (user.twitter != "")
+                          SocialButton(
+                            icon: "assets/Icons/Twitter.svg",
+                            url: 'https://www.twitter.com/${user.twitter}',
+                          ),
+                        if (user.telegram != "")
+                          SocialButton(
+                            icon: "assets/Icons/Broken/Send.svg",
+                            url: 'https://t.me/${user.telegram}',
+                          ),
+                      ],
                     ),
                   ),
                   Divider(),
