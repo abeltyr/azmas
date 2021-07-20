@@ -1,6 +1,7 @@
 import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/birthDateInput.dart';
+import 'package:azmas/Widgets/Account/genderInput.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -9,14 +10,15 @@ import 'package:google_fonts/google_fonts.dart';
 class SignUpForm2 extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController birthDateController;
+  final TextEditingController birthDateRealValueController;
   final TextEditingController genderController;
   final Function action;
   final Function backAction;
-
   final bool check;
   SignUpForm2({
     required this.formKey,
     required this.birthDateController,
+    required this.birthDateRealValueController,
     required this.genderController,
     required this.action,
     required this.backAction,
@@ -49,41 +51,20 @@ class SignUpForm2 extends StatelessWidget {
         autovalidateMode:
             check ? AutovalidateMode.always : AutovalidateMode.disabled,
         onChanged: () {},
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(
               height: 15,
             ),
             BirthDateInput(
               birthDateController: birthDateController,
+              birthDateRealValueController: birthDateRealValueController,
             ),
             SizedBox(height: 15),
-            // TextFormField(
-            //   controller: genderController,
-            //   keyboardType: TextInputType.phone,
-            //   textInputAction: TextInputAction.next,
-            //   maxLines: 1,
-            //   enableSuggestions: false,
-            //   autocorrect: false,
-            //   style: GoogleFonts.lora(
-            //     color: PlatformTheme.textColor1,
-            //     fontWeight: FontWeight.w600,
-            //     fontSize: 18,
-            //     wordSpacing: 0.1,
-            //   ),
-            //   cursorColor: PlatformTheme.accentColorDark,
-            //   decoration:
-            //       InputTheme().textInputDecoration(label: "Phone number"),
-            //   validator: (value) {
-            //     if (value!.length == 0) {
-            //       return 'Please enter mobile number';
-            //     } else if (value.length <= 12) {
-            //       return 'Please enter valid mobile number';
-            //     }
-            //     return null;
-            //   },
-            // ),
+            GenderInput(
+              genderController: genderController,
+            ),
             SizedBox(
               height: 30,
             ),

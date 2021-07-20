@@ -19,7 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool validationCheck3 = false;
   bool loading = false;
   late String phone;
-  int steps = 1;
+  int steps = 0;
   List<GlobalKey<FormState>> _formKey = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -32,6 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   late TextEditingController _genderController;
   late TextEditingController _birthDateController;
+  late TextEditingController _birthDateRealValueController;
 
   late TextEditingController _instaController;
   late TextEditingController _twitterController;
@@ -48,6 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _phoneNumberController = new TextEditingController(text: "+251");
     _genderController = new TextEditingController(text: "");
     _birthDateController = new TextEditingController();
+    _birthDateRealValueController = new TextEditingController();
     _instaController = new TextEditingController(text: "");
     _twitterController = new TextEditingController(text: "");
     _telegramController = new TextEditingController(text: "");
@@ -68,6 +70,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _telegramController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+  }
+
+  void keyboardDown() {
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus) {
+      currentFocus.unfocus();
+    }
   }
 
   @override
@@ -175,6 +184,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     check: validationCheck1,
                     formKey: _formKey[0],
                     action: () {
+                      keyboardDown();
                       setState(() {
                         validationCheck1 = true;
                       });
@@ -187,17 +197,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SignUpForm2(
                     genderController: _genderController,
+                    birthDateRealValueController: _birthDateRealValueController,
                     birthDateController: _birthDateController,
                     check: validationCheck2,
                     formKey: _formKey[1],
                     action: () {
+                      keyboardDown();
                       setState(() {
                         validationCheck2 = true;
                       });
                       if (_formKey[1].currentState!.validate()) {
                         setState(() {
-                          steps = 1;
+                          steps = 2;
                         });
+                        print(_fullNameController.text);
+                        print(_emailController.text);
+                        print(_phoneNumberController.text);
+                        print(_birthDateController.text);
+                        print(_birthDateRealValueController.text);
+                        print(_genderController.text);
                       }
                     },
                     backAction: () {

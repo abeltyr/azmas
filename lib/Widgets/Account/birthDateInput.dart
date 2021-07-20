@@ -8,7 +8,12 @@ import 'package:intl/intl.dart';
 
 class BirthDateInput extends StatefulWidget {
   final TextEditingController birthDateController;
-  BirthDateInput({required this.birthDateController});
+  final TextEditingController birthDateRealValueController;
+
+  BirthDateInput({
+    required this.birthDateController,
+    required this.birthDateRealValueController,
+  });
   @override
   _BirthDateInputState createState() => _BirthDateInputState();
 }
@@ -36,7 +41,7 @@ class _BirthDateInputState extends State<BirthDateInput> {
                     "Done",
                     style: GoogleFonts.lora(
                       color: PlatformTheme.textColor1,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w800,
                       fontSize: 20,
                       wordSpacing: 1,
                       height: 1.4,
@@ -56,9 +61,8 @@ class _BirthDateInputState extends State<BirthDateInput> {
                         val.toString(),
                       ),
                     );
-
-                    print(widget.birthDateController.text);
                     initialDate = val;
+                    widget.birthDateRealValueController.text = val.toString();
                   }),
             ),
           ],
