@@ -5,22 +5,23 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUpForm3 extends StatelessWidget {
+class SignUpForm4 extends StatelessWidget {
   final GlobalKey<FormState> formKey;
-  final TextEditingController instaController;
-  final TextEditingController twitterController;
-  final TextEditingController telegramController;
+  final TextEditingController passwordController;
+  final TextEditingController confirmPasswordController;
   final Function action;
   final Function backAction;
+  final bool loading;
+
   final bool check;
-  SignUpForm3({
+  SignUpForm4({
     required this.formKey,
-    required this.instaController,
-    required this.twitterController,
-    required this.telegramController,
+    required this.passwordController,
+    required this.confirmPasswordController,
     required this.action,
     required this.backAction,
     required this.check,
+    required this.loading,
   });
 
   @override
@@ -39,85 +40,60 @@ class SignUpForm3 extends StatelessWidget {
               height: 15,
             ),
             TextFormField(
-              controller: instaController,
+              controller: passwordController,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.go,
               maxLines: 1,
+              obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
               style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
+                color: PlatformTheme.secondaryColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
                 wordSpacing: 0.1,
               ),
               cursorColor: PlatformTheme.accentColorDark,
-              decoration:
-                  InputTheme().textInputDecoration(label: "Instagram Username"),
+              decoration: InputTheme().textInputDecoration(label: "Password"),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'This is a required field';
                 }
-                // if (value.length < 8) {
-                //   return 'The password is to short';
-                // }
+                if (value.length < 8) {
+                  return 'The password is to short';
+                }
                 return null;
               },
             ),
             SizedBox(height: 15),
             TextFormField(
-              controller: twitterController,
+              controller: confirmPasswordController,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.go,
               maxLines: 1,
+              obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
               style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
+                color: PlatformTheme.secondaryColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
                 wordSpacing: 0.1,
               ),
               cursorColor: PlatformTheme.accentColorDark,
               decoration:
-                  InputTheme().textInputDecoration(label: "Twitter Username"),
+                  InputTheme().textInputDecoration(label: "Confirm Password"),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'This is a required field';
                 }
-                // if (value.length < 8) {
-                //   return 'The password is to short';
-                // }
+                if (value != passwordController.text) {
+                  return "The passwords don't match";
+                }
                 return null;
               },
             ),
             SizedBox(height: 15),
-            TextFormField(
-              controller: telegramController,
-              keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
-              maxLines: 1,
-              enableSuggestions: false,
-              autocorrect: false,
-              style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                wordSpacing: 0.1,
-              ),
-              cursorColor: PlatformTheme.accentColorDark,
-              decoration:
-                  InputTheme().textInputDecoration(label: "Telegram Username"),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'This is a required field';
-                }
-                // if (value.length < 8) {
-                //   return 'The password is to short';
-                // }
-                return null;
-              },
-            ),
             SizedBox(
               height: 30,
             ),
@@ -128,6 +104,7 @@ class SignUpForm3 extends StatelessWidget {
                   height: 40,
                   width: 150,
                   child: AzmasButton(
+                    loading: loading,
                     onClick: backAction,
                     title: "Back",
                     color: PlatformTheme.thirdColorTransparent,
@@ -139,8 +116,9 @@ class SignUpForm3 extends StatelessWidget {
                   width: 150,
                   child: AzmasButton(
                     onClick: action,
-                    title: "Next",
-                    color: PlatformTheme.secondaryColorLight,
+                    loading: loading,
+                    title: "Sign Up",
+                    color: PlatformTheme.positive,
                     borderRadiusData: 7.5,
                   ),
                 ),

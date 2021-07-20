@@ -59,7 +59,8 @@ class _AzmasButtonState extends State<AzmasButton> {
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: widget.color,
+              color:
+                  widget.loading ? widget.color.withOpacity(0.2) : widget.color,
               borderRadius: BorderRadius.circular(widget.borderRadiusData),
             ),
             padding: EdgeInsets.symmetric(
@@ -70,7 +71,9 @@ class _AzmasButtonState extends State<AzmasButton> {
               child: Text(
                 "${widget.title}",
                 style: GoogleFonts.lora(
-                  color: widget.textColor,
+                  color: widget.loading
+                      ? PlatformTheme.textColor2.withOpacity(0.7)
+                      : widget.textColor,
                   fontWeight: widget.textFontWeight,
                   fontSize: opacity == 1
                       ? widget.textFontSize

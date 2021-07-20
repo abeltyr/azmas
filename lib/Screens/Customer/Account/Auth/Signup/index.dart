@@ -1,5 +1,8 @@
+import 'package:azmas/Screens/Customer/Account/Auth/Login/index.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/part1.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/part2.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/Signup/part3.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/Signup/part4.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/topBar.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool validationCheck1 = false;
   bool validationCheck2 = false;
   bool validationCheck3 = false;
+  bool validationCheck4 = false;
   bool loading = false;
   late String phone;
   int steps = 0;
@@ -85,151 +89,253 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       backgroundColor: PlatformTheme.primaryColor,
       resizeToAvoidBottomInset: false,
-      body: Column(
+      body: Stack(
         children: [
-          AuthTopBar(),
-          SizedBox(
-            height: 7.5,
-          ),
-          Container(
-            width: totalWidth,
-            padding: EdgeInsets.symmetric(
-              horizontal: 30,
-            ),
-            child: Text(
-              "Create Your Account",
-              style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
-                fontWeight: FontWeight.w800,
-                fontSize: 24,
-                wordSpacing: 1,
-                height: 1.4,
+          Column(
+            children: [
+              AuthTopBar(),
+              SizedBox(
+                height: 7.5,
               ),
-            ),
-          ),
-          Container(
-            width: totalWidth,
-            padding: EdgeInsets.symmetric(
-              horizontal: 30,
-            ),
-            child: Text(
-              "Sign Up And Get Started",
-              style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-                wordSpacing: 1,
-                height: 1.4,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Container(
-            width: totalWidth,
-            padding: EdgeInsets.symmetric(
-              horizontal: 30,
-            ),
-            child: Text(
-              "Step: ${steps + 1}/4",
-              style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
-                fontWeight: FontWeight.w500,
-                fontSize: 12,
-                wordSpacing: 1,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 25,
-            ),
-            child: Stack(
-              children: [
-                Container(
-                  width: totalWidth,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: PlatformTheme.white.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(15),
+              Container(
+                width: totalWidth,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: Text(
+                  "Create Your Account",
+                  style: GoogleFonts.lora(
+                    color: PlatformTheme.textColor1,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 24,
+                    wordSpacing: 1,
+                    height: 1.4,
                   ),
                 ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  width: (totalWidth - 50) * (steps + 1) / 4,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: PlatformTheme.positive.withOpacity(0.8),
-                    borderRadius: BorderRadius.circular(15),
+              ),
+              Container(
+                width: totalWidth,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: Text(
+                  "Sign Up And Get Started",
+                  style: GoogleFonts.lora(
+                    color: PlatformTheme.textColor1,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    wordSpacing: 1,
+                    height: 1.4,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                width: totalWidth,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: Text(
+                  "Step: ${steps + 1}/4",
+                  style: GoogleFonts.lora(
+                    color: PlatformTheme.textColor1,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    wordSpacing: 1,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: totalWidth,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: PlatformTheme.white.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 500),
+                      width: (totalWidth - 50) * (steps + 1) / 4,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: PlatformTheme.positive.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: IndexedStack(
+                    index: steps,
+                    children: [
+                      SignUpForm1(
+                        fullNameController: _fullNameController,
+                        phoneNumberController: _phoneNumberController,
+                        emailController: _emailController,
+                        check: validationCheck1,
+                        formKey: _formKey[0],
+                        action: () {
+                          keyboardDown();
+                          setState(() {
+                            validationCheck1 = true;
+                          });
+                          if (_formKey[0].currentState!.validate()) {
+                            setState(() {
+                              steps = 1;
+                            });
+                          }
+                        },
+                      ),
+                      SignUpForm2(
+                        genderController: _genderController,
+                        birthDateRealValueController:
+                            _birthDateRealValueController,
+                        birthDateController: _birthDateController,
+                        check: validationCheck2,
+                        formKey: _formKey[1],
+                        action: () {
+                          keyboardDown();
+                          setState(() {
+                            validationCheck2 = true;
+                          });
+                          if (_formKey[1].currentState!.validate()) {
+                            setState(() {
+                              steps = 2;
+                            });
+                          }
+                        },
+                        backAction: () {
+                          setState(() {
+                            steps = 0;
+                          });
+                        },
+                      ),
+                      SignUpForm3(
+                        instaController: _instaController,
+                        twitterController: _twitterController,
+                        telegramController: _telegramController,
+                        check: validationCheck3,
+                        formKey: _formKey[2],
+                        action: () {
+                          keyboardDown();
+                          setState(() {
+                            validationCheck3 = true;
+                          });
+                          if (_formKey[2].currentState!.validate()) {
+                            setState(() {
+                              steps = 3;
+                            });
+                          }
+                        },
+                        backAction: () {
+                          setState(() {
+                            steps = 1;
+                          });
+                        },
+                      ),
+                      SignUpForm4(
+                        passwordController: _passwordController,
+                        confirmPasswordController: _confirmPasswordController,
+                        check: validationCheck4,
+                        loading: loading,
+                        formKey: _formKey[3],
+                        action: () {
+                          keyboardDown();
+                          setState(() {
+                            validationCheck4 = true;
+                          });
+                          if (_formKey[3].currentState!.validate()) {
+                            setState(() {
+                              loading = true;
+                            });
+                            print("Full Name ${_fullNameController.text}");
+                            print("email ${_emailController.text}");
+                            print("phone ${_phoneNumberController.text}");
+                            print("birth Date${_birthDateController.text}");
+                            print(
+                                "birth real ${_birthDateRealValueController.text}");
+                            print("gender ${_genderController.text}");
+                            print("instagram ${_instaController.text}");
+                            print("twitter ${_twitterController.text}");
+                            print("telegram ${_telegramController.text}");
+                            print("password ${_passwordController.text}");
+                            print(
+                                "confirm password ${_confirmPasswordController.text}");
+                          }
+                        },
+                        backAction: () {
+                          setState(() {
+                            steps = 2;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-          Expanded(
+          Positioned(
+            bottom: 0,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: IndexedStack(
-                index: steps,
+              width: totalWidth,
+              padding: EdgeInsets.symmetric(
+                horizontal: 30,
+              ),
+              margin: EdgeInsets.only(
+                bottom: 50,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SignUpForm1(
-                    fullNameController: _fullNameController,
-                    phoneNumberController: _phoneNumberController,
-                    emailController: _emailController,
-                    check: validationCheck1,
-                    formKey: _formKey[0],
-                    action: () {
-                      keyboardDown();
-                      setState(() {
-                        validationCheck1 = true;
-                      });
-                      if (_formKey[0].currentState!.validate()) {
-                        setState(() {
-                          steps = 1;
-                        });
-                      }
-                    },
+                  Text(
+                    "I Already Have An Account",
+                    style: GoogleFonts.lora(
+                      color: PlatformTheme.textColor1,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      wordSpacing: 1,
+                      height: 1.4,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
-                  SignUpForm2(
-                    genderController: _genderController,
-                    birthDateRealValueController: _birthDateRealValueController,
-                    birthDateController: _birthDateController,
-                    check: validationCheck2,
-                    formKey: _formKey[1],
-                    action: () {
-                      keyboardDown();
-                      setState(() {
-                        validationCheck2 = true;
-                      });
-                      if (_formKey[1].currentState!.validate()) {
-                        setState(() {
-                          steps = 2;
-                        });
-                        print(_fullNameController.text);
-                        print(_emailController.text);
-                        print(_phoneNumberController.text);
-                        print(_birthDateController.text);
-                        print(_birthDateRealValueController.text);
-                        print(_genderController.text);
-                      }
-                    },
-                    backAction: () {
-                      setState(() {
-                        steps = 0;
-                      });
-                    },
+                  SizedBox(
+                    width: 7.5,
                   ),
-                  Container(
-                    child: Text("3"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.popAndPushNamed(context, LoginScreen.routeName);
+                    },
+                    child: Text(
+                      "Login",
+                      style: GoogleFonts.lora(
+                        color: PlatformTheme.positive,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                        wordSpacing: 1,
+                        height: 1.4,
+                        fontStyle: FontStyle.italic,
+                        decoration: TextDecoration.underline,
+                        decorationThickness: 0.5,
+                        decorationStyle: TextDecorationStyle.dotted,
+                      ),
+                    ),
                   ),
-                  Container(
-                    child: Text("4"),
-                  )
                 ],
               ),
             ),

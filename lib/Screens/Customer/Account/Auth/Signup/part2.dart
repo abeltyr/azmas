@@ -24,23 +24,6 @@ class SignUpForm2 extends StatelessWidget {
     required this.backAction,
     required this.check,
   });
-  Widget buttonText(String text) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-        vertical: 10,
-      ),
-      width: double.infinity,
-      alignment: Alignment.center,
-      child: Text(
-        '$text',
-        style: TextStyle(
-          color: PlatformTheme.white,
-          fontSize: 20,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
