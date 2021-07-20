@@ -1,6 +1,6 @@
 import 'package:azmas/Providers/user/index.dart';
-import 'package:azmas/Screens/Customer/Account/Auth/login.dart';
-import 'package:azmas/Screens/Customer/Account/Auth/signUp.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/Login/index.dart';
+import 'package:azmas/Screens/Customer/Account/Auth/Signup/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
 import 'package:flutter/cupertino.dart';
