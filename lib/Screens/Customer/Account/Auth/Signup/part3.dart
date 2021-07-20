@@ -130,7 +130,7 @@ class SignUpForm3 extends StatelessWidget {
                   child: AzmasButton(
                     onClick: backAction,
                     title: "Back",
-                    color: PlatformTheme.thirdColorTransparent,
+                    color: PlatformTheme.textColor2,
                     borderRadiusData: 7.5,
                   ),
                 ),
@@ -140,7 +140,7 @@ class SignUpForm3 extends StatelessWidget {
                   child: AzmasButton(
                     onClick: action,
                     title: "Next",
-                    color: PlatformTheme.secondaryColorLight,
+                    color: PlatformTheme.textColor1,
                     borderRadiusData: 7.5,
                   ),
                 ),

@@ -107,7 +107,7 @@ class SignUpForm4 extends StatelessWidget {
                     loading: loading,
                     onClick: backAction,
                     title: "Back",
-                    color: PlatformTheme.thirdColorTransparent,
+                    color: PlatformTheme.textColor2,
                     borderRadiusData: 7.5,
                   ),
                 ),

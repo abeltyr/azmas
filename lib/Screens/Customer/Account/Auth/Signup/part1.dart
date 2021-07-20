@@ -126,7 +126,7 @@ class SignUpForm1 extends StatelessWidget {
                 child: AzmasButton(
                   onClick: action,
                   title: "Next",
-                  color: PlatformTheme.secondaryColorLight,
+                  color: PlatformTheme.textColor1,
                   borderRadiusData: 7.5,
                 ),
               ),

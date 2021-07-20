@@ -116,15 +116,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               wordSpacing: 0.1,
                             ),
                             cursorColor: PlatformTheme.accentColorDark,
-                            decoration: InputTheme()
-                                .textInputDecoration(label: "Phone Number"),
+                            decoration: InputTheme().textInputDecoration(
+                              label: "Phone Number, Username",
+                            ),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'This is a required field';
                               }
-                              // if (value.length < 8) {
-                              //   return 'The password is to short';
-                              // }
                               return null;
                             },
                           ),
