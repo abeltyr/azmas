@@ -19,11 +19,16 @@ class EventScreen extends StatelessWidget {
       body: Column(
         children: [
           EventTop(),
-          if (eventProvider.selectedTab == 0 && !eventProvider.searchTap)
-            EventLists(),
-          if (eventProvider.selectedTab == 1 && !eventProvider.searchTap)
-            CalenderScreen(),
-          if (eventProvider.searchTap) EventSearch(heightData: height),
+          if (!eventProvider.searchTap)
+            IndexedStack(
+              index: eventProvider.selectedTab,
+              children: [
+                EventLists(),
+                CalenderScreen(),
+              ],
+            )
+          else
+            EventSearch(heightData: height),
         ],
       ),
     );

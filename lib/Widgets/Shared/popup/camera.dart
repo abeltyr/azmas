@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Card/squareCard.dart';
@@ -16,16 +18,21 @@ class CameraPopup extends StatelessWidget {
     if (photo != null) {
       final directory = await getApplicationDocumentsDirectory();
       final fileDirectory = directory.path;
-      var imageUrl = "Local-UserProfile";
+      var imageUrl = "Local-UserProfile${photo.name}";
       String filePath =
           "$fileDirectory/${slugify('Image-$imageUrl').toString() + ".png"}";
-      await photo.saveTo(filePath);
+      photo.saveTo(filePath);
       var user = userProfile.get("currentUser");
-      user!.avatar = imageUrl;
+      String deleteFilePath =
+          "$fileDirectory/${slugify('Image-${user!.avatar}').toString() + ".png"}";
+      user.avatar = imageUrl;
+
       userProfile.put(
         "currentUser",
         user,
       );
+      File? deletedFile = new File(deleteFilePath);
+      if (await deletedFile.exists()) await deletedFile.delete();
     }
   }
 

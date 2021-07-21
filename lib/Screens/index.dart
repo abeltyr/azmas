@@ -9,6 +9,7 @@ import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:azmas/Widgets/BottomNavbar/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
@@ -45,18 +46,25 @@ class _IndexScreenState extends State<IndexScreen> {
     if (settings != null && settings!.intro) {
       return IntroScreen();
     } else if (settings != null && !settings!.intro) {
-      return Stack(
-        children: [
-          if (navBarProvide.selectedScreen == 0)
-            HomeScreen()
-          else if (navBarProvide.selectedScreen == 1)
-            EventScreen()
-          else if (navBarProvide.selectedScreen == 2)
-            AccountScreen(),
-          BottomNavigatorWidget(
-            selectedScreen: navBarProvide.selectedScreen,
-          ),
-        ],
+      return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.light,
+        ),
+        child: Stack(
+          children: [
+            IndexedStack(
+              index: navBarProvide.selectedScreen,
+              children: [
+                HomeScreen(),
+                EventScreen(),
+                AccountScreen(),
+              ],
+            ),
+            BottomNavigatorWidget(
+              selectedScreen: navBarProvide.selectedScreen,
+            ),
+          ],
+        ),
       );
     } else
       return Scaffold(
