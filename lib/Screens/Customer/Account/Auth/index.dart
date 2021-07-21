@@ -108,7 +108,7 @@ class AuthIndex extends StatelessWidget {
                                 textColor: PlatformTheme.white,
                                 textFontSize: 20,
                                 textFontWeight: FontWeight.w600,
-                                borderRadiusData: 7.5,
+                                borderRadiusData: 15,
                               ),
                             ),
                             SizedBox(
@@ -127,7 +127,7 @@ class AuthIndex extends StatelessWidget {
                                 textColor: PlatformTheme.white,
                                 textFontSize: 20,
                                 textFontWeight: FontWeight.w600,
-                                borderRadiusData: 7.5,
+                                borderRadiusData: 15,
                               ),
                             ),
                           ],

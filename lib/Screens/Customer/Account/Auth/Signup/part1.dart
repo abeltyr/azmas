@@ -141,7 +141,7 @@ class SignUpForm1 extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 30),
             Align(
               alignment: Alignment.centerRight,
               child: Container(
@@ -151,7 +151,7 @@ class SignUpForm1 extends StatelessWidget {
                   onClick: action,
                   title: "Next",
                   color: PlatformTheme.textColor1,
-                  borderRadiusData: 7.5,
+                  borderRadiusData: 15,
                 ),
               ),
             ),

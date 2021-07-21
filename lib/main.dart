@@ -13,6 +13,7 @@ import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Providers/interaction/qrScan.dart';
 import 'package:azmas/Providers/lang/index.dart';
 import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Screens/Customer/Account/EditProfile/index.dart';
 import 'Screens/Customer/Account/Auth/Login/index.dart';
 import 'Screens/Customer/Account/Auth/Signup/index.dart';
 import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
       EventDetailScreen.routeName: (ctx) => EventDetailScreen(),
       LoginScreen.routeName: (ctx) => LoginScreen(),
       SignUpScreen.routeName: (ctx) => SignUpScreen(),
+      SettingScreen.routeName: (ctx) => SettingScreen(),
     };
     return MultiProvider(
       providers: [

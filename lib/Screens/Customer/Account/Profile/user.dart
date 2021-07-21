@@ -1,5 +1,6 @@
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Screens/Customer/Account/EditProfile/index.dart';
 import 'package:azmas/Screens/Customer/Account/Scan/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/actionCard.dart';
@@ -247,8 +248,13 @@ class UserProfileScreen extends StatelessWidget {
                   Divider(),
                   UserActionCard(
                     icon: "assets/Icons/Broken/Setting.svg",
-                    textData: "Edit Profile",
-                    onClick: () {},
+                    textData: "Settings",
+                    onClick: () {
+                      Navigator.pushNamed(
+                        context,
+                        SettingScreen.routeName,
+                      );
+                    },
                   ),
                   UserActionCard(
                     icon: "assets/Icons/Broken/Ticket.svg",

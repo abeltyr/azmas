@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AuthTopBar extends StatelessWidget {
+  final String title;
+  AuthTopBar({this.title = "Azmas"});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,11 +40,11 @@ class AuthTopBar extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(right: 30),
             child: Text(
-              "Azmas",
+              "$title",
               style: GoogleFonts.lora(
                 color: PlatformTheme.textColor1,
                 fontWeight: FontWeight.w800,
-                fontSize: 24,
+                fontSize: 20,
                 wordSpacing: 1,
                 height: 1.4,
               ),

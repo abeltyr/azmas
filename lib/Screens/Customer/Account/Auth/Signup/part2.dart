@@ -59,7 +59,7 @@ class SignUpForm2 extends StatelessWidget {
                     onClick: backAction,
                     title: "Back",
                     color: PlatformTheme.textColor2,
-                    borderRadiusData: 7.5,
+                    borderRadiusData: 15,
                   ),
                 ),
                 Container(
@@ -69,7 +69,7 @@ class SignUpForm2 extends StatelessWidget {
                     onClick: action,
                     title: "Next",
                     color: PlatformTheme.textColor1,
-                    borderRadiusData: 7.5,
+                    borderRadiusData: 15,
                   ),
                 ),
               ],

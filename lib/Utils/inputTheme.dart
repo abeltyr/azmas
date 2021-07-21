@@ -23,13 +23,13 @@ class InputTheme {
     return InputDecoration(
       fillColor: PlatformTheme.white,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(7.5),
+        borderRadius: BorderRadius.circular(15),
         borderSide: BorderSide(
           color: PlatformTheme.textColor2,
         ),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(7.5),
+        borderRadius: BorderRadius.circular(15),
         borderSide: BorderSide(
           color: PlatformTheme.textColor2,
         ),
@@ -42,7 +42,7 @@ class InputTheme {
       // filled: true,
       focusColor: PlatformTheme.textColor2,
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(7.5),
+        borderRadius: BorderRadius.circular(15),
         borderSide: BorderSide(
           color: PlatformTheme.textColor2,
         ),

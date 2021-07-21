@@ -94,7 +94,7 @@ class _GenderInputState extends State<GenderInput>
 
     return Container(
       width: widthData,
-      height: 70,
+      height: 50,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

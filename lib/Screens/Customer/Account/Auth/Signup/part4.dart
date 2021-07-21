@@ -108,7 +108,7 @@ class SignUpForm4 extends StatelessWidget {
                     onClick: backAction,
                     title: "Back",
                     color: PlatformTheme.textColor2,
-                    borderRadiusData: 7.5,
+                    borderRadiusData: 15,
                   ),
                 ),
                 Container(
@@ -119,7 +119,7 @@ class SignUpForm4 extends StatelessWidget {
                     loading: loading,
                     title: "Sign Up",
                     color: PlatformTheme.positive,
-                    borderRadiusData: 7.5,
+                    borderRadiusData: 15,
                   ),
                 ),
               ],
