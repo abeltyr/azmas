@@ -43,6 +43,7 @@ class _SettingTabsState extends State<SettingTabs>
       required String icon,
       required AnimationController controller,
       required Function onClick,
+      required int value,
     }) {
       return GestureDetector(
         onTap: () {
@@ -60,7 +61,7 @@ class _SettingTabsState extends State<SettingTabs>
               controller.duration = Duration(
                 milliseconds: 350,
               );
-              if (icon.contains("Edit")) {
+              if (settingInteractionProvider.selectedTab == value) {
                 controller.forward();
               }
             },
@@ -78,6 +79,7 @@ class _SettingTabsState extends State<SettingTabs>
             children: [
               Expanded(
                 child: tab(
+                  value: 0,
                   icon: 'assets/Animations/Edit.json',
                   controller: _firstController,
                   onClick: () {
@@ -91,6 +93,7 @@ class _SettingTabsState extends State<SettingTabs>
               ),
               Expanded(
                 child: tab(
+                  value: 1,
                   icon: 'assets/Animations/Mail.json',
                   controller: _secondController,
                   onClick: () {
@@ -104,6 +107,7 @@ class _SettingTabsState extends State<SettingTabs>
               ),
               Expanded(
                 child: tab(
+                  value: 2,
                   icon: 'assets/Animations/Explore.json',
                   controller: _thirdController,
                   onClick: () {
@@ -117,6 +121,7 @@ class _SettingTabsState extends State<SettingTabs>
               ),
               Expanded(
                 child: tab(
+                  value: 3,
                   icon: 'assets/Animations/Lock.json',
                   controller: _fourthController,
                   onClick: () {

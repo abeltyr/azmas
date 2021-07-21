@@ -41,7 +41,7 @@ class SocialButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7.5),
-          color: PlatformTheme.thirdColorTransparent,
+          color: PlatformTheme.textColor2.withOpacity(0.75),
         ),
         child: SvgPicture.asset(
           "$icon",

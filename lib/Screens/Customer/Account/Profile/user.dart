@@ -28,10 +28,11 @@ class UserProfileScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(
                 top: 40,
+                bottom: 2.5,
                 left: 15,
                 right: 15,
               ),
-              height: 85,
+              height: 87.5,
               width: totalWidth,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,50 +46,26 @@ class UserProfileScreen extends StatelessWidget {
                       wordSpacing: 0.5,
                     ),
                   ),
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          padding: EdgeInsets.all(7.5),
-                          decoration: BoxDecoration(
-                            color: PlatformTheme.secondaryColorTransparent,
-                            borderRadius: BorderRadius.circular(7.5),
-                          ),
-                          alignment: Alignment.center,
-                          child: SvgPicture.asset(
-                            "assets/Icons/Broken/Accounts.svg",
-                            color: PlatformTheme.white,
-                          ),
-                        ),
+                  GestureDetector(
+                    onTap: () {
+                      showCupertinoModalBottomSheet(
+                        context: context,
+                        builder: (context) => QRScanScreen(),
+                      );
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7.5),
+                        color: PlatformTheme.textColor2.withOpacity(0.75),
                       ),
-                      SizedBox(
-                        width: 15,
+                      child: Icon(
+                        CupertinoIcons.qrcode,
+                        size: 25,
+                        color: PlatformTheme.white,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          showCupertinoModalBottomSheet(
-                            context: context,
-                            builder: (context) => QRScanScreen(),
-                          );
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.5),
-                            color: PlatformTheme.secondaryColorTransparent,
-                          ),
-                          child: Icon(
-                            CupertinoIcons.qrcode,
-                            size: 25,
-                            color: PlatformTheme.white,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
@@ -98,12 +75,12 @@ class UserProfileScreen extends StatelessWidget {
               thickness: 1,
             ),
             Container(
-              height: totalHeight - 101,
+              height: totalHeight - 88.5,
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
                   SizedBox(
-                    height: 2.5,
+                    height: 10,
                   ),
                   Container(
                     width: totalWidth,
@@ -134,11 +111,9 @@ class UserProfileScreen extends StatelessWidget {
                         ),
                         Expanded(
                           child: Container(
-                            height: 110,
-                            padding: EdgeInsets.symmetric(vertical: 2.5),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(
                                   child: Text(
@@ -150,6 +125,9 @@ class UserProfileScreen extends StatelessWidget {
                                       wordSpacing: 0.5,
                                     ),
                                   ),
+                                ),
+                                SizedBox(
+                                  height: 7.5,
                                 ),
                                 Container(
                                   child: FittedBox(
@@ -164,6 +142,9 @@ class UserProfileScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
+                                ),
+                                SizedBox(
+                                  height: 7.5,
                                 ),
                                 Container(
                                   child: FittedBox(
@@ -242,6 +223,23 @@ class UserProfileScreen extends StatelessWidget {
                             icon: "assets/Icons/Broken/Send.svg",
                             url: 'https://t.me/${user.telegram}',
                           ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            padding: EdgeInsets.all(7.5),
+                            decoration: BoxDecoration(
+                              color: PlatformTheme.textColor2.withOpacity(0.75),
+                              borderRadius: BorderRadius.circular(7.5),
+                            ),
+                            alignment: Alignment.center,
+                            child: SvgPicture.asset(
+                              "assets/Icons/Broken/Friends.svg",
+                              color: PlatformTheme.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -259,6 +257,11 @@ class UserProfileScreen extends StatelessWidget {
                   UserActionCard(
                     icon: "assets/Icons/Broken/Ticket.svg",
                     textData: "My Tickets",
+                    onClick: () {},
+                  ),
+                  UserActionCard(
+                    icon: "assets/Icons/Broken/Accounts.svg",
+                    textData: "Communities",
                     onClick: () {},
                   ),
                   UserActionCard(
