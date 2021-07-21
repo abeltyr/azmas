@@ -41,7 +41,7 @@ class SignUpForm3 extends StatelessWidget {
             TextFormField(
               controller: instaController,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.done,
               maxLines: 1,
               enableSuggestions: false,
               autocorrect: false,
@@ -65,7 +65,7 @@ class SignUpForm3 extends StatelessWidget {
             TextFormField(
               controller: twitterController,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.done,
               maxLines: 1,
               enableSuggestions: false,
               autocorrect: false,
@@ -117,7 +117,7 @@ class SignUpForm3 extends StatelessWidget {
               children: [
                 Container(
                   height: 40,
-                  width: 150,
+                  width: (MediaQuery.of(context).size.width - 90) / 2,
                   child: AzmasButton(
                     onClick: backAction,
                     title: "Back",
@@ -127,7 +127,7 @@ class SignUpForm3 extends StatelessWidget {
                 ),
                 Container(
                   height: 40,
-                  width: 150,
+                  width: (MediaQuery.of(context).size.width - 90) / 2,
                   child: AzmasButton(
                     onClick: action,
                     title: "Next",

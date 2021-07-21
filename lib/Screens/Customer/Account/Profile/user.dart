@@ -27,7 +27,7 @@ class UserProfileScreen extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.only(
-                top: 40,
+                top: 35,
                 bottom: 2.5,
                 left: 15,
                 right: 15,

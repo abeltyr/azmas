@@ -1,4 +1,4 @@
-import 'package:azmas/Widgets/Shared/card/home.dart';
+import 'package:azmas/Widgets/Shared/Card/home.dart';
 import 'package:flutter/material.dart';
 
 class EventContentWidget extends StatelessWidget {

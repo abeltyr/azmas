@@ -10,7 +10,7 @@ class AuthTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 50),
+      margin: EdgeInsets.only(top: 35),
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(
         horizontal: 15,

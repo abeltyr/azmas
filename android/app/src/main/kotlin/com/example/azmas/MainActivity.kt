@@ -1,4 +1,4 @@
-package com.example.azmas
+package av.product.azmas
 
 import io.flutter.embedding.android.FlutterActivity
 

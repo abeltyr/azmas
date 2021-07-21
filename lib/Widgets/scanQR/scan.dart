@@ -36,6 +36,7 @@ class _QRScanWidgetState extends State<QRScanWidget> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
+      print("scanData.code ${scanData.code}");
       setState(() {
         result = scanData;
       });
@@ -73,27 +74,12 @@ class _QRScanWidgetState extends State<QRScanWidget> {
               height: 250,
               width: 250,
               margin: EdgeInsets.only(bottom: 50),
-              decoration: BoxDecoration(
-                  // border: Border(
-                  //   left: BorderSide(
-                  //     width: 1,
-                  //     color: PlatformTheme.thirdColor,
-                  //   ),
-                  //   right: BorderSide(
-                  //     width: 1,
-                  //     color: PlatformTheme.thirdColor,
-                  //   ),
-                  // ),
-                  ),
               child: Center(
-                  child: RiveAnimation.asset(
-                'assets/animation/scan.riv',
-                // animations: [
-                //   'Animation 1',
-                // ],
-                controllers: [_animationController],
-              )),
-              //  Lottie.asset('assets/animation/QRscan.json'),
+                child: RiveAnimation.asset(
+                  'assets/Animations/scan.riv',
+                  controllers: [_animationController],
+                ),
+              ),
             ),
           ),
           TopWidget(

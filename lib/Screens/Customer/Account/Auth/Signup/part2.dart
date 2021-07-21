@@ -54,7 +54,7 @@ class SignUpForm2 extends StatelessWidget {
               children: [
                 Container(
                   height: 40,
-                  width: 150,
+                  width: (MediaQuery.of(context).size.width - 90) / 2,
                   child: AzmasButton(
                     onClick: backAction,
                     title: "Back",
@@ -64,7 +64,7 @@ class SignUpForm2 extends StatelessWidget {
                 ),
                 Container(
                   height: 40,
-                  width: 150,
+                  width: (MediaQuery.of(context).size.width - 90) / 2,
                   child: AzmasButton(
                     onClick: action,
                     title: "Next",

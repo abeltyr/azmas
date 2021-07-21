@@ -9,32 +9,20 @@ class TopWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 25,
+      margin: EdgeInsets.only(bottom: 15),
       width: MediaQuery.of(context).size.width,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(),
-          Container(),
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
+          Align(
+            alignment: Alignment.center,
             child: Container(
-              height: 40,
-              width: 40,
-              margin: EdgeInsets.only(
-                right: 15,
-                top: 10,
-              ),
+              width: 50,
+              height: 5,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7.5),
-                color: PlatformTheme.thirdColorTransparent,
-              ),
-              child: Icon(
-                CupertinoIcons.xmark,
-                size: 25,
-                color: PlatformTheme.white,
+                color: PlatformTheme.secondaryColor,
+                borderRadius: BorderRadius.circular(150),
               ),
             ),
           ),

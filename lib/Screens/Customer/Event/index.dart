@@ -1,8 +1,8 @@
 import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/Event/Bottom/Calender/index.dart';
-import 'package:azmas/Widgets/Event/Bottom/Event/index.dart';
-import 'package:azmas/Widgets/Event/Bottom/search.dart';
+import 'package:azmas/Widgets/Event/bottom/Calender/index.dart';
+import 'package:azmas/Widgets/Event/bottom/Event/index.dart';
+import 'package:azmas/Widgets/Event/bottom/search.dart';
 import 'package:azmas/Widgets/Event/top/index.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -6,7 +6,7 @@ import 'package:azmas/Screens/Customer/Home/index.dart';
 import 'package:azmas/Screens/Intro/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/animation.dart';
-import 'package:azmas/Widgets/BottomNavbar/index.dart';
+import 'package:azmas/Widgets/bottomNavbar/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

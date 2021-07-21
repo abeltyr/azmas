@@ -93,7 +93,6 @@ class SignUpForm4 extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 15),
             SizedBox(
               height: 30,
             ),
@@ -102,7 +101,7 @@ class SignUpForm4 extends StatelessWidget {
               children: [
                 Container(
                   height: 40,
-                  width: 150,
+                  width: (MediaQuery.of(context).size.width - 90) / 2,
                   child: AzmasButton(
                     loading: loading,
                     onClick: backAction,
@@ -113,7 +112,7 @@ class SignUpForm4 extends StatelessWidget {
                 ),
                 Container(
                   height: 40,
-                  width: 150,
+                  width: (MediaQuery.of(context).size.width - 90) / 2,
                   child: AzmasButton(
                     onClick: action,
                     loading: loading,
