@@ -30,7 +30,7 @@ class _GenderInputState extends State<GenderInput>
     Random random = new Random();
     int randomNumber = random.nextInt(100);
 
-    if (randomNumber % 2 == 0) {
+    if (randomNumber % 2 == 0 || widget.genderController.text == "Male") {
       _maleController.forward();
       widget.genderController.text = "Male";
     } else {

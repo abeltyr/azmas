@@ -74,6 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _phoneNumberController.dispose();
     _genderController.dispose();
     _birthDateController.dispose();
+    _birthDateRealValueController.dispose();
     _instaController.dispose();
     _twitterController.dispose();
     _telegramController.dispose();

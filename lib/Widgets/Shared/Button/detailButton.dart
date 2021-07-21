@@ -28,76 +28,109 @@ class AzmasDetailButton extends StatefulWidget {
   _AzmasDetailButtonState createState() => _AzmasDetailButtonState();
 }
 
-class _AzmasDetailButtonState extends State<AzmasDetailButton> {
+class _AzmasDetailButtonState extends State<AzmasDetailButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  bool clicked = false;
   double opacity = 1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 650),
+      vsync: this,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (!widget.loading) widget.onClick();
-      },
-      onTapDown: (onTapDown) {
-        if (!widget.loading)
-          setState(() {
-            opacity = 0.7;
-          });
-      },
-      onTapUp: (onTapUp) {
-        setState(() {
-          opacity = 1;
-        });
-      },
-      onTapCancel: () {
-        setState(() {
-          opacity = 1;
-        });
-      },
-      child: Container(
-        height: 50,
-        child: Opacity(
-          opacity: opacity,
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: opacity == 1
-                  ? Colors.transparent
-                  : PlatformTheme.white.withOpacity(0.5),
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: 25,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        "${widget.title}",
-                        style: GoogleFonts.lora(
-                          color: widget.loading
-                              ? PlatformTheme.textColor2.withOpacity(0.7)
-                              : widget.textColor,
-                          fontWeight: widget.textFontWeight,
-                          fontSize: widget.textFontSize,
-                          wordSpacing: 1,
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            if (!widget.loading) widget.onClick();
+          },
+          onTapDown: (onTapDown) {
+            if (!widget.loading)
+              setState(() {
+                opacity = 0.7;
+                clicked = !clicked;
+              });
+            if (clicked)
+              _controller.forward();
+            else
+              _controller.reverse();
+          },
+          onTapUp: (onTapUp) {
+            setState(() {
+              opacity = 1;
+            });
+          },
+          onTapCancel: () {
+            setState(() {
+              opacity = 1;
+            });
+          },
+          child: AnimatedContainer(
+            duration: Duration(milliseconds: 500),
+            height: clicked ? 300 : 50,
+            child: Opacity(
+              opacity: opacity,
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: opacity == 1
+                      ? Colors.transparent
+                      : PlatformTheme.white.withOpacity(0.5),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            "${widget.title}",
+                            style: GoogleFonts.lora(
+                              color: widget.loading
+                                  ? PlatformTheme.textColor2.withOpacity(0.7)
+                                  : widget.textColor,
+                              fontWeight: widget.textFontWeight,
+                              fontSize: widget.textFontSize,
+                              wordSpacing: 1,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                    RotationTransition(
+                      turns: Tween(begin: 0.5, end: 0.0).animate(_controller),
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        child: Icon(
+                          clicked
+                              ? CupertinoIcons.chevron_down
+                              : CupertinoIcons.chevron_up,
+                          color: PlatformTheme.textColor2,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  child: Icon(
-                    CupertinoIcons.forward,
-                    color: PlatformTheme.textColor2,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

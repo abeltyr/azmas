@@ -11,6 +11,7 @@ import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Providers/interaction/index.dart';
 import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Providers/interaction/qrScan.dart';
+import 'package:azmas/Providers/interaction/setting.dart';
 import 'package:azmas/Providers/lang/index.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/EditProfile/index.dart';
@@ -90,6 +91,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: CalenderEventProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: SettingInteractionProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

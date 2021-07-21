@@ -19,8 +19,12 @@ class BirthDateInput extends StatefulWidget {
 }
 
 class _BirthDateInputState extends State<BirthDateInput> {
-  DateTime initialDate = DateTime.now().subtract(Duration(days: 4745));
   void _showDatePicker(ctx) {
+    DateTime initialDate;
+    if (widget.birthDateRealValueController.text == "")
+      initialDate = DateTime.now().subtract(Duration(days: 4745));
+    else
+      initialDate = DateTime.parse(widget.birthDateRealValueController.text);
     showCupertinoModalPopup(
       context: ctx,
       builder: (_) => Container(
@@ -75,6 +79,11 @@ class _BirthDateInputState extends State<BirthDateInput> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+
         _showDatePicker(context);
       },
       child: AbsorbPointer(

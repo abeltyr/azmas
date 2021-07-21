@@ -1,14 +1,20 @@
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Providers/interaction/setting.dart';
+import 'package:azmas/Screens/Customer/Account/EditProfile/accountSettings.dart';
+import 'package:azmas/Screens/Customer/Account/EditProfile/personalSettings.dart';
+import 'package:azmas/Screens/Customer/Account/EditProfile/securitySettings.dart';
+import 'package:azmas/Screens/Customer/Account/EditProfile/socialSettings.dart';
 import 'package:azmas/Screens/Error/index.dart';
 import 'package:azmas/Utils/theme.dart';
+import 'package:azmas/Widgets/Account/settingsTab.dart';
 import 'package:azmas/Widgets/Account/topBar.dart';
-import 'package:azmas/Widgets/Shared/Button/detailButton.dart';
 import 'package:azmas/Widgets/Shared/popup/camera.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:provider/provider.dart';
 
 class SettingScreen extends StatelessWidget {
   static const routeName = "/settings";
@@ -24,6 +30,7 @@ class SettingScreen extends StatelessWidget {
         if (user != null)
           return Scaffold(
             backgroundColor: PlatformTheme.primaryColor,
+            resizeToAvoidBottomInset: false,
             body: Column(
               children: [
                 AuthTopBar(
@@ -83,21 +90,25 @@ class SettingScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                AzmasDetailButton(
-                  onClick: () {},
-                  title: "Personal Information",
+                SizedBox(
+                  height: 10,
                 ),
-                AzmasDetailButton(
-                  onClick: () {},
-                  title: "Social Media Details",
-                ),
-                AzmasDetailButton(
-                  onClick: () {},
-                  title: "Personal Information",
-                ),
-                AzmasDetailButton(
-                  onClick: () {},
-                  title: "Personal Information",
+                SettingTabs(),
+                Container(
+                  height: MediaQuery.of(context).size.height - 285,
+                  color: PlatformTheme.white,
+                  width: MediaQuery.of(context).size.width,
+                  child: IndexedStack(
+                    index: Provider.of<SettingInteractionProvider>(context,
+                            listen: true)
+                        .selectedTab,
+                    children: [
+                      PersonalSettings(),
+                      AccountSettings(),
+                      SocialSettings(),
+                      SecuritySettings(),
+                    ],
+                  ),
                 ),
               ],
             ),
