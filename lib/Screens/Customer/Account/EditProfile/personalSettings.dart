@@ -23,7 +23,7 @@ class _PersonalSettingsState extends State<PersonalSettings> {
   late TextEditingController _genderController;
   late TextEditingController _birthDateController;
   late TextEditingController _birthDateRealValueController;
-  late TextEditingController _userNameController;
+  late TextEditingController _bioController;
   final userProfile = Hive.box<UserModel>('users');
 
   @override
@@ -42,6 +42,7 @@ class _PersonalSettingsState extends State<PersonalSettings> {
         text: DateFormat.yMd().format(birthDateDetail));
     _birthDateRealValueController =
         new TextEditingController(text: birthDateDetail.toString());
+    _bioController = new TextEditingController(text: user.description);
   }
 
   @override
@@ -51,6 +52,7 @@ class _PersonalSettingsState extends State<PersonalSettings> {
     _genderController.dispose();
     _birthDateController.dispose();
     _birthDateRealValueController.dispose();
+    _bioController.dispose();
   }
 
   void keyboardDown() {
@@ -109,6 +111,34 @@ class _PersonalSettingsState extends State<PersonalSettings> {
                 birthDateRealValueController: _birthDateRealValueController,
               ),
               SizedBox(height: 15),
+              TextFormField(
+                controller: _bioController,
+                maxLines: 5,
+                textCapitalization: TextCapitalization.sentences,
+                keyboardType: TextInputType.multiline,
+                textInputAction: TextInputAction.done,
+                enableSuggestions: true,
+                autocorrect: true,
+                style: GoogleFonts.lora(
+                  color: PlatformTheme.textColor1,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  wordSpacing: 0.1,
+                ),
+                cursorColor: PlatformTheme.accentColorDark,
+                decoration: InputTheme().textAreaDecoration(label: "Your Bio"),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'This is a required field';
+                  }
+                  print(value.length);
+                  if (value.length > 210) {
+                    return "Your Bio can't excited 210 characters";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 15),
               GenderInput(
                 genderController: _genderController,
               ),
@@ -128,7 +158,7 @@ class _PersonalSettingsState extends State<PersonalSettings> {
                         //TODO: add the api here
                         var user = userProfile.get("currentUser");
 
-                        user!.userName = _userNameController.text;
+                        user!.description = _bioController.text;
                         user.fullName = _fullNameController.text;
                         user.gender = _genderController.text;
                         user.birthDate = _birthDateRealValueController.text;

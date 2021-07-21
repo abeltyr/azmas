@@ -207,7 +207,7 @@ class UserProfileScreen extends StatelessWidget {
                     child: Text(
                       user.description == null
                           ? "NO Bio Yet"
-                          : "${user.description!.substring(0, 200)}",
+                          : "${user.description}",
                       style: GoogleFonts.lora(
                         color: PlatformTheme.textColor2,
                         fontWeight: FontWeight.w400,

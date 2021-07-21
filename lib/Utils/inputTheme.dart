@@ -51,4 +51,38 @@ class InputTheme {
       contentPadding: EdgeInsets.fromLTRB(10.0, -15, 10, 0),
     );
   }
+
+  InputDecoration textAreaDecoration({required String label}) {
+    return InputDecoration(
+      fillColor: PlatformTheme.white,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(
+          color: PlatformTheme.textColor2,
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(
+          color: PlatformTheme.textColor2,
+        ),
+      ),
+      labelStyle: GoogleFonts.lora(
+        color: PlatformTheme.textColor2,
+        fontWeight: FontWeight.w600,
+        fontSize: 18,
+        wordSpacing: 1,
+      ),
+      // filled: true,
+      focusColor: PlatformTheme.textColor2,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(
+          color: PlatformTheme.textColor2,
+        ),
+      ),
+      labelText: '$label',
+      contentPadding: EdgeInsets.fromLTRB(15.0, 15, 15, 15),
+    );
+  }
 }
