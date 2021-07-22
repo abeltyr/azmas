@@ -3,6 +3,7 @@ import 'package:azmas/Model/Settings/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/calender/getEvent.dart';
 import 'package:azmas/Providers/calender/index.dart';
+import 'package:azmas/Providers/countDown/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Providers/group/index.dart';
@@ -94,6 +95,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: SettingInteractionProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: CountDownProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

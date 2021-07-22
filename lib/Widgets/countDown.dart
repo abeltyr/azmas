@@ -1,22 +1,33 @@
 import 'dart:async';
 
+import 'package:azmas/Providers/countDown/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CountDownWidget extends StatefulWidget {
   final String date;
-  const CountDownWidget({required this.date});
+  final Color textColor;
+  final bool showSecond;
+  final Function onDone;
+  const CountDownWidget({
+    required this.date,
+    this.textColor = PlatformTheme.textColor1,
+    this.showSecond = true,
+    required this.onDone,
+  });
 
   @override
   _CountDownWidgetState createState() => _CountDownWidgetState();
 }
 
 class _CountDownWidgetState extends State<CountDownWidget> {
-  int days = 0;
+  int days = 1;
   int hours = 0;
   int mins = 0;
   int secs = 0;
+  bool loading = true;
   late Timer timerData;
 
   @override
@@ -28,6 +39,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   @override
   void initState() {
     super.initState();
+    loading = true;
     timerData = new Timer.periodic(Duration(seconds: 1), (Timer t) {
       countDown(DateTime.parse(widget.date));
     });
@@ -35,21 +47,27 @@ class _CountDownWidgetState extends State<CountDownWidget> {
 
   void countDown(DateTime mainDay) {
     final toDayDate = DateTime.now();
-
-    if (secs <= 0) {
-      var difference = mainDay.difference(toDayDate);
-      var tempHours = ((difference.inHours / 24) - difference.inDays);
-      var tempMins = ((difference.inMinutes / 60) - difference.inHours);
-      var tempSecond = ((difference.inSeconds / 60) - difference.inMinutes);
+    var difference = mainDay.difference(toDayDate);
+    var tempHours = ((difference.inHours / 24) - difference.inDays);
+    var tempMins = ((difference.inMinutes / 60) - difference.inHours);
+    var tempSecond = ((difference.inSeconds / 60) - difference.inMinutes);
+    if (days <= 0 && hours <= 0 && mins <= 0 && secs <= 0) {
+      timerData.cancel();
+      widget.onDone();
       setState(() {
-        days = difference.inDays;
-        hours = (tempHours * 24).toInt() + 1;
-        mins = (tempMins * 60).toInt();
-        secs = (tempSecond * 60).toInt();
+        days = 0;
+        hours = 0;
+        mins = 0;
+        secs = 0;
+        loading = false;
       });
     } else
       setState(() {
-        secs = secs - 1;
+        days = difference.inDays;
+        hours = (tempHours * 24).round();
+        mins = (tempMins * 60).round();
+        secs = (tempSecond * 60).round();
+        loading = false;
       });
   }
 
@@ -64,10 +82,10 @@ class _CountDownWidgetState extends State<CountDownWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "$value",
+              loading ? "--" : "$value",
               textAlign: TextAlign.center,
               style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
+                color: widget.textColor,
                 fontWeight: FontWeight.w300,
                 fontSize: 18,
                 wordSpacing: 1,
@@ -80,7 +98,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
               "$title",
               textAlign: TextAlign.center,
               style: GoogleFonts.lora(
-                color: PlatformTheme.textColor1,
+                color: widget.textColor,
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
                 wordSpacing: 0.6,
@@ -101,7 +119,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
             child: Text(
               ":",
               style: TextStyle(
-                color: PlatformTheme.textColor1,
+                color: widget.textColor,
                 fontSize: 25,
               ),
             ),
@@ -111,22 +129,23 @@ class _CountDownWidgetState extends State<CountDownWidget> {
             child: Text(
               ":",
               style: TextStyle(
-                color: PlatformTheme.textColor1,
+                color: widget.textColor,
                 fontSize: 25,
               ),
             ),
           ),
           display(title: "Mins", value: mins),
-          Container(
-            child: Text(
-              ":",
-              style: TextStyle(
-                color: PlatformTheme.textColor1,
-                fontSize: 25,
+          if (widget.showSecond)
+            Container(
+              child: Text(
+                ":",
+                style: TextStyle(
+                  color: widget.textColor,
+                  fontSize: 25,
+                ),
               ),
             ),
-          ),
-          display(title: "Secs", value: secs),
+          if (widget.showSecond) display(title: "Secs", value: secs),
         ],
       ),
     );

@@ -77,7 +77,7 @@ class _AzmasButtonState extends State<AzmasButton> {
                   fontWeight: widget.textFontWeight,
                   fontSize: opacity == 1
                       ? widget.textFontSize
-                      : widget.textFontSize + 2,
+                      : widget.textFontSize + 0.5,
                   wordSpacing: 1,
                 ),
               ),

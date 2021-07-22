@@ -57,11 +57,7 @@ class EventDetailScreen extends StatelessWidget {
                       children: [
                         EventTopWidget(
                           image: event.image,
-                          countDown: [
-                            CountDownModel(title: "Days", value: "90"),
-                            CountDownModel(title: "Hrs", value: "90"),
-                            CountDownModel(title: "Mins", value: "56")
-                          ],
+                          eventDate: event.eventDate,
                         ),
                         Container(
                           height: totalHeight - 350,
@@ -213,20 +209,55 @@ class EventDetailScreen extends StatelessWidget {
             EventTopBar(),
             if (event.price > 0)
               Positioned(
-                bottom: 10,
+                bottom: 15,
                 child: Container(
-                  height: 75,
+                  height: 85,
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width / 6,
-                    vertical: 10,
+                    horizontal: 15,
+                    vertical: 15,
                   ),
                   decoration: BoxDecoration(
                     color: PlatformTheme.primaryColorTransparent,
                   ),
-                  child: AzmasButton(
-                    onClick: () {},
-                    title: "${event.price} ETB",
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Price",
+                            style: GoogleFonts.lora(
+                              color: PlatformTheme.secondaryColorLight,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              wordSpacing: 1,
+                            ),
+                          ),
+                          Text(
+                            "${event.price} ETB",
+                            style: GoogleFonts.lora(
+                              color: PlatformTheme.positive,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              wordSpacing: 1,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ],
+                      ),
+                      AzmasButton(
+                        onClick: () {},
+                        borderRadiusData: 7.5,
+                        color: PlatformTheme.textColor1,
+                        textColor: PlatformTheme.primaryColor,
+                        textFontWeight: FontWeight.w400,
+                        textFontSize: 18,
+                        title: "Book Ticket",
+                      ),
+                    ],
                   ),
                 ),
               ),

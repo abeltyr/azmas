@@ -1,4 +1,5 @@
 import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Providers/countDown/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
@@ -25,7 +26,6 @@ class _EventListsState extends State<EventLists> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     freshEvents();
   }
@@ -137,55 +137,76 @@ class _EventListsState extends State<EventLists> {
                 itemCount: events.length,
                 itemBuilder: (ctx, index) {
                   if (events[index] == null && index == 0)
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      height: 250,
-                      decoration: BoxDecoration(
-                        color: PlatformTheme.white,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 15,
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(
-                              top: 5,
+                    return FutureBuilder(
+                      future:
+                          Provider.of<CountDownProvider>(context, listen: true)
+                              .getCountDownDate(),
+                      builder: (context, snapshot) {
+                        Map? data = snapshot.data as Map?;
+                        if (data == null)
+                          return Container();
+                        else
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 5,
                             ),
-                            margin: EdgeInsets.only(top: 10),
-                            child: Text(
-                              "Graduation Day Count Down",
-                              style: GoogleFonts.lora(
-                                color: PlatformTheme.textColor1,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 20,
-                                wordSpacing: 1,
-                              ),
+                            height: 250,
+                            decoration: BoxDecoration(
+                              color: PlatformTheme.white,
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Expanded(
-                              child: Center(
-                            child: AnimationWidget(
-                              assetData: 'assets/Animations/Rocket.json',
-                              durationData: Duration(milliseconds: 5000),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 15,
                             ),
-                          )),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          CountDownWidget(
-                            date: "2021-10-17",
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                        ],
-                      ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(
+                                    top: 5,
+                                  ),
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    "Graduation Day Count Down",
+                                    style: GoogleFonts.lora(
+                                      color: PlatformTheme.textColor1,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20,
+                                      wordSpacing: 1,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Expanded(
+                                    child: Center(
+                                  child: AnimationWidget(
+                                    assetData: data["done"]
+                                        ? 'assets/Animations/Confetti.json'
+                                        : 'assets/Animations/Rocket.json',
+                                    durationData: Duration(milliseconds: 5000),
+                                  ),
+                                )),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                CountDownWidget(
+                                  onDone: () {
+                                    Provider.of<CountDownProvider>(context,
+                                            listen: false)
+                                        .counterDone();
+                                  },
+                                  date: data["date"],
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                              ],
+                            ),
+                          );
+                      },
                     );
                   else if (index == events.length - 1 && events[index] == null)
                     return SizedBox(
