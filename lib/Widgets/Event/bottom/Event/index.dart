@@ -33,7 +33,7 @@ class _EventListsState extends State<EventLists> {
   void _onRefresh() async {
     try {
       print("double here 1");
-      await Future.delayed(Duration(milliseconds: 10000));
+      await Future.delayed(Duration(milliseconds: 1000));
       await freshEvents();
       print("double here 2");
       _refreshController.refreshCompleted();

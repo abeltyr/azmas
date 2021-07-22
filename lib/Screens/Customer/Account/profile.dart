@@ -34,39 +34,13 @@ class ProfileScreen extends StatelessWidget {
                     horizontal: 15,
                   ),
                   child: Text(
-                    "Abel Lamesgen",
+                    "Azmas",
                     style: GoogleFonts.lora(
                       color: PlatformTheme.secondaryColor,
                       fontWeight: FontWeight.w800,
                       fontSize: 22,
                       wordSpacing: 1,
                     ),
-                  ),
-                ),
-                Container(
-                  height: 50,
-                  width: totalWidth,
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 15,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SocialButton(
-                        icon: "assets/Icons/Instagram.svg",
-                        url: 'https://instagram.com/aveltyr',
-                      ),
-                      SocialButton(
-                        icon: "assets/Icons/Twitter.svg",
-                        url: 'https://www.twitter.com/aveltyr',
-                      ),
-                      SocialButton(
-                        icon: "assets/Icons/Telegram.svg",
-                        url: 'https://t.me/aveltyr',
-                      ),
-                    ],
                   ),
                 ),
                 Container(
@@ -80,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
                   child: AzmasButton(
                     onClick: () {},
                     color: PlatformTheme.thirdColor,
-                    title: "Be Friend",
+                    title: "Join",
                   ),
                 ),
                 Container(
