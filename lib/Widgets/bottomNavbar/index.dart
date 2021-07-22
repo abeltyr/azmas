@@ -39,7 +39,7 @@ class BottomNavigatorWidget extends StatelessWidget {
     }
 
     return Positioned(
-      bottom: 20,
+      bottom: 10,
       left: 20,
       right: 20,
       child: Container(
