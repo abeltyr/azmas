@@ -72,10 +72,19 @@ class _EventListsState extends State<EventLists> {
               Provider.of<EventProvider>(context, listen: false).watchEvents(),
           builder: (context, snapData) {
             if (snapData.hasData)
-              events = [null, ...snapData.data as List<Event?>, null];
+              events = [
+                null,
+                ...snapData.data as List<Event?>,
+                ...snapData.data as List<Event?>,
+                ...snapData.data as List<Event?>,
+                ...snapData.data as List<Event?>,
+                ...snapData.data as List<Event?>,
+                ...snapData.data as List<Event?>,
+                ...snapData.data as List<Event?>,
+                null
+              ];
             return SmartRefresher(
               enablePullDown: true,
-              enablePullUp: true,
               header: WaterDropHeader(
                 completeDuration: Duration(milliseconds: 1500),
                 complete: Container(

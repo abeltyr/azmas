@@ -2,6 +2,8 @@ import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/EditProfile/index.dart';
 import 'package:azmas/Screens/Customer/Account/Scan/index.dart';
+import 'package:azmas/Screens/Customer/Account/Ticket/index.dart';
+import 'package:azmas/Screens/Customer/Community/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/actionCard.dart';
 import 'package:azmas/Widgets/Account/socialButton.dart';
@@ -257,12 +259,22 @@ class UserProfileScreen extends StatelessWidget {
                   UserActionCard(
                     icon: "assets/Icons/Broken/Ticket.svg",
                     textData: "My Tickets",
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.pushNamed(
+                        context,
+                        TicketScreen.routeName,
+                      );
+                    },
                   ),
                   UserActionCard(
                     icon: "assets/Icons/Broken/Accounts.svg",
                     textData: "Communities",
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.pushNamed(
+                        context,
+                        CommunityScreen.routeName,
+                      );
+                    },
                   ),
                   UserActionCard(
                     icon: "assets/Icons/Broken/Shield.svg",

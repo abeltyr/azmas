@@ -16,6 +16,8 @@ import 'package:azmas/Providers/interaction/setting.dart';
 import 'package:azmas/Providers/lang/index.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/EditProfile/index.dart';
+import 'package:azmas/Screens/Customer/Account/Ticket/index.dart';
+import 'package:azmas/Screens/Customer/Community/index.dart';
 import 'Screens/Customer/Account/Auth/Login/index.dart';
 import 'Screens/Customer/Account/Auth/Signup/index.dart';
 import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
@@ -54,6 +56,8 @@ class MyApp extends StatelessWidget {
       LoginScreen.routeName: (ctx) => LoginScreen(),
       SignUpScreen.routeName: (ctx) => SignUpScreen(),
       SettingScreen.routeName: (ctx) => SettingScreen(),
+      CommunityScreen.routeName: (ctx) => CommunityScreen(),
+      TicketScreen.routeName: (ctx) => TicketScreen(),
     };
     return MultiProvider(
       providers: [
