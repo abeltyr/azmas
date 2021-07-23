@@ -86,8 +86,6 @@ class _LoadedImageViewState extends State<LoadedImageView> {
             fileData.existsSync() &&
             dataSnap.connectionState == ConnectionState.done) {
           print("offline");
-          imageCache?.evict(new FileImage(fileData));
-          imageCache?.clear();
           return Image.file(
             fileData,
             cacheHeight: 1020,

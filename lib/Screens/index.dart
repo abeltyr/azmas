@@ -1,8 +1,8 @@
 import 'package:azmas/Model/Settings/index.dart';
 import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Screens/Customer/Account/index.dart';
+import 'package:azmas/Screens/Customer/Community/index.dart';
 import 'package:azmas/Screens/Customer/Event/index.dart';
-import 'package:azmas/Screens/Customer/Home/index.dart';
 import 'package:azmas/Screens/Intro/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/animation.dart';
@@ -55,7 +55,7 @@ class _IndexScreenState extends State<IndexScreen> {
             IndexedStack(
               index: navBarProvide.selectedScreen,
               children: [
-                HomeScreen(),
+                CommunityScreen(),
                 EventScreen(),
                 AccountScreen(),
               ],

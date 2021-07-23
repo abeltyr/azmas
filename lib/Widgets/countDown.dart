@@ -1,10 +1,7 @@
 import 'dart:async';
-
-import 'package:azmas/Providers/countDown/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class CountDownWidget extends StatefulWidget {
   final String date;
