@@ -1120,16 +1120,456 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
   }
 }
 
+class Ticket extends DataClass implements Insertable<Ticket> {
+  final String id;
+  final String groupId;
+  final String eventId;
+  final String userId;
+  final DateTime eventDate;
+  final double price;
+  final bool used;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  Ticket(
+      {required this.id,
+      required this.groupId,
+      required this.eventId,
+      required this.userId,
+      required this.eventDate,
+      required this.price,
+      required this.used,
+      required this.createdAt,
+      required this.updatedAt});
+  factory Ticket.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+      {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return Ticket(
+      id: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      groupId: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}group_id'])!,
+      eventId: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}event_id'])!,
+      userId: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}user_id'])!,
+      eventDate: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}event_date'])!,
+      price: const RealType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}price'])!,
+      used: const BoolType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}used'])!,
+      createdAt: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}created_at'])!,
+      updatedAt: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}updated_at'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['group_id'] = Variable<String>(groupId);
+    map['event_id'] = Variable<String>(eventId);
+    map['user_id'] = Variable<String>(userId);
+    map['event_date'] = Variable<DateTime>(eventDate);
+    map['price'] = Variable<double>(price);
+    map['used'] = Variable<bool>(used);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    return map;
+  }
+
+  TicketsCompanion toCompanion(bool nullToAbsent) {
+    return TicketsCompanion(
+      id: Value(id),
+      groupId: Value(groupId),
+      eventId: Value(eventId),
+      userId: Value(userId),
+      eventDate: Value(eventDate),
+      price: Value(price),
+      used: Value(used),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+    );
+  }
+
+  factory Ticket.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return Ticket(
+      id: serializer.fromJson<String>(json['id']),
+      groupId: serializer.fromJson<String>(json['groupId']),
+      eventId: serializer.fromJson<String>(json['eventId']),
+      userId: serializer.fromJson<String>(json['userId']),
+      eventDate: serializer.fromJson<DateTime>(json['eventDate']),
+      price: serializer.fromJson<double>(json['price']),
+      used: serializer.fromJson<bool>(json['used']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'groupId': serializer.toJson<String>(groupId),
+      'eventId': serializer.toJson<String>(eventId),
+      'userId': serializer.toJson<String>(userId),
+      'eventDate': serializer.toJson<DateTime>(eventDate),
+      'price': serializer.toJson<double>(price),
+      'used': serializer.toJson<bool>(used),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+    };
+  }
+
+  Ticket copyWith(
+          {String? id,
+          String? groupId,
+          String? eventId,
+          String? userId,
+          DateTime? eventDate,
+          double? price,
+          bool? used,
+          DateTime? createdAt,
+          DateTime? updatedAt}) =>
+      Ticket(
+        id: id ?? this.id,
+        groupId: groupId ?? this.groupId,
+        eventId: eventId ?? this.eventId,
+        userId: userId ?? this.userId,
+        eventDate: eventDate ?? this.eventDate,
+        price: price ?? this.price,
+        used: used ?? this.used,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('Ticket(')
+          ..write('id: $id, ')
+          ..write('groupId: $groupId, ')
+          ..write('eventId: $eventId, ')
+          ..write('userId: $userId, ')
+          ..write('eventDate: $eventDate, ')
+          ..write('price: $price, ')
+          ..write('used: $used, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => $mrjf($mrjc(
+      id.hashCode,
+      $mrjc(
+          groupId.hashCode,
+          $mrjc(
+              eventId.hashCode,
+              $mrjc(
+                  userId.hashCode,
+                  $mrjc(
+                      eventDate.hashCode,
+                      $mrjc(
+                          price.hashCode,
+                          $mrjc(
+                              used.hashCode,
+                              $mrjc(createdAt.hashCode,
+                                  updatedAt.hashCode)))))))));
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Ticket &&
+          other.id == this.id &&
+          other.groupId == this.groupId &&
+          other.eventId == this.eventId &&
+          other.userId == this.userId &&
+          other.eventDate == this.eventDate &&
+          other.price == this.price &&
+          other.used == this.used &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt);
+}
+
+class TicketsCompanion extends UpdateCompanion<Ticket> {
+  final Value<String> id;
+  final Value<String> groupId;
+  final Value<String> eventId;
+  final Value<String> userId;
+  final Value<DateTime> eventDate;
+  final Value<double> price;
+  final Value<bool> used;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  const TicketsCompanion({
+    this.id = const Value.absent(),
+    this.groupId = const Value.absent(),
+    this.eventId = const Value.absent(),
+    this.userId = const Value.absent(),
+    this.eventDate = const Value.absent(),
+    this.price = const Value.absent(),
+    this.used = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+  });
+  TicketsCompanion.insert({
+    required String id,
+    required String groupId,
+    required String eventId,
+    required String userId,
+    required DateTime eventDate,
+    this.price = const Value.absent(),
+    this.used = const Value.absent(),
+    required DateTime createdAt,
+    required DateTime updatedAt,
+  })  : id = Value(id),
+        groupId = Value(groupId),
+        eventId = Value(eventId),
+        userId = Value(userId),
+        eventDate = Value(eventDate),
+        createdAt = Value(createdAt),
+        updatedAt = Value(updatedAt);
+  static Insertable<Ticket> custom({
+    Expression<String>? id,
+    Expression<String>? groupId,
+    Expression<String>? eventId,
+    Expression<String>? userId,
+    Expression<DateTime>? eventDate,
+    Expression<double>? price,
+    Expression<bool>? used,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (groupId != null) 'group_id': groupId,
+      if (eventId != null) 'event_id': eventId,
+      if (userId != null) 'user_id': userId,
+      if (eventDate != null) 'event_date': eventDate,
+      if (price != null) 'price': price,
+      if (used != null) 'used': used,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+    });
+  }
+
+  TicketsCompanion copyWith(
+      {Value<String>? id,
+      Value<String>? groupId,
+      Value<String>? eventId,
+      Value<String>? userId,
+      Value<DateTime>? eventDate,
+      Value<double>? price,
+      Value<bool>? used,
+      Value<DateTime>? createdAt,
+      Value<DateTime>? updatedAt}) {
+    return TicketsCompanion(
+      id: id ?? this.id,
+      groupId: groupId ?? this.groupId,
+      eventId: eventId ?? this.eventId,
+      userId: userId ?? this.userId,
+      eventDate: eventDate ?? this.eventDate,
+      price: price ?? this.price,
+      used: used ?? this.used,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (groupId.present) {
+      map['group_id'] = Variable<String>(groupId.value);
+    }
+    if (eventId.present) {
+      map['event_id'] = Variable<String>(eventId.value);
+    }
+    if (userId.present) {
+      map['user_id'] = Variable<String>(userId.value);
+    }
+    if (eventDate.present) {
+      map['event_date'] = Variable<DateTime>(eventDate.value);
+    }
+    if (price.present) {
+      map['price'] = Variable<double>(price.value);
+    }
+    if (used.present) {
+      map['used'] = Variable<bool>(used.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('TicketsCompanion(')
+          ..write('id: $id, ')
+          ..write('groupId: $groupId, ')
+          ..write('eventId: $eventId, ')
+          ..write('userId: $userId, ')
+          ..write('eventDate: $eventDate, ')
+          ..write('price: $price, ')
+          ..write('used: $used, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $TicketsTable extends Tickets with TableInfo<$TicketsTable, Ticket> {
+  final GeneratedDatabase _db;
+  final String? _alias;
+  $TicketsTable(this._db, [this._alias]);
+  final VerificationMeta _idMeta = const VerificationMeta('id');
+  late final GeneratedColumn<String?> id = GeneratedColumn<String?>(
+      'id', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _groupIdMeta = const VerificationMeta('groupId');
+  late final GeneratedColumn<String?> groupId = GeneratedColumn<String?>(
+      'group_id', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _eventIdMeta = const VerificationMeta('eventId');
+  late final GeneratedColumn<String?> eventId = GeneratedColumn<String?>(
+      'event_id', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _userIdMeta = const VerificationMeta('userId');
+  late final GeneratedColumn<String?> userId = GeneratedColumn<String?>(
+      'user_id', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _eventDateMeta = const VerificationMeta('eventDate');
+  late final GeneratedColumn<DateTime?> eventDate = GeneratedColumn<DateTime?>(
+      'event_date', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
+  final VerificationMeta _priceMeta = const VerificationMeta('price');
+  late final GeneratedColumn<double?> price = GeneratedColumn<double?>(
+      'price', aliasedName, false,
+      typeName: 'REAL', requiredDuringInsert: false, clientDefault: () => 0);
+  final VerificationMeta _usedMeta = const VerificationMeta('used');
+  late final GeneratedColumn<bool?> used = GeneratedColumn<bool?>(
+      'used', aliasedName, false,
+      typeName: 'INTEGER',
+      requiredDuringInsert: false,
+      defaultConstraints: 'CHECK (used IN (0, 1))',
+      defaultValue: Constant(false));
+  final VerificationMeta _createdAtMeta = const VerificationMeta('createdAt');
+  late final GeneratedColumn<DateTime?> createdAt = GeneratedColumn<DateTime?>(
+      'created_at', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
+  final VerificationMeta _updatedAtMeta = const VerificationMeta('updatedAt');
+  late final GeneratedColumn<DateTime?> updatedAt = GeneratedColumn<DateTime?>(
+      'updated_at', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        groupId,
+        eventId,
+        userId,
+        eventDate,
+        price,
+        used,
+        createdAt,
+        updatedAt
+      ];
+  @override
+  String get aliasedName => _alias ?? 'tickets';
+  @override
+  String get actualTableName => 'tickets';
+  @override
+  VerificationContext validateIntegrity(Insertable<Ticket> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('group_id')) {
+      context.handle(_groupIdMeta,
+          groupId.isAcceptableOrUnknown(data['group_id']!, _groupIdMeta));
+    } else if (isInserting) {
+      context.missing(_groupIdMeta);
+    }
+    if (data.containsKey('event_id')) {
+      context.handle(_eventIdMeta,
+          eventId.isAcceptableOrUnknown(data['event_id']!, _eventIdMeta));
+    } else if (isInserting) {
+      context.missing(_eventIdMeta);
+    }
+    if (data.containsKey('user_id')) {
+      context.handle(_userIdMeta,
+          userId.isAcceptableOrUnknown(data['user_id']!, _userIdMeta));
+    } else if (isInserting) {
+      context.missing(_userIdMeta);
+    }
+    if (data.containsKey('event_date')) {
+      context.handle(_eventDateMeta,
+          eventDate.isAcceptableOrUnknown(data['event_date']!, _eventDateMeta));
+    } else if (isInserting) {
+      context.missing(_eventDateMeta);
+    }
+    if (data.containsKey('price')) {
+      context.handle(
+          _priceMeta, price.isAcceptableOrUnknown(data['price']!, _priceMeta));
+    }
+    if (data.containsKey('used')) {
+      context.handle(
+          _usedMeta, used.isAcceptableOrUnknown(data['used']!, _usedMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(_updatedAtMeta,
+          updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta));
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Ticket map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return Ticket.fromData(data, _db,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $TicketsTable createAlias(String alias) {
+    return $TicketsTable(_db, alias);
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $GroupsTable groups = $GroupsTable(this);
   late final $EventsTable events = $EventsTable(this);
+  late final $TicketsTable tickets = $TicketsTable(this);
   late final GroupsDao groupsDao = GroupsDao(this as AppDatabase);
   late final EventsDao eventsDao = EventsDao(this as AppDatabase);
+  late final TicketsDao ticketsDao = TicketsDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [groups, events];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [groups, events, tickets];
 }
 
 // **************************************************************************
@@ -1141,4 +1581,7 @@ mixin _$GroupsDaoMixin on DatabaseAccessor<AppDatabase> {
 }
 mixin _$EventsDaoMixin on DatabaseAccessor<AppDatabase> {
   $EventsTable get events => attachedDatabase.events;
+}
+mixin _$TicketsDaoMixin on DatabaseAccessor<AppDatabase> {
+  $TicketsTable get tickets => attachedDatabase.tickets;
 }

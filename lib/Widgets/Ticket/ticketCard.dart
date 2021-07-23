@@ -47,7 +47,7 @@ class TicketCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Title Title",
+                      "Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.lora(
@@ -58,11 +58,11 @@ class TicketCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 2.5,
+                      height: 1.5,
                     ),
                     Text(
                       "Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Titl",
-                      maxLines: 5,
+                      maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.lora(
                           color: textColor,
@@ -72,57 +72,94 @@ class TicketCard extends StatelessWidget {
                           fontStyle: FontStyle.italic),
                     ),
                     SizedBox(
-                      height: 2.5,
+                      height: 1.5,
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Column(
                   children: [
                     Row(
                       children: [
+                        // Icon(CupertinoIcons.location),
                         SvgPicture.asset(
-                          "assets/Icons/Broken/Calendar.svg",
-                          color: textColor,
-                          height: 15,
-                          width: 15,
+                          "assets/Icons/Broken/Location.svg",
+                          color: PlatformTheme.secondaryColor,
+                          height: 17.5,
+                          width: 17.5,
                         ),
                         SizedBox(
-                          width: 5,
+                          width: 10,
                         ),
-                        Text(
-                          "${DateFormat.yMMMd().format(dateTime)}",
-                          style: GoogleFonts.lora(
-                            color: textColor,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            wordSpacing: 0.5,
+                        Container(
+                          child: Text(
+                            "AASTU",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.lora(
+                              color: PlatformTheme.secondaryColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              wordSpacing: 1,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          "assets/Icons/Broken/Time.svg",
-                          color: textColor,
-                          height: 15,
-                          width: 15,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "${DateFormat.jm().format(dateTime)}",
-                          style: GoogleFonts.lora(
-                            color: textColor,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            wordSpacing: 0.5,
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 2.5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                "assets/Icons/Broken/Calendar.svg",
+                                color: textColor,
+                                height: 15,
+                                width: 15,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "${DateFormat.yMMMd().format(dateTime)}",
+                                style: GoogleFonts.lora(
+                                  color: textColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  wordSpacing: 0.5,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    )
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                "assets/Icons/Broken/Time.svg",
+                                color: textColor,
+                                height: 15,
+                                width: 15,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "${DateFormat.jm().format(dateTime)}",
+                                style: GoogleFonts.lora(
+                                  color: textColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  wordSpacing: 0.5,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ],

@@ -1,5 +1,6 @@
 import 'package:azmas/Db/migration/001-groupMigration.dart';
 import 'package:azmas/Db/migration/002-eventMigration.dart';
+import 'package:azmas/Db/migration/003-ticketMigration.dart';
 import 'package:moor/moor.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:moor/ffi.dart';
@@ -20,13 +21,11 @@ LazyDatabase _openConnection() {
 }
 
 @UseMoor(
-  tables: [
-    Groups,
-    Events,
-  ],
+  tables: [Groups, Events, Tickets],
   daos: [
     GroupsDao,
     EventsDao,
+    TicketsDao,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -133,4 +132,55 @@ class EventsDao extends DatabaseAccessor<AppDatabase> with _$EventsDaoMixin {
   Future updateEvent(Insertable<Event> track) => update(events).replace(track);
 
   Future deleteEvent(Insertable<Event> track) => delete(events).delete(track);
+}
+
+@UseDao(
+  tables: [Tickets],
+)
+class TicketsDao extends DatabaseAccessor<AppDatabase> with _$TicketsDaoMixin {
+  final AppDatabase db;
+
+  TicketsDao(this.db) : super(db);
+
+  Future<Ticket> getTicket({required String id}) async {
+    var data = select(tickets);
+    data.where((data) {
+      return data.id.like(id);
+    });
+    return await data.getSingle();
+  }
+
+  Future<List<Ticket>> getTickets(
+      {required DateTime startDate, required DateTime endDate}) async {
+    var data = select(tickets);
+    data.where((data) {
+      return data.eventDate.isBetweenValues(startDate, endDate);
+    });
+    data.orderBy([
+      (u) => OrderingTerm(expression: u.eventDate, mode: OrderingMode.asc),
+    ]);
+    return await data.get();
+  }
+
+  Stream<List<Ticket>> watchTickets(
+    bool used,
+  ) {
+    var data = select(tickets);
+    data.where((data) {
+      return data.used.equals(used);
+    });
+    data.orderBy([
+      (u) => OrderingTerm(expression: u.eventDate, mode: OrderingMode.asc),
+    ]);
+    return data.watch();
+  }
+
+  Future insertTicket(Insertable<Ticket> track) =>
+      into(tickets).insertOnConflictUpdate(track);
+
+  Future updateTicket(Insertable<Ticket> track) =>
+      update(tickets).replace(track);
+
+  Future deleteTicket(Insertable<Ticket> track) =>
+      delete(tickets).delete(track);
 }
