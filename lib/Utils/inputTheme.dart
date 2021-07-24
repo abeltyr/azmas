@@ -19,7 +19,8 @@ class InputTheme {
     );
   }
 
-  InputDecoration textInputDecoration({required String label}) {
+  InputDecoration textInputDecoration(
+      {required String label, double size = 18}) {
     return InputDecoration(
       fillColor: PlatformTheme.white,
       border: OutlineInputBorder(
@@ -37,7 +38,7 @@ class InputTheme {
       labelStyle: GoogleFonts.lora(
           color: PlatformTheme.textColor2,
           fontWeight: FontWeight.w600,
-          fontSize: 18,
+          fontSize: size,
           wordSpacing: 1),
       // filled: true,
       focusColor: PlatformTheme.textColor2,

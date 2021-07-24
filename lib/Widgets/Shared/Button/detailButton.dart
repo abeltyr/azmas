@@ -37,7 +37,6 @@ class _AzmasDetailButtonState extends State<AzmasDetailButton>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _controller = AnimationController(

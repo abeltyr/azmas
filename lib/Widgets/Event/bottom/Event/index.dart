@@ -229,7 +229,7 @@ class _EventListsState extends State<EventLists> {
                         child: HorizontalEventCard(
                           title: events[index]!.title,
                           description: events[index]!.description,
-                          eventDate: events[index]!.eventDate,
+                          eventStartDate: events[index]!.eventStartDate,
                           eventImage: events[index]!.image,
                           groupId: events[index]!.groupId,
                           location: events[index]!.location,
@@ -250,7 +250,7 @@ class _EventListsState extends State<EventLists> {
                         child: EventCardFlexWidget(
                           title: events[index]!.title,
                           description: events[index]!.description,
-                          eventDate: events[index]!.eventDate,
+                          eventStartDate: events[index]!.eventStartDate,
                           eventImage: events[index]!.image,
                           groupId: events[index]!.groupId,
                           location: events[index]!.location,
@@ -271,7 +271,7 @@ class _EventListsState extends State<EventLists> {
                         child: EventCardFlex1Widget(
                           title: events[index]!.title,
                           description: events[index]!.description,
-                          eventDate: events[index]!.eventDate,
+                          eventStartDate: events[index]!.eventStartDate,
                           eventImage: events[index]!.image,
                           groupId: events[index]!.groupId,
                           location: events[index]!.location,

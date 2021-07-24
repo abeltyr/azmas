@@ -13,7 +13,9 @@ class EventSelectedProvider with ChangeNotifier {
         "A Day full of excitement and fun with Water spraying and friends. get a chance to enjoy the day by dripping your friends in water.",
     // "A Day full of excitement and fun with colors and friends. get a chance to enjoy the day painting on your or your friend face and t-shirt",
     // "A 4 day vacation to Kuriftu where we gone party have fund and get to know people in your batch. make memories that last a life time.",
-    eventDate: DateTime.parse("2021-08-21 08:30"),
+    eventStartDate: DateTime.parse("2021-08-21 08:30"),
+    eventEndDate: DateTime.parse("2021-09-22 12:30"),
+    creatorId: "as",
     image:
         "https://images.unsplash.com/photo-1450609283058-0ec52fa7eac4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     groupId: "2",

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 
 class EventTopWidget extends StatelessWidget {
   final String image;
-  final DateTime eventDate;
-  const EventTopWidget({required this.image, required this.eventDate});
+  final DateTime eventStartDate;
+  const EventTopWidget({required this.image, required this.eventStartDate});
 
   @override
   Widget build(BuildContext context) {
     final toDayDate = DateTime.now();
-    var difference = eventDate.difference(toDayDate);
+    var difference = eventStartDate.difference(toDayDate);
     return Stack(
       children: [
         Container(
@@ -22,7 +22,7 @@ class EventTopWidget extends StatelessWidget {
             fitData: BoxFit.fill,
           ),
         ),
-        if (eventDate.isAfter(toDayDate) && difference.inDays < 30)
+        if (eventStartDate.isAfter(toDayDate) && difference.inDays < 30)
           Positioned(
             bottom: 25,
             left: (MediaQuery.of(context).size.width - 300) / 2,
@@ -37,7 +37,7 @@ class EventTopWidget extends StatelessWidget {
                 onDone: () {},
                 // showSecond: false,
                 textColor: PlatformTheme.white,
-                date: eventDate.toString(),
+                date: eventStartDate.toString(),
               ),
             ),
           )

@@ -56,7 +56,7 @@ class EventDetailScreen extends StatelessWidget {
                       children: [
                         EventTopWidget(
                           image: event.image,
-                          eventDate: event.eventDate,
+                          eventStartDate: event.eventStartDate,
                         ),
                         Container(
                           height: totalHeight - 350,
@@ -100,7 +100,7 @@ class EventDetailScreen extends StatelessWidget {
                                 ),
                               ),
                               DateWidget(
-                                dateTime: event.eventDate,
+                                dateTime: event.eventStartDate,
                               ),
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 15),

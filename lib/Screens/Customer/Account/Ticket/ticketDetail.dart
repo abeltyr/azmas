@@ -14,7 +14,8 @@ class TicketDetail extends StatelessWidget {
     final ticket = Ticket(
       id: "13",
       price: 0,
-      eventDate: DateTime.parse("2021-09-20 07:30"),
+      eventStartDate: DateTime.parse("2021-08-21 08:30"),
+      eventEndDate: DateTime.parse("2021-09-22 12:30"),
       eventId: "13",
       groupId: "3",
       used: false,
@@ -30,7 +31,8 @@ class TicketDetail extends StatelessWidget {
       title: "Water Day",
       description:
           "A 4 day vacation to Kuriftu where we gone party have fund and get to know people in your batch. make memories that last a life time.",
-      eventDate: DateTime.parse("2021-09-20 07:30"),
+      eventStartDate: DateTime.parse("2021-08-21 08:30"),
+      eventEndDate: DateTime.parse("2021-09-22 12:30"),
       image:
           "https://images.unsplash.com/photo-1498747946579-bde604cb8f44?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1789&q=80",
       groupId: "2",
@@ -42,7 +44,7 @@ class TicketDetail extends StatelessWidget {
     Color textColor = PlatformTheme.textColor1;
     Color cardColor = PlatformTheme.white;
     //TODO: change this to the event end Date
-    if (event.eventDate.isBefore(DateTime.now().add(Duration(
+    if (event.eventStartDate.isBefore(DateTime.now().add(Duration(
       days: 3,
     )))) {
       textColor = PlatformTheme.white;
@@ -99,7 +101,7 @@ class TicketDetail extends StatelessWidget {
           ),
           DateWidget(
             textColor: textColor,
-            dateTime: event.eventDate,
+            dateTime: event.eventStartDate,
             boxColor: Colors.transparent,
             boxTextColor: textColor,
           ),

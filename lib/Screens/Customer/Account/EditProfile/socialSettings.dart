@@ -20,6 +20,7 @@ class _SocialSettingsState extends State<SocialSettings> {
   late TextEditingController _instaController;
   late TextEditingController _twitterController;
   late TextEditingController _telegramController;
+  late TextEditingController _facebookController;
 
   @override
   void initState() {
@@ -28,6 +29,7 @@ class _SocialSettingsState extends State<SocialSettings> {
     _instaController = new TextEditingController(text: user!.instagram);
     _twitterController = new TextEditingController(text: user.twitter);
     _telegramController = new TextEditingController(text: user.telegram);
+    _facebookController = new TextEditingController(text: user.facebook);
   }
 
   @override
@@ -36,6 +38,7 @@ class _SocialSettingsState extends State<SocialSettings> {
     _instaController.dispose();
     _twitterController.dispose();
     _telegramController.dispose();
+    _facebookController.dispose();
   }
 
   void keyboardDown() {
@@ -79,11 +82,11 @@ class _SocialSettingsState extends State<SocialSettings> {
                   wordSpacing: 0.1,
                 ),
                 cursorColor: PlatformTheme.accentColorDark,
-                decoration: InputTheme()
-                    .textInputDecoration(label: "Instagram Username"),
+                decoration: InputTheme().textInputDecoration(
+                    label: "Instagram Username Optional", size: 14),
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'This is a required field';
+                  if (value!.contains(" ")) {
+                    return "This field can't have spaces";
                   }
                   return null;
                 },
@@ -103,11 +106,13 @@ class _SocialSettingsState extends State<SocialSettings> {
                   wordSpacing: 0.1,
                 ),
                 cursorColor: PlatformTheme.accentColorDark,
-                decoration:
-                    InputTheme().textInputDecoration(label: "Twitter Username"),
+                decoration: InputTheme().textInputDecoration(
+                  label: "Twitter Username Optional",
+                  size: 14,
+                ),
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'This is a required field';
+                  if (value!.contains(" ")) {
+                    return "This field can't have spaces";
                   }
                   return null;
                 },
@@ -127,11 +132,35 @@ class _SocialSettingsState extends State<SocialSettings> {
                   wordSpacing: 0.1,
                 ),
                 cursorColor: PlatformTheme.accentColorDark,
-                decoration: InputTheme()
-                    .textInputDecoration(label: "Telegram Username"),
+                decoration: InputTheme().textInputDecoration(
+                    label: "Telegram Username Optional", size: 14),
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'This is a required field';
+                  if (value!.contains(" ")) {
+                    return "This field can't have spaces";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 15),
+              TextFormField(
+                controller: _facebookController,
+                keyboardType: TextInputType.multiline,
+                textInputAction: TextInputAction.go,
+                maxLines: 1,
+                enableSuggestions: false,
+                autocorrect: false,
+                style: GoogleFonts.lora(
+                  color: PlatformTheme.textColor1,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  wordSpacing: 0.1,
+                ),
+                cursorColor: PlatformTheme.accentColorDark,
+                decoration: InputTheme().textInputDecoration(
+                    label: "Facebook Username Optional", size: 14),
+                validator: (value) {
+                  if (value!.contains(" ")) {
+                    return "This field can't have spaces";
                   }
                   return null;
                 },
@@ -157,6 +186,7 @@ class _SocialSettingsState extends State<SocialSettings> {
                         user!.instagram = _instaController.text;
                         user.twitter = _twitterController.text;
                         user.telegram = _telegramController.text;
+                        user.facebook = _facebookController.text;
 
                         userProfile.put(
                           "currentUser",

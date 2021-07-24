@@ -1,4 +1,6 @@
+import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -32,11 +34,12 @@ class UserProvider with ChangeNotifier {
     );
   }
 
-  void setupUser(UserModel userData) {
+  void setupUser(UserModel userData) async {
     userProfile.put(
       "currentUser",
       userData,
     );
+    await database.usersDao.insertUser(userData as User);
   }
 
   void logout() {

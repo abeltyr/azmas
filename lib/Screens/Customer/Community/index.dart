@@ -1,7 +1,6 @@
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Community/topBar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CommunityScreen extends StatelessWidget {
   static const routeName = "/community";

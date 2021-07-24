@@ -82,8 +82,9 @@ class CalenderScreen extends StatelessWidget {
                             height: 90,
                           );
                         bool showDate = false;
-                        if (!dates.contains(events[index]!.eventDate.day)) {
-                          dates.add(events[index]!.eventDate.day);
+                        if (!dates
+                            .contains(events[index]!.eventStartDate.day)) {
+                          dates.add(events[index]!.eventStartDate.day);
                           showDate = true;
                         }
                         return Container(
@@ -101,7 +102,7 @@ class CalenderScreen extends StatelessWidget {
                                       Container(
                                         width: 65,
                                         child: Text(
-                                          "Day ${events[index]!.eventDate.day}",
+                                          "Day ${events[index]!.eventStartDate.day}",
                                           style: GoogleFonts.lora(
                                             color: PlatformTheme
                                                 .secondaryColorLight,
@@ -126,7 +127,7 @@ class CalenderScreen extends StatelessWidget {
                                 dateType: false,
                                 title: events[index]!.title,
                                 description: events[index]!.description,
-                                eventDate: events[index]!.eventDate,
+                                eventStartDate: events[index]!.eventStartDate,
                                 eventImage: events[index]!.image,
                                 groupId: events[index]!.groupId,
                                 location: events[index]!.location,

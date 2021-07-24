@@ -17,7 +17,7 @@ class HorizontalEventCard extends StatelessWidget {
   final String description;
   final String location;
   final String groupId;
-  final DateTime eventDate;
+  final DateTime eventStartDate;
   final Function onClick;
   final bool dateType;
 
@@ -27,7 +27,7 @@ class HorizontalEventCard extends StatelessWidget {
     required this.description,
     required this.location,
     required this.groupId,
-    required this.eventDate,
+    required this.eventStartDate,
     required this.onClick,
     this.dateType = true,
   });
@@ -213,7 +213,7 @@ class HorizontalEventCard extends StatelessWidget {
                     ),
                     Container(
                       child: Text(
-                        "${dateType ? DateFormat.yMMMd().format(eventDate) : DateFormat.jm().format(eventDate)}",
+                        "${dateType ? DateFormat.yMMMd().format(eventStartDate) : DateFormat.jm().format(eventStartDate)}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.lora(

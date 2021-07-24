@@ -10,6 +10,7 @@ class SignUpForm3 extends StatelessWidget {
   final TextEditingController instaController;
   final TextEditingController twitterController;
   final TextEditingController telegramController;
+  final TextEditingController facebookController;
   final Function action;
   final Function backAction;
   final bool check;
@@ -18,6 +19,7 @@ class SignUpForm3 extends StatelessWidget {
     required this.instaController,
     required this.twitterController,
     required this.telegramController,
+    required this.facebookController,
     required this.action,
     required this.backAction,
     required this.check,
@@ -52,11 +54,11 @@ class SignUpForm3 extends StatelessWidget {
                 wordSpacing: 0.1,
               ),
               cursorColor: PlatformTheme.accentColorDark,
-              decoration:
-                  InputTheme().textInputDecoration(label: "Instagram Username"),
+              decoration: InputTheme().textInputDecoration(
+                  label: "Instagram Username Optional", size: 14),
               validator: (value) {
-                if (value!.isEmpty) {
-                  return 'This is a required field';
+                if (value!.contains(" ")) {
+                  return "This field can't have spaces";
                 }
                 return null;
               },
@@ -76,11 +78,11 @@ class SignUpForm3 extends StatelessWidget {
                 wordSpacing: 0.1,
               ),
               cursorColor: PlatformTheme.accentColorDark,
-              decoration:
-                  InputTheme().textInputDecoration(label: "Twitter Username"),
+              decoration: InputTheme().textInputDecoration(
+                  label: "Twitter Username Optional", size: 14),
               validator: (value) {
-                if (value!.isEmpty) {
-                  return 'This is a required field';
+                if (value!.contains(" ")) {
+                  return "This field can't have spaces";
                 }
                 return null;
               },
@@ -100,11 +102,35 @@ class SignUpForm3 extends StatelessWidget {
                 wordSpacing: 0.1,
               ),
               cursorColor: PlatformTheme.accentColorDark,
-              decoration:
-                  InputTheme().textInputDecoration(label: "Telegram Username"),
+              decoration: InputTheme().textInputDecoration(
+                  label: "Telegram Username Optional", size: 14),
               validator: (value) {
-                if (value!.isEmpty) {
-                  return 'This is a required field';
+                if (value!.contains(" ")) {
+                  return "This field can't have spaces";
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 15),
+            TextFormField(
+              controller: facebookController,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.go,
+              maxLines: 1,
+              enableSuggestions: false,
+              autocorrect: false,
+              style: GoogleFonts.lora(
+                color: PlatformTheme.textColor1,
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                wordSpacing: 0.1,
+              ),
+              cursorColor: PlatformTheme.accentColorDark,
+              decoration: InputTheme().textInputDecoration(
+                  label: "Facebook Username Optional", size: 14),
+              validator: (value) {
+                if (value!.contains(" ")) {
+                  return "This field can't have spaces";
                 }
                 return null;
               },

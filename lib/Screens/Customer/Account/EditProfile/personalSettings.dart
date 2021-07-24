@@ -30,19 +30,16 @@ class _PersonalSettingsState extends State<PersonalSettings> {
   void initState() {
     super.initState();
     var user = userProfile.get("currentUser");
-    String birthDate = DateTime.now().toString();
-    DateTime birthDateDetail = DateTime.parse(birthDate);
-    if (user != null) {
-      birthDate = user.birthDate!;
-      birthDateDetail = DateTime.parse(birthDate);
-    }
+    DateTime birthDate = DateTime.now();
+    if (user != null) birthDate = user.birthDate!;
+
     _fullNameController = new TextEditingController(text: user!.fullName);
     _genderController = new TextEditingController(text: user.gender);
-    _birthDateController = new TextEditingController(
-        text: DateFormat.yMd().format(birthDateDetail));
+    _birthDateController =
+        new TextEditingController(text: DateFormat.yMd().format(birthDate));
     _birthDateRealValueController =
-        new TextEditingController(text: birthDateDetail.toString());
-    _bioController = new TextEditingController(text: user.description);
+        new TextEditingController(text: birthDate.toString());
+    _bioController = new TextEditingController(text: user.bio);
   }
 
   @override
@@ -128,11 +125,7 @@ class _PersonalSettingsState extends State<PersonalSettings> {
                 cursorColor: PlatformTheme.accentColorDark,
                 decoration: InputTheme().textAreaDecoration(label: "Your Bio"),
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'This is a required field';
-                  }
-                  print(value.length);
-                  if (value.length > 210) {
+                  if (value!.length > 210) {
                     return "Your Bio can't excited 210 characters";
                   }
                   return null;
@@ -158,10 +151,11 @@ class _PersonalSettingsState extends State<PersonalSettings> {
                         //TODO: add the api here
                         var user = userProfile.get("currentUser");
 
-                        user!.description = _bioController.text;
+                        user!.bio = _bioController.text;
                         user.fullName = _fullNameController.text;
                         user.gender = _genderController.text;
-                        user.birthDate = _birthDateRealValueController.text;
+                        user.birthDate =
+                            DateTime.parse(_birthDateRealValueController.text);
                         userProfile.put(
                           "currentUser",
                           user,

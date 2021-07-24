@@ -16,7 +16,7 @@ class EventCardFlex1Widget extends StatelessWidget {
   final String description;
   final String location;
   final String groupId;
-  final DateTime eventDate;
+  final DateTime eventStartDate;
   final Function onClick;
 
   EventCardFlex1Widget({
@@ -25,7 +25,7 @@ class EventCardFlex1Widget extends StatelessWidget {
     required this.description,
     required this.location,
     required this.groupId,
-    required this.eventDate,
+    required this.eventStartDate,
     required this.onClick,
   });
 
@@ -189,7 +189,7 @@ class EventCardFlex1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "${DateFormat.d().format(eventDate)}",
+                      "${DateFormat.d().format(eventStartDate)}",
                       style: GoogleFonts.lora(
                         color: PlatformTheme.white,
                         fontWeight: FontWeight.w800,
@@ -198,7 +198,7 @@ class EventCardFlex1Widget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${DateFormat.MMM().format(eventDate)}",
+                      "${DateFormat.MMM().format(eventStartDate)}",
                       style: GoogleFonts.lora(
                         color: PlatformTheme.white,
                         fontWeight: FontWeight.w800,

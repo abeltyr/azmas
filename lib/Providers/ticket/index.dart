@@ -14,8 +14,9 @@ class TicketProvider with ChangeNotifier {
           "https://images.unsplash.com/photo-1547634678-181c1103b6ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
       background:
           "https://images.unsplash.com/photo-1547532182-bf296f6be875?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
-      colorTheme: "As",
-      members: 0,
+      activated: true,
+      ownerId: "AS",
+      verified: true,
       public: true,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),

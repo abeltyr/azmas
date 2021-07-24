@@ -15,25 +15,25 @@ class UserModel {
   @HiveField(4)
   String userName;
   @HiveField(5)
-  String avatar;
+  String? bio;
   @HiveField(6)
-  String? background;
-  @HiveField(7)
-  String? birthDate;
-  @HiveField(8)
-  bool? activated;
-  @HiveField(9)
   String? gender;
-  @HiveField(10)
+  @HiveField(7)
+  DateTime? birthDate;
+  @HiveField(8)
+  String avatar;
+  @HiveField(9)
   String? instagram;
-  @HiveField(11)
+  @HiveField(10)
   String? twitter;
-  @HiveField(12)
+  @HiveField(11)
   String? telegram;
+  @HiveField(12)
+  String? facebook;
   @HiveField(13)
   bool? verified;
   @HiveField(14)
-  String? description;
+  bool? activated;
   @HiveField(15)
   DateTime? createdAt;
   @HiveField(16)
@@ -45,16 +45,16 @@ class UserModel {
     this.phoneNumber,
     this.email,
     required this.userName,
-    required this.avatar,
-    this.background,
-    this.birthDate,
-    this.activated = true,
+    this.bio,
     this.gender,
+    this.birthDate,
+    required this.avatar,
     this.instagram,
     this.twitter,
     this.telegram,
+    this.facebook,
     this.verified = true,
-    this.description,
+    this.activated = true,
     this.createdAt,
     this.updatedAt,
   });

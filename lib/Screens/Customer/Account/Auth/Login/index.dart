@@ -34,7 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _phoneNumberController.dispose();
     _passwordController.dispose();
@@ -196,7 +195,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     fullName: "Abel lamesgen",
                                     email: "abellamesgen@gmail.com",
                                     phoneNumber: "+251911223989",
-                                    birthDate: "1998-07-24 00:00:00.000",
+                                    birthDate: DateTime.parse(
+                                        "1998-07-24 00:00:00.000"),
                                     createdAt: DateTime.now(),
                                     updatedAt: DateTime.now(),
                                     id: "1",

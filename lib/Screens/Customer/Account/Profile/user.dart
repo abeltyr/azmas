@@ -188,9 +188,9 @@ class UserProfileScreen extends StatelessWidget {
                       horizontal: 15,
                     ),
                     child: Text(
-                      user.description == null
+                      user.bio == null || user.bio == ""
                           ? "NO Bio Yet"
-                          : "${user.description}",
+                          : "${user.bio}",
                       style: GoogleFonts.lora(
                         color: PlatformTheme.textColor2,
                         fontWeight: FontWeight.w400,
@@ -208,22 +208,47 @@ class UserProfileScreen extends StatelessWidget {
                       vertical: 5,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         if (user.instagram != "")
                           SocialButton(
                             icon: "assets/Icons/Instagram.svg",
                             url: 'https://instagram.com/${user.instagram}',
                           ),
+                        if (user.instagram != "")
+                          SizedBox(
+                            width:
+                                (MediaQuery.of(context).size.width - 200) / 5,
+                          ),
                         if (user.twitter != "")
                           SocialButton(
                             icon: "assets/Icons/Twitter.svg",
                             url: 'https://www.twitter.com/${user.twitter}',
                           ),
+                        if (user.twitter != "")
+                          SizedBox(
+                            width:
+                                (MediaQuery.of(context).size.width - 200) / 5,
+                          ),
                         if (user.telegram != "")
                           SocialButton(
                             icon: "assets/Icons/Broken/Send.svg",
                             url: 'https://t.me/${user.telegram}',
+                          ),
+                        if (user.telegram != "")
+                          SizedBox(
+                            width:
+                                (MediaQuery.of(context).size.width - 200) / 5,
+                          ),
+                        if (user.telegram != "")
+                          SocialButton(
+                            icon: "assets/Icons/Facebook.svg",
+                            url: 'https://facebook.com/${user.facebook}',
+                          ),
+                        if (user.telegram != "")
+                          SizedBox(
+                            width:
+                                (MediaQuery.of(context).size.width - 200) / 5,
                           ),
                         GestureDetector(
                           onTap: () {},

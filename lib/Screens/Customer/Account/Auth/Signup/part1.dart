@@ -92,7 +92,7 @@ class SignUpForm1 extends StatelessWidget {
             TextFormField(
               controller: userNameController,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.done,
               maxLines: 1,
               enableSuggestions: false,
               autocorrect: false,

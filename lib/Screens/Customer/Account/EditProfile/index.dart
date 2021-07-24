@@ -38,6 +38,11 @@ class SettingScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    FocusScopeNode currentFocus = FocusScope.of(context);
+                    if (!currentFocus.hasPrimaryFocus) {
+                      currentFocus.unfocus();
+                    }
+
                     showCupertinoModalBottomSheet(
                       context: context,
                       builder: (context) => CameraPopup(),

@@ -5,7 +5,8 @@ class Tickets extends Table {
   TextColumn get groupId => text()();
   TextColumn get eventId => text()();
   TextColumn get userId => text()();
-  DateTimeColumn get eventDate => dateTime()();
+  DateTimeColumn get eventStartDate => dateTime()();
+  DateTimeColumn get eventEndDate => dateTime()();
   RealColumn get price => real().clientDefault(() => 0)();
   BoolColumn get used => boolean().withDefault(Constant(false))();
   DateTimeColumn get createdAt => dateTime()();

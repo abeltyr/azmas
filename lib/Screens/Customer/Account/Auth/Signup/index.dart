@@ -44,6 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late TextEditingController _instaController;
   late TextEditingController _twitterController;
   late TextEditingController _telegramController;
+  late TextEditingController _facebookController;
 
   late TextEditingController _passwordController;
   late TextEditingController _confirmPasswordController;
@@ -58,9 +59,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     _genderController = new TextEditingController(text: "");
     _birthDateController = new TextEditingController();
+
     _birthDateRealValueController = new TextEditingController();
     _instaController = new TextEditingController(text: "");
     _twitterController = new TextEditingController(text: "");
+    _facebookController = new TextEditingController(text: "");
+
     _telegramController = new TextEditingController(text: "");
     _passwordController = new TextEditingController(text: "");
     _confirmPasswordController = new TextEditingController(text: "");
@@ -236,6 +240,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         instaController: _instaController,
                         twitterController: _twitterController,
                         telegramController: _telegramController,
+                        facebookController: _facebookController,
                         check: validationCheck3,
                         formKey: _formKey[2],
                         action: () {
@@ -292,7 +297,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 fullName: _fullNameController.text,
                                 email: _emailController.text,
                                 phoneNumber: _phoneNumberController.text,
-                                birthDate: _birthDateRealValueController.text,
+                                birthDate: DateTime.parse(
+                                    _birthDateRealValueController.text),
                                 createdAt: DateTime.now(),
                                 updatedAt: DateTime.now(),
                                 id: "1",
@@ -300,7 +306,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 instagram: _instaController.text,
                                 twitter: _twitterController.text,
                                 telegram: _telegramController.text,
+                                facebook: _facebookController.text,
                                 verified: true,
+                                activated: true,
                               ),
                             );
                           }

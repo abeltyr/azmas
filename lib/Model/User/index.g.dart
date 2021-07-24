@@ -22,16 +22,16 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       phoneNumber: fields[2] as String?,
       email: fields[3] as String?,
       userName: fields[4] as String,
-      avatar: fields[5] as String,
-      background: fields[6] as String?,
-      birthDate: fields[7] as String?,
-      activated: fields[8] as bool?,
-      gender: fields[9] as String?,
-      instagram: fields[10] as String?,
-      twitter: fields[11] as String?,
-      telegram: fields[12] as String?,
+      bio: fields[5] as String?,
+      gender: fields[6] as String?,
+      birthDate: fields[7] as DateTime?,
+      avatar: fields[8] as String,
+      instagram: fields[9] as String?,
+      twitter: fields[10] as String?,
+      telegram: fields[11] as String?,
+      facebook: fields[12] as String?,
       verified: fields[13] as bool?,
-      description: fields[14] as String?,
+      activated: fields[14] as bool?,
       createdAt: fields[15] as DateTime?,
       updatedAt: fields[16] as DateTime?,
     );
@@ -52,25 +52,25 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(4)
       ..write(obj.userName)
       ..writeByte(5)
-      ..write(obj.avatar)
+      ..write(obj.bio)
       ..writeByte(6)
-      ..write(obj.background)
+      ..write(obj.gender)
       ..writeByte(7)
       ..write(obj.birthDate)
       ..writeByte(8)
-      ..write(obj.activated)
+      ..write(obj.avatar)
       ..writeByte(9)
-      ..write(obj.gender)
-      ..writeByte(10)
       ..write(obj.instagram)
-      ..writeByte(11)
+      ..writeByte(10)
       ..write(obj.twitter)
-      ..writeByte(12)
+      ..writeByte(11)
       ..write(obj.telegram)
+      ..writeByte(12)
+      ..write(obj.facebook)
       ..writeByte(13)
       ..write(obj.verified)
       ..writeByte(14)
-      ..write(obj.description)
+      ..write(obj.activated)
       ..writeByte(15)
       ..write(obj.createdAt)
       ..writeByte(16)

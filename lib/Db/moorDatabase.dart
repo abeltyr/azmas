@@ -1,6 +1,8 @@
+import 'package:azmas/Db/migration/000-userMigration.dart';
 import 'package:azmas/Db/migration/001-groupMigration.dart';
-import 'package:azmas/Db/migration/002-eventMigration.dart';
-import 'package:azmas/Db/migration/003-ticketMigration.dart';
+import 'package:azmas/Db/migration/002-groupMemberMigration.dart';
+import 'package:azmas/Db/migration/003-eventMigration.dart';
+import 'package:azmas/Db/migration/004-ticketMigration.dart';
 import 'package:moor/moor.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:moor/ffi.dart';
@@ -21,9 +23,17 @@ LazyDatabase _openConnection() {
 }
 
 @UseMoor(
-  tables: [Groups, Events, Tickets],
+  tables: [
+    Users,
+    Groups,
+    GroupMembers,
+    Events,
+    Tickets,
+  ],
   daos: [
+    UsersDao,
     GroupsDao,
+    GroupMembersDao,
     EventsDao,
     TicketsDao,
   ],
@@ -33,6 +43,30 @@ class AppDatabase extends _$AppDatabase {
 
   @override
   int get schemaVersion => 2;
+}
+
+@UseDao(
+  tables: [Users],
+)
+class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
+  final AppDatabase db;
+
+  UsersDao(this.db) : super(db);
+
+  Future<User> getUser({required String id}) async {
+    var data = select(users);
+    data.where((data) {
+      return data.id.like(id);
+    });
+    return await data.getSingle();
+  }
+
+  Future insertUser(Insertable<User> track) =>
+      into(users).insertOnConflictUpdate(track);
+
+  Future updateUser(Insertable<User> track) => update(users).replace(track);
+
+  Future deleteUser(Insertable<User> track) => delete(users).delete(track);
 }
 
 @UseDao(
@@ -72,6 +106,49 @@ class GroupsDao extends DatabaseAccessor<AppDatabase> with _$GroupsDaoMixin {
 }
 
 @UseDao(
+  tables: [GroupMembers],
+)
+class GroupMembersDao extends DatabaseAccessor<AppDatabase>
+    with _$GroupMembersDaoMixin {
+  final AppDatabase db;
+
+  GroupMembersDao(this.db) : super(db);
+
+  Future<GroupMember> getGroupMember({required String id}) async {
+    var data = select(groupMembers);
+    data.where((data) {
+      return data.id.like(id);
+    });
+    return await data.getSingle();
+  }
+
+  Future<List<GroupMember>> getGroupMembers({
+    required String groupId,
+    int limit = 30,
+    int offset = 0,
+  }) async {
+    var data = select(groupMembers);
+    data.where((data) {
+      return data.groupId.equals(groupId);
+    });
+    data.limit(
+      limit,
+      offset: offset,
+    );
+    return await data.get();
+  }
+
+  Future insertGroupMember(Insertable<GroupMember> track) =>
+      into(groupMembers).insertOnConflictUpdate(track);
+
+  Future updateGroupMember(Insertable<GroupMember> track) =>
+      update(groupMembers).replace(track);
+
+  Future deleteGroupMember(Insertable<GroupMember> track) =>
+      delete(groupMembers).delete(track);
+}
+
+@UseDao(
   tables: [Events],
 )
 class EventsDao extends DatabaseAccessor<AppDatabase> with _$EventsDaoMixin {
@@ -91,10 +168,10 @@ class EventsDao extends DatabaseAccessor<AppDatabase> with _$EventsDaoMixin {
       {required DateTime startDate, required DateTime endDate}) async {
     var data = select(events);
     data.where((data) {
-      return data.eventDate.isBetweenValues(startDate, endDate);
+      return data.eventStartDate.isBetweenValues(startDate, endDate);
     });
     data.orderBy([
-      (u) => OrderingTerm(expression: u.eventDate, mode: OrderingMode.asc),
+      (u) => OrderingTerm(expression: u.eventStartDate, mode: OrderingMode.asc),
     ]);
     return await data.get();
   }
@@ -102,7 +179,8 @@ class EventsDao extends DatabaseAccessor<AppDatabase> with _$EventsDaoMixin {
   Stream<List<Event>> watchCalenderEvents() {
     var data = select(events);
     data.where((event) {
-      return event.eventDate.hour.isBiggerOrEqualValue(DateTime.now().hour);
+      return event.eventStartDate.hour
+          .isBiggerOrEqualValue(DateTime.now().hour);
     });
     data.orderBy([
       (u) => OrderingTerm(expression: u.updatedAt, mode: OrderingMode.asc),
@@ -114,14 +192,14 @@ class EventsDao extends DatabaseAccessor<AppDatabase> with _$EventsDaoMixin {
     var data = select(events);
     // data.where(
     //   (row) {
-    //     final date = row.eventDate;
+    //     final date = row.eventStartDate;
     //     return date.year.isSmallerOrEqualValue(DateTime.now().year) &
     //         date.month.isSmallerOrEqualValue(DateTime.now().month) &
     //         date.day.isSmallerOrEqualValue(DateTime.now().day);
     //   },
     // );
     data.orderBy([
-      (u) => OrderingTerm(expression: u.eventDate, mode: OrderingMode.asc),
+      (u) => OrderingTerm(expression: u.eventStartDate, mode: OrderingMode.asc),
     ]);
     return data.watch();
   }
@@ -154,10 +232,10 @@ class TicketsDao extends DatabaseAccessor<AppDatabase> with _$TicketsDaoMixin {
       {required DateTime startDate, required DateTime endDate}) async {
     var data = select(tickets);
     data.where((data) {
-      return data.eventDate.isBetweenValues(startDate, endDate);
+      return data.eventStartDate.isBetweenValues(startDate, endDate);
     });
     data.orderBy([
-      (u) => OrderingTerm(expression: u.eventDate, mode: OrderingMode.asc),
+      (u) => OrderingTerm(expression: u.eventStartDate, mode: OrderingMode.asc),
     ]);
     return await data.get();
   }
@@ -170,7 +248,7 @@ class TicketsDao extends DatabaseAccessor<AppDatabase> with _$TicketsDaoMixin {
       return data.used.equals(used);
     });
     data.orderBy([
-      (u) => OrderingTerm(expression: u.eventDate, mode: OrderingMode.asc),
+      (u) => OrderingTerm(expression: u.eventStartDate, mode: OrderingMode.asc),
     ]);
     return data.watch();
   }
