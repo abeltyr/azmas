@@ -6,8 +6,14 @@ import 'package:intl/intl.dart';
 
 class DateWidget extends StatelessWidget {
   final DateTime dateTime;
+  final Color textColor;
+  final Color boxColor;
+  final Color boxTextColor;
   const DateWidget({
     required this.dateTime,
+    this.textColor = PlatformTheme.secondaryColorLight,
+    this.boxColor = PlatformTheme.white,
+    this.boxTextColor = PlatformTheme.secondaryColor,
   });
   @override
   Widget build(BuildContext context) {
@@ -20,14 +26,14 @@ class DateWidget extends StatelessWidget {
           Text(
             "$title",
             style: GoogleFonts.lora(
-              color: PlatformTheme.secondaryColorLight,
+              color: textColor,
               fontWeight: FontWeight.w500,
               fontSize: 16,
               wordSpacing: 1,
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 5,
           ),
           Container(
             width: boxWidth,
@@ -35,13 +41,13 @@ class DateWidget extends StatelessWidget {
             padding: EdgeInsets.only(left: 5, right: 5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7.5),
-              color: PlatformTheme.white,
+              color: boxColor,
             ),
             child: Row(
               children: [
                 SvgPicture.asset(
                   "$iconData",
-                  color: PlatformTheme.secondaryColor,
+                  color: boxTextColor,
                   height: 25,
                   width: 25,
                 ),
@@ -51,7 +57,7 @@ class DateWidget extends StatelessWidget {
                 Text(
                   "$dateTimeData",
                   style: GoogleFonts.lora(
-                    color: PlatformTheme.secondaryColor,
+                    color: boxTextColor,
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
                     wordSpacing: 0.5,

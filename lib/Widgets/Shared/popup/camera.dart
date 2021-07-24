@@ -3,11 +3,14 @@ import 'dart:io';
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Card/squareCard.dart';
+import 'package:azmas/Widgets/Shared/popup/message.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:slugify/slugify.dart';
 
 class CameraPopup extends StatelessWidget {
@@ -39,6 +42,11 @@ class CameraPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double totalWidth = MediaQuery.of(context).size.width;
+    String? platform;
+    if (Platform.isAndroid)
+      platform = "Android";
+    else
+      platform = "IPhone";
 
     return Container(
       height: 275,
@@ -92,18 +100,65 @@ class CameraPopup extends StatelessWidget {
                 children: [
                   SquareCard(
                     onClick: () async {
-                      final XFile? photo =
-                          await _picker.pickImage(source: ImageSource.camera);
-                      await setAvatar(photo);
+                      try {
+                        final XFile? photo =
+                            await _picker.pickImage(source: ImageSource.camera);
+                        await setAvatar(photo);
+                      } catch (e) {
+                        if (e.toString().contains("camera_access_denied")) {
+                          final res = await Permission.camera.request();
+                          if (PermissionStatus.permanentlyDenied == res) {
+                            showCupertinoDialog(
+                              context: context,
+                              builder: (_) => MessagePopUp(
+                                acceptFunction: () {
+                                  openAppSettings();
+                                },
+                                title:
+                                    "This Feature requires Access to your Camera",
+                                subText:
+                                    "In $platform settings, tap Azmas and allow access to camera",
+                                cancel: "Not Now",
+                                accept: "Settings",
+                              ),
+                            );
+                          }
+                        }
+                      }
                     },
                     title: "Take Photo",
                     icon: "assets/Icons/Bold/Camera.svg",
                   ),
                   SquareCard(
                     onClick: () async {
-                      final XFile? image =
-                          await _picker.pickImage(source: ImageSource.gallery);
-                      await setAvatar(image);
+                      try {
+                        final XFile? image = await _picker.pickImage(
+                            source: ImageSource.gallery);
+                        await setAvatar(image);
+                      } catch (e) {
+                        if (e.toString().contains("photo_access_denied")) {
+                          final res = await Permission.photos.request();
+                          if (PermissionStatus.permanentlyDenied == res) {
+                            showCupertinoDialog(
+                              context: context,
+                              builder: (_) => MessagePopUp(
+                                acceptFunction: () {
+                                  openAppSettings();
+                                },
+                                cancelFunction: () {
+                                  print("here");
+                                },
+                                title:
+                                    "This Feature requires Access to your Photos",
+                                subText:
+                                    "In $platform settings, tap Azmas and allow access to photos ",
+                                cancel: "Not Now",
+                                accept: "Settings",
+                              ),
+                            );
+                          }
+                        }
+                      }
                     },
                     title: "Photo Library",
                     icon: "assets/Icons/Bold/Image.svg",
