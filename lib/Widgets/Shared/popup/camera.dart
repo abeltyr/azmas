@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Providers/upload/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Card/squareCard.dart';
 import 'package:azmas/Widgets/Shared/popup/message.dart';
@@ -11,23 +12,27 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:slugify/slugify.dart';
 
 class CameraPopup extends StatelessWidget {
   final userProfile = Hive.box<UserModel>('users');
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> setAvatar(XFile? photo) async {
+  Future<void> setAvatar(XFile? photo, BuildContext context) async {
     if (photo != null) {
       final directory = await getApplicationDocumentsDirectory();
       final fileDirectory = directory.path;
       var imageUrl = "Local-UserProfile${photo.name}";
       String filePath =
           "$fileDirectory/${slugify('Image-$imageUrl').toString() + ".png"}";
-      photo.saveTo(filePath);
+      await photo.saveTo(filePath);
       var user = userProfile.get("currentUser");
       String deleteFilePath =
           "$fileDirectory/${slugify('Image-${user!.avatar}').toString() + ".png"}";
+      File? savedFile = new File(deleteFilePath);
+      Provider.of<UploadProvider>(context, listen: false)
+          .uploadImage(file: savedFile);
       user.avatar = imageUrl;
 
       userProfile.put(
@@ -103,7 +108,7 @@ class CameraPopup extends StatelessWidget {
                       try {
                         final XFile? photo =
                             await _picker.pickImage(source: ImageSource.camera);
-                        await setAvatar(photo);
+                        await setAvatar(photo, context);
                       } catch (e) {
                         if (e.toString().contains("camera_access_denied")) {
                           final res = await Permission.camera.request();
@@ -134,7 +139,7 @@ class CameraPopup extends StatelessWidget {
                       try {
                         final XFile? image = await _picker.pickImage(
                             source: ImageSource.gallery);
-                        await setAvatar(image);
+                        await setAvatar(image, context);
                       } catch (e) {
                         if (e.toString().contains("photo_access_denied")) {
                           final res = await Permission.photos.request();
