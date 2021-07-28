@@ -14,6 +14,7 @@ import 'package:azmas/Providers/interaction/navbar.dart';
 import 'package:azmas/Providers/interaction/qrScan.dart';
 import 'package:azmas/Providers/interaction/setting.dart';
 import 'package:azmas/Providers/lang/index.dart';
+import 'package:azmas/Providers/upload/index.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/EditProfile/index.dart';
 import 'package:azmas/Screens/Customer/Account/Ticket/index.dart';
@@ -102,6 +103,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: CountDownProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: UploadProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

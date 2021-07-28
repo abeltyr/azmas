@@ -48,6 +48,7 @@ class _AccountSettingsState extends State<AccountSettings> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: PlatformTheme.primaryColor,
       padding: EdgeInsets.symmetric(
         horizontal: 20,
       ),
