@@ -52,9 +52,8 @@ class _EventListsState extends State<EventLists> {
         take: 4,
       );
       height = 0;
-      // events = [...eventsData!];
-      for (var event in eventsData!) {
-        if (!events.contains(event)) events = [event, ...events];
+      events = [...eventsData!];
+      for (var event in eventsData) {
         if (event.horizontal)
           height = height + 163.5;
         else
