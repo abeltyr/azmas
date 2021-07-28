@@ -1,3 +1,4 @@
+import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -5,54 +6,45 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'index.g.dart';
 
 @HiveType(typeId: 3)
-class EventModel {
+class TicketModel {
   @HiveField(0)
   String id;
   @HiveField(1)
   UserModel user;
   @HiveField(2)
-  String creatorId;
+  String userId;
   @HiveField(3)
   GroupModel group;
   @HiveField(4)
   String groupId;
   @HiveField(5)
-  String title;
+  EventModel event;
   @HiveField(6)
-  String? description;
+  String eventId;
   @HiveField(7)
-  String image;
-  @HiveField(8)
-  String category;
-  @HiveField(9)
-  bool horizontal;
-  @HiveField(10)
   DateTime eventStartDate;
-  @HiveField(11)
+  @HiveField(8)
   DateTime eventEndDate;
-  @HiveField(12)
-  String location;
-  @HiveField(13)
+  @HiveField(9)
   double price;
-  @HiveField(14)
+  @HiveField(10)
+  bool used;
+  @HiveField(11)
   DateTime createdAt;
-  @HiveField(15)
+  @HiveField(12)
   DateTime updatedAt;
 
-  EventModel({
+  TicketModel({
     required this.id,
     required this.user,
-    required this.creatorId,
+    required this.userId,
     required this.group,
     required this.groupId,
-    required this.title,
-    this.description,
-    required this.image,
-    required this.category,
-    this.horizontal = true,
+    required this.event,
+    required this.eventId,
     required this.eventStartDate,
     required this.eventEndDate,
-    required this.location,
+    this.used = false,
     required this.price,
     required this.createdAt,
     required this.updatedAt,

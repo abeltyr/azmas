@@ -7,6 +7,7 @@ class Group {
         groupId
         title
         description
+        horizontal
         eventStartDate
         category
         eventEndDate
@@ -26,6 +27,7 @@ class Group {
         groupId
         title
         description
+        horizontal
         eventStartDate
         category
         eventEndDate
@@ -45,6 +47,7 @@ class Group {
         groupId
         title
         description
+        horizontal
         eventStartDate
         category
         eventEndDate
@@ -65,6 +68,7 @@ class Group {
         groupId
         title
         description
+        horizontal
         eventStartDate
         category
         eventEndDate

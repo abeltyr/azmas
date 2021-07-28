@@ -12,26 +12,17 @@ class UserProvider with ChangeNotifier {
     return _currentUser;
   }
 
-  Future<void> login() async {
-    setupUser(
-      UserModel(
-        id: "1",
-        avatar: "https://source.unsplash.com/random",
-        fullName: "abel lamesgen",
-        userName: "ADS",
-      ),
-    );
-  }
+  Future<void> login() async {}
 
   Future<void> signUp() async {
-    setupUser(
-      UserModel(
-        id: "1",
-        avatar: "https://source.unsplash.com/random",
-        fullName: "abel lamesgen",
-        userName: "ADS",
-      ),
-    );
+    // setupUser(
+    //   UserModel(
+    //     id: "1",
+    //     avatar: "https://source.unsplash.com/random",
+    //     fullName: "abel lamesgen",
+    //     userName: "ADS",
+    //   ),
+    // );
   }
 
   void setupUser(UserModel userData) async {

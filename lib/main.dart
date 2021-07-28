@@ -1,5 +1,8 @@
 import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Model/Event/index.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Model/Settings/index.dart';
+import 'package:azmas/Model/Ticket/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/calender/getEvent.dart';
 import 'package:azmas/Providers/calender/index.dart';
@@ -40,8 +43,16 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(SettingModelAdapter());
+  Hive.registerAdapter(GroupModelAdapter());
+  Hive.registerAdapter(GroupModelAdapter());
+  Hive.registerAdapter(EventModelAdapter());
+  Hive.registerAdapter(TicketModelAdapter());
   await Hive.openBox<UserModel>('users');
   await Hive.openBox<SettingModel>('settings');
+  await Hive.openBox<Group>('groups');
+  await Hive.openBox<GroupMember>('groupMembers');
+  await Hive.openBox<EventModel>('events');
+  await Hive.openBox<TicketModel>('tickets');
   runApp(MyApp());
 }
 

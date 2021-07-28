@@ -13,7 +13,7 @@ class EventCardWidget3 extends StatelessWidget {
   final String eventImage;
   final String description;
   final String location;
-  final GroupModal? group;
+  final GroupModel? group;
   final String date;
   final Function onClick;
 
