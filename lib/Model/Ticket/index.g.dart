@@ -8,7 +8,7 @@ part of 'index.dart';
 
 class TicketModelAdapter extends TypeAdapter<TicketModel> {
   @override
-  final int typeId = 3;
+  final int typeId = 5;
 
   @override
   TicketModel read(BinaryReader reader) {

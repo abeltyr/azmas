@@ -30,7 +30,6 @@ class UserProvider with ChangeNotifier {
       "currentUser",
       userData,
     );
-    await database.usersDao.insertUser(userData as User);
   }
 
   void logout() {

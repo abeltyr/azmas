@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 class EventCardFlex1Widget extends StatelessWidget {
   final String title;
   final String eventImage;
-  final String description;
+  final String? description;
   final String location;
   final String groupId;
   final DateTime eventStartDate;
@@ -22,7 +22,7 @@ class EventCardFlex1Widget extends StatelessWidget {
   EventCardFlex1Widget({
     required this.title,
     required this.eventImage,
-    required this.description,
+    this.description,
     required this.location,
     required this.groupId,
     required this.eventStartDate,
@@ -108,7 +108,7 @@ class EventCardFlex1Widget extends StatelessWidget {
                       style: GoogleFonts.lora(
                         color: PlatformTheme.secondaryColorLight,
                         fontWeight: FontWeight.w400,
-                        fontSize: description.length >= 55 ? 12 : 14,
+                        fontSize: description!.length >= 55 ? 12 : 14,
                         wordSpacing: 0.1,
                       ),
                     ),

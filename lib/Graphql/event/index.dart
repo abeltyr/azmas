@@ -1,4 +1,4 @@
-class Group {
+class Event {
   static String event = r'''
     query Query($eventId: ID!) {
       event(id: $eventId) {

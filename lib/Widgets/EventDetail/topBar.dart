@@ -1,4 +1,5 @@
 import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
@@ -12,7 +13,7 @@ class EventTopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final eventProvider =
         Provider.of<EventSelectedProvider>(context, listen: false);
-    Event? event = eventProvider.event;
+    EventModel? event = eventProvider.event;
     return Container(
       margin: EdgeInsets.only(top: 35),
       width: MediaQuery.of(context).size.width,

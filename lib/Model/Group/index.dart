@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'index.g.dart';
 
-@HiveType(typeId: 4)
+@HiveType(typeId: 2)
 class GroupModel {
   @HiveField(0)
   String id;

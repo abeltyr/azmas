@@ -8,7 +8,7 @@ part of 'index.dart';
 
 class EventModelAdapter extends TypeAdapter<EventModel> {
   @override
-  final int typeId = 3;
+  final int typeId = 4;
 
   @override
   EventModel read(BinaryReader reader) {
@@ -18,9 +18,9 @@ class EventModelAdapter extends TypeAdapter<EventModel> {
     };
     return EventModel(
       id: fields[0] as String,
-      user: fields[1] as UserModel,
+      user: fields[1] as UserModel?,
       creatorId: fields[2] as String,
-      group: fields[3] as GroupModel,
+      group: fields[3] as GroupModel?,
       groupId: fields[4] as String,
       title: fields[5] as String,
       description: fields[6] as String?,

@@ -5,7 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'index.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 5)
 class TicketModel {
   @HiveField(0)
   String id;

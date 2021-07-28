@@ -4,16 +4,16 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'index.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 4)
 class EventModel {
   @HiveField(0)
   String id;
   @HiveField(1)
-  UserModel user;
+  UserModel? user;
   @HiveField(2)
   String creatorId;
   @HiveField(3)
-  GroupModel group;
+  GroupModel? group;
   @HiveField(4)
   String groupId;
   @HiveField(5)
