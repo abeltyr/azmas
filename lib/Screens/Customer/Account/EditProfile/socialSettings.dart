@@ -51,6 +51,7 @@ class _SocialSettingsState extends State<SocialSettings> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: PlatformTheme.primaryColor,
       padding: EdgeInsets.symmetric(
         horizontal: 20,
       ),

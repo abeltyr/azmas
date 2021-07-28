@@ -65,6 +65,7 @@ class _PersonalSettingsState extends State<PersonalSettings> {
       padding: EdgeInsets.symmetric(
         horizontal: 20,
       ),
+      color: PlatformTheme.primaryColor,
       child: Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: Form(

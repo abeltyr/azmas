@@ -19,28 +19,32 @@ class CameraPopup extends StatelessWidget {
   final userProfile = Hive.box<UserModel>('users');
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> setAvatar(XFile? photo, BuildContext context) async {
-    if (photo != null) {
-      final directory = await getApplicationDocumentsDirectory();
-      final fileDirectory = directory.path;
-      var imageUrl = "Local-UserProfile${photo.name}";
-      String filePath =
-          "$fileDirectory/${slugify('Image-$imageUrl').toString() + ".png"}";
-      await photo.saveTo(filePath);
-      var user = userProfile.get("currentUser");
-      String deleteFilePath =
-          "$fileDirectory/${slugify('Image-${user!.avatar}').toString() + ".png"}";
-      File? savedFile = new File(deleteFilePath);
-      Provider.of<UploadProvider>(context, listen: false)
-          .uploadImage(file: savedFile);
-      user.avatar = imageUrl;
+  Future<void> setAvatar(
+      {required String path, required String ext, required XFile photo}) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final fileDirectory = directory.path;
+    String filePath =
+        "$fileDirectory/${slugify('Image-$path').toString() + "$ext"}";
+    await photo.saveTo(filePath);
+    var user = userProfile.get("currentUser");
+    String deleteFilePath =
+        "$fileDirectory/${slugify('Image-${user!.avatar}').toString() + "$ext"}";
+    user.avatar = path;
+    userProfile.put(
+      "currentUser",
+      user,
+    );
+    File? deletedFile = new File(deleteFilePath);
+    if (await deletedFile.exists()) await deletedFile.delete();
+  }
 
-      userProfile.put(
-        "currentUser",
-        user,
-      );
-      File? deletedFile = new File(deleteFilePath);
-      if (await deletedFile.exists()) await deletedFile.delete();
+  Future<void> UploadImage(XFile? photo, BuildContext context) async {
+    if (photo != null) {
+      var data = photo.path.split(".");
+      print(data[data.length - 1]);
+      final path = await Provider.of<UploadProvider>(context, listen: false)
+          .uploadImage(file: photo);
+      setAvatar(path: path, ext: data[data.length - 1], photo: photo);
     }
   }
 
@@ -108,7 +112,7 @@ class CameraPopup extends StatelessWidget {
                       try {
                         final XFile? photo =
                             await _picker.pickImage(source: ImageSource.camera);
-                        await setAvatar(photo, context);
+                        await UploadImage(photo, context);
                       } catch (e) {
                         if (e.toString().contains("camera_access_denied")) {
                           final res = await Permission.camera.request();
@@ -139,7 +143,7 @@ class CameraPopup extends StatelessWidget {
                       try {
                         final XFile? image = await _picker.pickImage(
                             source: ImageSource.gallery);
-                        await setAvatar(image, context);
+                        await UploadImage(image, context);
                       } catch (e) {
                         if (e.toString().contains("photo_access_denied")) {
                           final res = await Permission.photos.request();
