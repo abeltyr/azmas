@@ -5,6 +5,20 @@ class Event {
         id
         creatorId
         groupId
+        group {
+          id
+          groupName
+          ownerId
+          title
+          description
+          public
+          activated
+          verified
+          influencer
+          category
+          createdAt
+          updatedAt
+        }
         title
         description
         horizontal
@@ -25,6 +39,20 @@ class Event {
         id
         creatorId
         groupId
+        group {
+          id
+          groupName
+          ownerId
+          title
+          description
+          public
+          activated
+          verified
+          influencer
+          category
+          createdAt
+          updatedAt
+        }
         title
         description
         horizontal

@@ -18,7 +18,7 @@ class GroupModelAdapter extends TypeAdapter<GroupModel> {
     };
     return GroupModel(
       id: fields[0] as String,
-      owner: fields[1] as UserModel,
+      owner: fields[1] as UserModel?,
       ownerId: fields[2] as String,
       title: fields[3] as String,
       description: fields[4] as String?,

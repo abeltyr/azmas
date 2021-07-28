@@ -46,7 +46,21 @@ class _EventListsState extends State<EventLists> {
     try {
       print("double here 1");
       await Future.delayed(Duration(milliseconds: 2000));
-      await freshEvents();
+      final eventsData =
+          await Provider.of<EventProvider>(context, listen: false).fetchEvent(
+        skip: 0,
+        take: 4,
+      );
+      height = 0;
+      // events = [...eventsData!];
+      for (var event in eventsData!) {
+        if (!events.contains(event)) events = [event, ...events];
+        if (event.horizontal)
+          height = height + 163.5;
+        else
+          height = height + 417.5;
+        print("height, $height");
+      }
       if (mounted)
         setState(() {
           events = events;
@@ -58,33 +72,23 @@ class _EventListsState extends State<EventLists> {
     }
   }
 
-  Future<void> freshEvents() async {
-    try {
-      final eventsData =
-          await Provider.of<EventProvider>(context, listen: false).fetchEvent(
-        skip: events.length,
-        take: 2,
-      );
-      events = [...events, ...eventsData!];
-      print("events, $events");
-      height = 0;
-      for (var event in events) {
-        if (event.horizontal)
-          height = height + 150;
-        else
-          height = height + 350;
-        print("height, $height");
-      }
-    } catch (e) {
-      print(e);
-      throw "error";
-    }
-  }
-
   void _onLoading() async {
     try {
       await Future.delayed(Duration(milliseconds: 1000));
-      await freshEvents();
+      final eventsData =
+          await Provider.of<EventProvider>(context, listen: false).fetchEvent(
+        skip: events.length,
+        take: 4,
+      );
+      events = [...events, ...eventsData!];
+      height = 0;
+      for (var event in events) {
+        if (event.horizontal)
+          height = height + 163.5;
+        else
+          height = height + 417.5;
+        print("height, $height");
+      }
       if (mounted)
         setState(() {
           events = events;
@@ -101,6 +105,9 @@ class _EventListsState extends State<EventLists> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height - 100,
       color: Colors.transparent,
+      padding: EdgeInsets.only(
+        bottom: 50,
+      ),
       child: SmartRefresher(
         enablePullDown: true,
         enablePullUp: true,
@@ -214,6 +221,7 @@ class _EventListsState extends State<EventLists> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: HorizontalEventCard(
                           title: events[index].title,
+                          group: events[index].group,
                           description: events[index].description,
                           eventStartDate: events[index].eventStartDate,
                           eventImage: events[index].image,
@@ -234,6 +242,7 @@ class _EventListsState extends State<EventLists> {
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: EventCardFlexWidget(
+                          group: events[index].group,
                           title: events[index].title,
                           description: events[index].description,
                           eventStartDate: events[index].eventStartDate,
@@ -255,6 +264,7 @@ class _EventListsState extends State<EventLists> {
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: EventCardFlex1Widget(
+                          group: events[index].group,
                           title: events[index].title,
                           description: events[index].description,
                           eventStartDate: events[index].eventStartDate,
@@ -274,9 +284,6 @@ class _EventListsState extends State<EventLists> {
                   },
                 ),
               ),
-            SizedBox(
-              height: 90,
-            ),
           ],
         ),
       ),

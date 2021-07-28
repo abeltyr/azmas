@@ -1,4 +1,5 @@
 import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';
@@ -16,6 +17,7 @@ class EventCardFlex1Widget extends StatelessWidget {
   final String? description;
   final String location;
   final String groupId;
+  final GroupModel? group;
   final DateTime eventStartDate;
   final Function onClick;
 
@@ -25,6 +27,7 @@ class EventCardFlex1Widget extends StatelessWidget {
     this.description,
     required this.location,
     required this.groupId,
+    this.group,
     required this.eventStartDate,
     required this.onClick,
   });
@@ -155,20 +158,11 @@ class EventCardFlex1Widget extends StatelessWidget {
                     color: PlatformTheme.primaryColor,
                     size: 5,
                   ),
-                  FutureBuilder(
-                    future: Provider.of<GroupProvider>(context, listen: false)
-                        .getGroup(groupId),
-                    builder: (context, snapshot) {
-                      Group? group = snapshot.data as Group?;
-                      if (group != null && snapshot.hasData)
-                        return GroupIndictor(
-                          title: "${group.title}",
-                          imageUrl: "${group.avatar}",
-                        );
-                      else
-                        return Container();
-                    },
-                  ),
+                  if (group != null)
+                    GroupIndictor(
+                      title: "${group!.title}",
+                      imageUrl: "${group!.avatar}",
+                    )
                 ],
               ),
             ),

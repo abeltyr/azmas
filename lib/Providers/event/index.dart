@@ -1,5 +1,6 @@
 import 'package:azmas/Graphql/event/index.dart';
 import 'package:azmas/Model/Event/index.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -40,27 +41,45 @@ class EventProvider with ChangeNotifier {
       final res = result.data!["events"];
       List<EventModel>? eventsData = [];
       for (var data in res) {
-        eventsData.add(EventModel(
-          id: data["id"],
-          title: data["title"],
-          description: data["description"],
-          horizontal: data["horizontal"],
-          category: data["category"],
-          creatorId: data["creatorId"],
-          eventStartDate: DateTime.parse(data["eventStartDate"]),
-          eventEndDate: DateTime.parse(data["eventEndDate"]),
-          price: 100.00,
-          // double.parse(data["price"]),
-          group: data["group"],
-          groupId: data["groupId"],
-          user: data["user"],
-          image:
-              "https://images.unsplash.com/photo-1477414956199-7dafc86a4f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
-          // data["image"],
-          location: data["location"],
-          createdAt: DateTime.parse(data["createdAt"]),
-          updatedAt: DateTime.parse(data["updatedAt"]),
-        ));
+        eventsData.add(
+          EventModel(
+            id: data["id"],
+            title: data["title"],
+            description: data["description"],
+            horizontal: data["horizontal"],
+            category: data["category"],
+            creatorId: data["creatorId"],
+            eventStartDate: DateTime.parse(data["eventStartDate"]),
+            eventEndDate: DateTime.parse(data["eventEndDate"]),
+            price: 100.00,
+            // double.parse(data["price"]),
+            group: GroupModel(
+              id: data["group"]!["id"],
+              avatar:
+                  "https://images.unsplash.com/photo-1477414956199-7dafc86a4f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+              // data["group"]!["avatar"],
+              background: data["group"]!["background"],
+              category: data["group"]!["category"],
+              description: data["group"]!["description"],
+              title: data["group"]!["title"],
+              activated: data["group"]!["activated"],
+              public: data["group"]!["public"],
+              ownerId: data["group"]!["ownerId"],
+              verified: data["group"]!["verified"],
+              // owner: data["group"]!["owner"],
+              createdAt: DateTime.parse(data["group"]!["createdAt"]),
+              updatedAt: DateTime.parse(data["group"]!["updatedAt"]),
+            ),
+            groupId: data["groupId"],
+            user: data["user"],
+            image:
+                "https://images.unsplash.com/photo-1477414956199-7dafc86a4f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+            // data["image"],
+            location: data["location"],
+            createdAt: DateTime.parse(data["createdAt"]),
+            updatedAt: DateTime.parse(data["updatedAt"]),
+          ),
+        );
       }
       _events = eventsData;
       return _events;

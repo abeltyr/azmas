@@ -8,7 +8,7 @@ class GroupModel {
   @HiveField(0)
   String id;
   @HiveField(1)
-  UserModel owner;
+  UserModel? owner;
   @HiveField(2)
   String ownerId;
   @HiveField(3)
@@ -18,7 +18,7 @@ class GroupModel {
   @HiveField(5)
   String avatar;
   @HiveField(6)
-  String background;
+  String? background;
   @HiveField(7)
   bool public;
   @HiveField(8)
@@ -34,12 +34,12 @@ class GroupModel {
 
   GroupModel({
     required this.id,
-    required this.owner,
+    this.owner,
     required this.ownerId,
     required this.title,
     this.description,
     required this.avatar,
-    required this.background,
+    this.background,
     this.public = true,
     this.verified = false,
     this.activated = true,
