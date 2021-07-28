@@ -266,52 +266,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         check: validationCheck4,
                         loading: loading,
                         formKey: _formKey[3],
-                        action: () {
+                        action: () async {
                           keyboardDown();
                           setState(() {
                             validationCheck4 = true;
                           });
                           if (_formKey[3].currentState!.validate()) {
-                            // setState(() {
-                            //   loading = true;
-                            // });
-                            // print("Full Name ${_fullNameController.text}");
-                            // print("email ${_emailController.text}");
-                            // print("phone ${_phoneNumberController.text}");
-                            // print("birth Date${_birthDateController.text}");
-                            // print(
-                            //     "birth real ${_birthDateRealValueController.text}");
-                            // print("gender ${_genderController.text}");
-                            // print("instagram ${_instaController.text}");
-                            // print("twitter ${_twitterController.text}");
-                            // print("telegram ${_telegramController.text}");
-                            // print("password ${_passwordController.text}");
-                            // print(
-                            //     "confirm password ${_confirmPasswordController.text}");
-                            Navigator.pop(context);
-                            Provider.of<UserProvider>(context, listen: false)
-                                .setupUser(
-                              UserModel(
-                                userName: _userNameController.text,
-                                avatar: "https://source.unsplash.com/random",
-                                fullName: _fullNameController.text,
-                                email: _emailController.text,
-                                phoneNumber: _phoneNumberController.text,
-                                birthDate: DateTime.parse(
-                                    _birthDateRealValueController.text),
-                                createdAt: DateTime.now(),
-                                updatedAt: DateTime.now(),
-                                id: "1",
-                                gender: _genderController.text,
-                                instagram: _instaController.text,
-                                twitter: _twitterController.text,
-                                telegram: _telegramController.text,
-                                facebook: _facebookController.text,
-                                verified: true,
-                                activated: true,
-                              ),
-                            );
+                            setState(() {
+                              loading = true;
+                            });
+                            try {
+                              await Provider.of<UserProvider>(context,
+                                      listen: false)
+                                  .signUp(
+                                data: UserModel(
+                                  userName: _userNameController.text,
+                                  avatar: "https://source.unsplash.com/random",
+                                  fullName: _fullNameController.text,
+                                  email: _emailController.text,
+                                  phoneNumber: _phoneNumberController.text,
+                                  birthDate: DateTime.parse(
+                                      _birthDateRealValueController.text),
+                                  createdAt: DateTime.now(),
+                                  updatedAt: DateTime.now(),
+                                  id: "1",
+                                  gender: _genderController.text,
+                                  instagram: _instaController.text,
+                                  twitter: _twitterController.text,
+                                  telegram: _telegramController.text,
+                                  facebook: _facebookController.text,
+                                  verified: true,
+                                  activated: true,
+                                ),
+                                password: _passwordController.text,
+                              );
+                              Navigator.pop(context);
+                            } catch (e) {
+                              print(e);
+                            }
                           }
+
+                          setState(() {
+                            loading = false;
+                          });
                         },
                         backAction: () {
                           setState(() {
