@@ -23,7 +23,7 @@ class GroupModelAdapter extends TypeAdapter<GroupModel> {
       title: fields[3] as String,
       description: fields[4] as String?,
       avatar: fields[5] as String,
-      background: fields[6] as String,
+      background: fields[6] as String?,
       public: fields[7] as bool,
       verified: fields[8] as bool,
       activated: fields[9] as bool,

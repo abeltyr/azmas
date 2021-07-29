@@ -5,6 +5,7 @@ import 'package:azmas/Screens/Customer/Account/Auth/Signup/part1.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/part2.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/part3.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/part4.dart';
+import 'package:azmas/Utils/inAppNotification.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/topBar.dart';
 import 'package:flutter/material.dart';
@@ -279,33 +280,55 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               await Provider.of<UserProvider>(context,
                                       listen: false)
                                   .signUp(
-                                data: UserModel(
-                                  userName: _userNameController.text,
-                                  avatar: "https://source.unsplash.com/random",
-                                  fullName: _fullNameController.text,
-                                  email: _emailController.text,
-                                  phoneNumber: _phoneNumberController.text,
-                                  birthDate: DateTime.parse(
-                                      _birthDateRealValueController.text),
-                                  createdAt: DateTime.now(),
-                                  updatedAt: DateTime.now(),
-                                  id: "1",
-                                  gender: _genderController.text,
-                                  instagram: _instaController.text,
-                                  twitter: _twitterController.text,
-                                  telegram: _telegramController.text,
-                                  facebook: _facebookController.text,
-                                  verified: true,
-                                  activated: true,
-                                ),
+                                userName: _userNameController.text,
+                                fullName: _fullNameController.text,
+                                email: _emailController.text,
+                                phoneNumber: _phoneNumberController.text,
+                                birthDate: DateTime.parse(
+                                    _birthDateRealValueController.text),
+                                gender: _genderController.text,
+                                instagram: _instaController.text,
+                                twitter: _twitterController.text,
+                                telegram: _telegramController.text,
+                                facebook: _facebookController.text,
+                                verified: true,
+                                activated: true,
                                 password: _passwordController.text,
                               );
                               Navigator.pop(context);
                             } catch (e) {
+                              String errorMessage =
+                                  "SomeThing Went Wrong. Please Try Again";
+                              if (e.toString().contains(
+                                  "Unique constraint failed on the fields: (`phoneNumber`)")) {
+                                errorMessage =
+                                    "The given phone number is taken";
+                                setState(() {
+                                  steps = 0;
+                                });
+                              } else if (e.toString().contains(
+                                  "Unique constraint failed on the fields: (`email`)")) {
+                                errorMessage = "The given email is taken";
+                                setState(() {
+                                  steps = 0;
+                                });
+                              } else if (e.toString().contains(
+                                  "Unique constraint failed on the fields: (`userName`)")) {
+                                errorMessage = "The given UserName is taken";
+                                setState(() {
+                                  steps = 0;
+                                });
+                              }
+
+                              InAppNotification().showNotification(
+                                  context: context,
+                                  text: errorMessage,
+                                  color: PlatformTheme.white,
+                                  textColor: PlatformTheme.fourthColor,
+                                  icon: "assets/Animations/ErrorInfo.json");
                               print(e);
                             }
                           }
-
                           setState(() {
                             loading = false;
                           });

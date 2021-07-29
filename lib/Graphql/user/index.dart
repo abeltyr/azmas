@@ -7,6 +7,14 @@ class User {
         phoneNumber
         email
         userName
+        avatar {
+          size
+          ext
+          mime
+          url
+          name
+          id
+        }
         bio
         birthDate
         gender
@@ -30,6 +38,14 @@ class User {
         phoneNumber
         email
         userName
+        avatar {
+          size
+          ext
+          mime
+          url
+          name
+          id
+        }
         bio
         birthDate
         gender
@@ -53,6 +69,14 @@ class User {
         phoneNumber
         email
         userName
+        avatar {
+          size
+          ext
+          mime
+          url
+          name
+          id
+        }
         bio
         birthDate
         gender
@@ -62,20 +86,29 @@ class User {
         facebook
         verified
         activated
+        token
         createdAt
         updatedAt
       }
     }
   ''';
 
-  static String createUser = r'''
-    mutation Mutation($createUserData: CreateUserInput) {
-      createUser(data: $createUserData) {
+  static String signUp = r'''
+    mutation Mutation($signUpData: SignUpInput) {
+      signUp(data: $signUpData) {
         id
         fullName
         phoneNumber
         email
         userName
+        avatar {
+          size
+          ext
+          mime
+          url
+          name
+          id
+        }
         bio
         birthDate
         gender
@@ -85,6 +118,39 @@ class User {
         facebook
         verified
         activated
+        token
+        createdAt
+        updatedAt
+      }
+    }
+  ''';
+
+  static String login = r'''
+    mutation Mutation($loginData: LoginInput) {
+      login(data: $loginData) {
+        id
+        fullName
+        phoneNumber
+        email
+        userName
+        avatar {
+          size
+          ext
+          mime
+          url
+          name
+          id
+        }
+        bio
+        birthDate
+        gender
+        instagram
+        twitter
+        telegram
+        facebook
+        verified
+        activated
+        token
         createdAt
         updatedAt
       }
@@ -99,6 +165,14 @@ class User {
         phoneNumber
         email
         userName
+        avatar {
+          size
+          ext
+          mime
+          url
+          name
+          id
+        }
         bio
         birthDate
         gender

@@ -32,15 +32,16 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       facebook: fields[12] as String?,
       verified: fields[13] as bool?,
       activated: fields[14] as bool?,
-      createdAt: fields[15] as DateTime?,
-      updatedAt: fields[16] as DateTime?,
+      token: fields[15] as String?,
+      createdAt: fields[16] as DateTime?,
+      updatedAt: fields[17] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(17)
+      ..writeByte(18)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -72,8 +73,10 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(14)
       ..write(obj.activated)
       ..writeByte(15)
-      ..write(obj.createdAt)
+      ..write(obj.token)
       ..writeByte(16)
+      ..write(obj.createdAt)
+      ..writeByte(17)
       ..write(obj.updatedAt);
   }
 

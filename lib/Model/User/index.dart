@@ -35,8 +35,10 @@ class UserModel {
   @HiveField(14)
   bool? activated;
   @HiveField(15)
-  DateTime? createdAt;
+  String? token;
   @HiveField(16)
+  DateTime? createdAt;
+  @HiveField(17)
   DateTime? updatedAt;
 
   UserModel({
@@ -55,6 +57,7 @@ class UserModel {
     this.facebook,
     this.verified = true,
     this.activated = true,
+    this.token,
     this.createdAt,
     this.updatedAt,
   });
