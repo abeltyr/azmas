@@ -157,9 +157,27 @@ class User {
     }
   ''';
 
-  static String updateUser = r'''
-    mutation Mutation($updateUserId: ID!, $updateUserData: UpdateUserInput) {
-      updateUser(id: $updateUserId, data: $updateUserData) {
+  static String personalDataUpdate = r'''
+    mutation Mutation($personalDataUpdateData: PersonalDataUpdateInput) {
+      personalDataUpdate(data: $personalDataUpdateData)
+    }
+  ''';
+
+  static String accountDataUpdate = r'''
+    mutation Mutation($accountDataUpdateData: AccountDataUpdateInput) {
+      accountDataUpdate(data: $accountDataUpdateData)
+    }
+  ''';
+
+  static String socailDataUpdate = r'''
+    mutation Mutation($socailDataUpdateData: SocailDataUpdateInput) {
+      socailDataUpdate(data: $socailDataUpdateData)
+    }
+  ''';
+
+  static String securityDataUpdate = r'''
+    mutation Mutation($securityDataUpdateData: SecurityDataUpdateInput) {
+      securityDataUpdate(data: $securityDataUpdateData) {
         id
         fullName
         phoneNumber
@@ -182,11 +200,17 @@ class User {
         facebook
         verified
         activated
+        token
         createdAt
         updatedAt
       }
     }
+  ''';
 
+  static String profileUpdate = r'''
+    mutation ProfileUpdateMutation($profileUpdateUploadFileId: ID!) {
+      profileUpdate(uploadFileId: $profileUpdateUploadFileId)
+    }
   ''';
 
   static String deleteUser = r'''

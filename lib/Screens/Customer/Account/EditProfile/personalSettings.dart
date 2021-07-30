@@ -1,4 +1,6 @@
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Utils/inAppNotification.dart';
 import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/birthDateInput.dart';
@@ -9,6 +11,7 @@ import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class PersonalSettings extends StatefulWidget {
   @override
@@ -143,25 +146,61 @@ class _PersonalSettingsState extends State<PersonalSettings> {
                   height: 40,
                   width: 150,
                   child: AzmasButton(
-                    onClick: () {
+                    loading: loading,
+                    onClick: () async {
                       keyboardDown();
                       setState(() {
                         validationCheck = true;
                       });
                       if (_formKey.currentState!.validate()) {
-                        //TODO: add the api here
-                        var user = userProfile.get("currentUser");
-
-                        user!.bio = _bioController.text;
-                        user.fullName = _fullNameController.text;
-                        user.gender = _genderController.text;
-                        user.birthDate =
-                            DateTime.parse(_birthDateRealValueController.text);
-                        userProfile.put(
-                          "currentUser",
-                          user,
-                        );
+                        setState(() {
+                          loading = true;
+                        });
+                        try {
+                          final res = await Provider.of<UserProvider>(context,
+                                  listen: false)
+                              .personalDataUpdate(
+                            fullName: _fullNameController.text,
+                            birthDate: DateTime.parse(
+                                _birthDateRealValueController.text),
+                            gender: _genderController.text,
+                            bio: _bioController.text,
+                          );
+                          if (!res) throw ("");
+                          var user = userProfile.get("currentUser");
+                          user!.bio = _bioController.text;
+                          user.fullName = _fullNameController.text;
+                          user.gender = _genderController.text;
+                          user.birthDate = DateTime.parse(
+                              _birthDateRealValueController.text);
+                          userProfile.put(
+                            "currentUser",
+                            user,
+                          );
+                          InAppNotification().showNotification(
+                            context: context,
+                            text: "Updated Your Personal Data",
+                            color: PlatformTheme.white,
+                            repeat: false,
+                            textColor: PlatformTheme.positive,
+                            icon: "assets/Animations/GreenCheckMark.json",
+                          );
+                        } catch (e) {
+                          String errorMessage =
+                              "SomeThing Went Wrong. Please Try Again";
+                          InAppNotification().showNotification(
+                            context: context,
+                            text: errorMessage,
+                            color: PlatformTheme.white,
+                            textColor: PlatformTheme.fourthColor,
+                            icon: "assets/Animations/ErrorInfo.json",
+                          );
+                          print(e);
+                        }
                       }
+                      setState(() {
+                        loading = false;
+                      });
                     },
                     title: "Save",
                     color: PlatformTheme.textColor1,

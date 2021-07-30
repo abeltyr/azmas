@@ -196,8 +196,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     btnLoading = true;
                                   });
                                   try {
-                                    await Future.delayed(
-                                        Duration(milliseconds: 2000));
                                     await Provider.of<UserProvider>(context,
                                             listen: false)
                                         .login(

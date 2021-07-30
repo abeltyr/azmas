@@ -123,6 +123,7 @@ class UserProvider with ChangeNotifier {
       bio: res["bio"],
       activated: res["activated"],
       verified: res["verified"],
+      token: res["token"],
       createdAt: DateTime.parse(res["createdAt"]),
       updatedAt: DateTime.parse(res["updatedAt"]),
     );
@@ -130,6 +131,135 @@ class UserProvider with ChangeNotifier {
       "currentUser",
       userData,
     );
+  }
+
+  Future<bool> personalDataUpdate({
+    required String fullName,
+    required DateTime birthDate,
+    required String gender,
+    required String bio,
+  }) async {
+    final QueryResult result = await Config.initializeClient().mutate(
+      MutationOptions(
+        document: gql(User.personalDataUpdate),
+        variables: {
+          'personalDataUpdateData': {
+            "birthDate": birthDate.toIso8601String(),
+            "fullName": fullName,
+            "gender": gender,
+            "bio": bio,
+          },
+        },
+      ),
+    );
+    if (result.hasException) {
+      print(result.exception!);
+      throw (result.exception!.graphqlErrors[0].message.toString());
+    } else if (result.data!["personalDataUpdate"]) {
+      return result.data!["personalDataUpdate"];
+    }
+    return false;
+  }
+
+  Future<bool> accountDataUpdate({
+    required String email,
+    required String phoneNumber,
+    required String userName,
+  }) async {
+    print(email);
+    final QueryResult result = await Config.initializeClient().mutate(
+      MutationOptions(
+        document: gql(User.accountDataUpdate),
+        variables: {
+          'accountDataUpdateData': {
+            "email": email,
+            "phoneNumber": phoneNumber,
+            "userName": userName,
+          },
+        },
+      ),
+    );
+    if (result.hasException) {
+      print(result.exception!);
+      throw (result.exception!.graphqlErrors[0].message.toString());
+    } else if (result.data!["accountDataUpdate"]) {
+      return result.data!["accountDataUpdate"];
+    }
+    return false;
+  }
+
+  Future<bool> socailDataUpdate({
+    required String instagram,
+    required String twitter,
+    required String telegram,
+    required String facebook,
+  }) async {
+    final QueryResult result = await Config.initializeClient().mutate(
+      MutationOptions(
+        document: gql(User.socailDataUpdate),
+        variables: {
+          'socailDataUpdateData': {
+            "instagram": instagram,
+            "twitter": twitter,
+            "telegram": telegram,
+            "facebook": facebook,
+          },
+        },
+      ),
+    );
+    if (result.hasException) {
+      print(result.exception!);
+      throw (result.exception!.graphqlErrors[0].message.toString());
+    } else if (result.data!["socailDataUpdate"]) {
+      return result.data!["socailDataUpdate"];
+    }
+    return false;
+  }
+
+  Future<void> securityDataUpdate({
+    required String oldPassword,
+    required String password,
+  }) async {
+    String device = await deviceData();
+    final QueryResult result = await Config.initializeClient().mutate(
+      MutationOptions(
+        document: gql(User.securityDataUpdate),
+        variables: {
+          'securityDataUpdateData': {
+            "oldPassword": oldPassword,
+            "password": password,
+            "device": device,
+          },
+        },
+      ),
+    );
+    if (result.hasException) {
+      print(result.exception!);
+      throw (result.exception!.graphqlErrors[0].message.toString());
+    } else {
+      setupUser(result.data!["securityDataUpdate"]);
+    }
+  }
+
+  Future<bool> profileUpdate({
+    required String uploadFileId,
+    required String password,
+  }) async {
+    final QueryResult result = await Config.initializeClient().mutate(
+      MutationOptions(
+        document: gql(User.profileUpdate),
+        variables: {
+          'profileUpdateUploadFileId': uploadFileId,
+        },
+      ),
+    );
+    if (result.hasException) {
+      print(result.exception!);
+      throw (result.exception!.graphqlErrors[0].message.toString());
+    } else if (result.data!["socailDataUpdate"]) {
+      return result.data!["socailDataUpdate"];
+    }
+    return false;
   }
 
   void logout() {

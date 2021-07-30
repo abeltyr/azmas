@@ -11,8 +11,9 @@ class InAppNotification {
     Color color = PlatformTheme.positive,
     Color textColor = PlatformTheme.white,
     String? icon,
-    Duration duration = const Duration(milliseconds: 10000),
+    Duration duration = const Duration(milliseconds: 7500),
     bool loading = false,
+    bool repeat = true,
   }) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     return ScaffoldMessenger.of(context).showSnackBar(
@@ -50,7 +51,7 @@ class InAppNotification {
                     height: 30,
                     child: AnimationWidget(
                       assetData: icon,
-                      repeat: true,
+                      repeat: repeat,
                       durationData: Duration(seconds: 1),
                     ),
                   ),

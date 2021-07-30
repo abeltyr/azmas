@@ -178,7 +178,7 @@ class HorizontalEventCard extends StatelessWidget {
               right: 0,
               child: Container(
                 height: 25,
-                width: !dateType ? 90 : 100,
+                width: !dateType ? 85 : 105,
                 decoration: BoxDecoration(
                   color: PlatformTheme.accentColorDark,
                   borderRadius: BorderRadius.circular(
@@ -189,19 +189,23 @@ class HorizontalEventCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    dateType
-                        ? SvgPicture.asset(
-                            "assets/Icons/Broken/Calendar.svg",
-                            color: PlatformTheme.white,
-                            height: 16,
-                            width: 16,
-                          )
-                        : SvgPicture.asset(
-                            "assets/Icons/Broken/Time.svg",
-                            color: PlatformTheme.white,
-                            height: 16,
-                            width: 16,
-                          ),
+                    Container(
+                      height: 16,
+                      width: 16,
+                      child: dateType
+                          ? SvgPicture.asset(
+                              "assets/Icons/Broken/Calendar.svg",
+                              color: PlatformTheme.white,
+                              height: 16,
+                              width: 16,
+                            )
+                          : SvgPicture.asset(
+                              "assets/Icons/Broken/Time.svg",
+                              color: PlatformTheme.white,
+                              height: 16,
+                              width: 16,
+                            ),
+                    ),
                     SizedBox(
                       width: 7.5,
                     ),

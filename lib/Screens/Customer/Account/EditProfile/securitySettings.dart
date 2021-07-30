@@ -1,9 +1,12 @@
+import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Utils/inAppNotification.dart';
 import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SecuritySettings extends StatefulWidget {
   @override
@@ -83,9 +86,6 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                   if (value!.isEmpty) {
                     return 'This is a required field';
                   }
-                  if (value.length < 8) {
-                    return 'The password is to short';
-                  }
                   return null;
                 },
               ),
@@ -154,15 +154,51 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                   height: 40,
                   width: 150,
                   child: AzmasButton(
-                    onClick: () {
+                    onClick: () async {
                       keyboardDown();
                       setState(() {
                         validationCheck = true;
                       });
                       if (_formKey.currentState!.validate()) {
-                        //TODO: add the api here
+                        setState(() {
+                          loading = true;
+                        });
+                        try {
+                          await Provider.of<UserProvider>(context,
+                                  listen: false)
+                              .securityDataUpdate(
+                            oldPassword: _oldPasswordController.text,
+                            password: _passwordController.text,
+                          );
+                          InAppNotification().showNotification(
+                            context: context,
+                            text: "Updated Your Password ",
+                            color: PlatformTheme.white,
+                            repeat: false,
+                            textColor: PlatformTheme.positive,
+                            icon: "assets/Animations/GreenCheckMark.json",
+                          );
+                        } catch (e) {
+                          String errorMessage =
+                              "Failed To Update To Your Password";
+                          if (e.toString() == "Your Old Password Doesn't Match")
+                            errorMessage = "Your Old Password Doesn't Match";
+
+                          InAppNotification().showNotification(
+                            context: context,
+                            text: errorMessage,
+                            color: PlatformTheme.white,
+                            textColor: PlatformTheme.fourthColor,
+                            icon: "assets/Animations/ErrorInfo.json",
+                          );
+                          print(e);
+                        }
+                        setState(() {
+                          loading = false;
+                        });
                       }
                     },
+                    loading: loading,
                     title: "Save",
                     color: PlatformTheme.textColor1,
                     borderRadiusData: 15,
