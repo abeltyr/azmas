@@ -210,42 +210,42 @@ class UserProfileScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        if (user.instagram != "")
+                        if (user.instagram!.length > 0)
                           SocialButton(
                             icon: "assets/Icons/Instagram.svg",
                             url: 'https://instagram.com/${user.instagram}',
                           ),
-                        if (user.instagram != "")
+                        if (user.instagram!.length > 0)
                           SizedBox(
                             width:
                                 (MediaQuery.of(context).size.width - 200) / 5,
                           ),
-                        if (user.twitter != "")
+                        if (user.twitter!.length > 0)
                           SocialButton(
                             icon: "assets/Icons/Twitter.svg",
                             url: 'https://www.twitter.com/${user.twitter}',
                           ),
-                        if (user.twitter != "")
+                        if (user.twitter!.length > 0)
                           SizedBox(
                             width:
                                 (MediaQuery.of(context).size.width - 200) / 5,
                           ),
-                        if (user.telegram != "")
+                        if (user.telegram!.length > 0)
                           SocialButton(
                             icon: "assets/Icons/Broken/Send.svg",
                             url: 'https://t.me/${user.telegram}',
                           ),
-                        if (user.telegram != "")
+                        if (user.telegram!.length > 0)
                           SizedBox(
                             width:
                                 (MediaQuery.of(context).size.width - 200) / 5,
                           ),
-                        if (user.telegram != "")
+                        if (user.facebook!.length > 0)
                           SocialButton(
                             icon: "assets/Icons/Facebook.svg",
                             url: 'https://facebook.com/${user.facebook}',
                           ),
-                        if (user.telegram != "")
+                        if (user.facebook!.length > 0)
                           SizedBox(
                             width:
                                 (MediaQuery.of(context).size.width - 200) / 5,

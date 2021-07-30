@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/upload/index.dart';
+import 'package:azmas/Providers/user/profile.dart';
+import 'package:azmas/Utils/inAppNotification.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Card/squareCard.dart';
 import 'package:azmas/Widgets/Shared/popup/message.dart';
@@ -19,17 +21,22 @@ class CameraPopup extends StatelessWidget {
   final userProfile = Hive.box<UserModel>('users');
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> setAvatar(
-      {required String path, required String ext, required XFile photo}) async {
+  Future<void> setAvatar({
+    required Map file,
+    required String ext,
+    required XFile photo,
+    required UserProfileProvider userProfileProvider,
+  }) async {
+    await userProfileProvider.profileUpdate(uploadFileId: file["id"]);
     final directory = await getApplicationDocumentsDirectory();
     final fileDirectory = directory.path;
     String filePath =
-        "$fileDirectory/${slugify('Image-$path').toString() + "$ext"}";
+        "$fileDirectory/${slugify('Image-${file["url"]}').toString() + "$ext"}";
     await photo.saveTo(filePath);
     var user = userProfile.get("currentUser");
     String deleteFilePath =
         "$fileDirectory/${slugify('Image-${user!.avatar}').toString() + "$ext"}";
-    user.avatar = path;
+    user.avatar = file["url"];
     userProfile.put(
       "currentUser",
       user,
@@ -38,14 +45,41 @@ class CameraPopup extends StatelessWidget {
     if (await deletedFile.exists()) await deletedFile.delete();
   }
 
-  Future<void> UploadImage(XFile? photo, BuildContext context) async {
+  Future<void> uploadImage(XFile? photo, BuildContext context) async {
     if (photo != null) {
+      final userProfileProvider =
+          Provider.of<UserProfileProvider>(context, listen: false);
       var data = photo.path.split(".");
-      print(data[data.length - 1]);
-      final path = await Provider.of<UploadProvider>(context, listen: false)
-          .uploadImage(file: photo);
-      setAvatar(path: path, ext: data[data.length - 1], photo: photo);
+      try {
+        userProfileProvider.setloading(true);
+        Map? file = await Provider.of<UploadProvider>(context, listen: false)
+            .uploadImage(file: photo);
+        if (file != null && file["id"] != null && file["url"] != null) {
+          await setAvatar(
+            file: file,
+            ext: data[data.length - 1],
+            photo: photo,
+            userProfileProvider: userProfileProvider,
+          );
+        } else
+          errorRes(context);
+      } catch (e) {
+        errorRes(context);
+        print(e);
+      }
+      userProfileProvider.setloading(false);
     }
+  }
+
+  void errorRes(BuildContext context) {
+    String errorMessage = "SomeThing Went Wrong. Please Try Again";
+    InAppNotification().showNotification(
+      context: context,
+      text: errorMessage,
+      color: PlatformTheme.white,
+      textColor: PlatformTheme.fourthColor,
+      icon: "assets/Animations/ErrorInfo.json",
+    );
   }
 
   @override
@@ -112,7 +146,7 @@ class CameraPopup extends StatelessWidget {
                       try {
                         final XFile? photo =
                             await _picker.pickImage(source: ImageSource.camera);
-                        await UploadImage(photo, context);
+                        await uploadImage(photo, context);
                       } catch (e) {
                         if (e.toString().contains("camera_access_denied")) {
                           final res = await Permission.camera.request();
@@ -143,7 +177,7 @@ class CameraPopup extends StatelessWidget {
                       try {
                         final XFile? image = await _picker.pickImage(
                             source: ImageSource.gallery);
-                        await UploadImage(image, context);
+                        await uploadImage(image, context);
                       } catch (e) {
                         if (e.toString().contains("photo_access_denied")) {
                           final res = await Permission.photos.request();

@@ -1,4 +1,6 @@
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Utils/inAppNotification.dart';
 import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 class SocialSettings extends StatefulWidget {
   @override
@@ -175,24 +178,60 @@ class _SocialSettingsState extends State<SocialSettings> {
                   height: 40,
                   width: 150,
                   child: AzmasButton(
-                    onClick: () {
+                    loading: loading,
+                    onClick: () async {
                       keyboardDown();
                       setState(() {
                         validationCheck = true;
                       });
                       if (_formKey.currentState!.validate()) {
-                        //TODO: add the api here//TODO: add the api here
-                        var user = userProfile.get("currentUser");
+                        setState(() {
+                          loading = true;
+                        });
+                        try {
+                          final res = await Provider.of<UserProvider>(context,
+                                  listen: false)
+                              .socailDataUpdate(
+                            instagram: _instaController.text,
+                            twitter: _twitterController.text,
+                            telegram: _telegramController.text,
+                            facebook: _facebookController.text,
+                          );
+                          if (!res) throw ("");
+                          var user = userProfile.get("currentUser");
 
-                        user!.instagram = _instaController.text;
-                        user.twitter = _twitterController.text;
-                        user.telegram = _telegramController.text;
-                        user.facebook = _facebookController.text;
+                          user!.instagram = _instaController.text;
+                          user.twitter = _twitterController.text;
+                          user.telegram = _telegramController.text;
+                          user.facebook = _facebookController.text;
 
-                        userProfile.put(
-                          "currentUser",
-                          user,
-                        );
+                          userProfile.put(
+                            "currentUser",
+                            user,
+                          );
+                          InAppNotification().showNotification(
+                            context: context,
+                            text: "Updated Your Socail Data",
+                            color: PlatformTheme.white,
+                            repeat: false,
+                            textColor: PlatformTheme.positive,
+                            icon: "assets/Animations/GreenCheckMark.json",
+                          );
+                        } catch (e) {
+                          String errorMessage =
+                              "SomeThing Went Wrong. Please Try Again";
+                          InAppNotification().showNotification(
+                            context: context,
+                            text: errorMessage,
+                            color: PlatformTheme.white,
+                            textColor: PlatformTheme.fourthColor,
+                            icon: "assets/Animations/ErrorInfo.json",
+                          );
+                          print(e);
+                        }
+                        setState(() {
+                          loading = false;
+                        });
                       }
                     },
                     title: "Save",

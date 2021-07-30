@@ -1,5 +1,9 @@
 import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Model/Event/index.dart';
+import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Model/GroupMember/index.dart';
 import 'package:azmas/Model/Settings/index.dart';
+import 'package:azmas/Model/Ticket/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/calender/getEvent.dart';
 import 'package:azmas/Providers/calender/index.dart';
@@ -16,6 +20,7 @@ import 'package:azmas/Providers/interaction/setting.dart';
 import 'package:azmas/Providers/lang/index.dart';
 import 'package:azmas/Providers/upload/index.dart';
 import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Providers/user/profile.dart';
 import 'package:azmas/Screens/Customer/Account/EditProfile/index.dart';
 import 'package:azmas/Screens/Customer/Account/Ticket/index.dart';
 import 'package:azmas/Screens/Customer/Community/index.dart';
@@ -33,15 +38,20 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-late AppDatabase database;
-
 void main() async {
-  database = AppDatabase();
   await Hive.initFlutter();
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(SettingModelAdapter());
+  Hive.registerAdapter(GroupModelAdapter());
+  Hive.registerAdapter(GroupMemberModelAdapter());
+  Hive.registerAdapter(EventModelAdapter());
+  Hive.registerAdapter(TicketModelAdapter());
   await Hive.openBox<UserModel>('users');
   await Hive.openBox<SettingModel>('settings');
+  await Hive.openBox<List<Group>>('groups');
+  await Hive.openBox<GroupMember>('groupMembers');
+  await Hive.openBox<List<EventModel>>('events');
+  await Hive.openBox<List<TicketModel>>('tickets');
   runApp(MyApp());
 }
 
@@ -106,6 +116,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: UploadProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: UserProfileProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

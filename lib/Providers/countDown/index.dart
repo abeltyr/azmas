@@ -10,7 +10,7 @@ class CountDownProvider with ChangeNotifier {
 
   Future<Map<String, dynamic>?> getCountDownDate() async {
     String date = "2021-10-17";
-    // String date = "2021-07-22 20:31";
+    // String date = "2021-07-28 21:56";
     final mainDay = DateTime.parse(date);
     final toDayDate = DateTime.now();
     bool done = mainDay.isBefore(toDayDate);

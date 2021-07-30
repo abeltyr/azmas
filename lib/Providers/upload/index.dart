@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:graphql/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
@@ -9,7 +8,7 @@ import '../../client.dart';
 import 'package:http_parser/http_parser.dart';
 
 class UploadProvider with ChangeNotifier {
-  Future<String> uploadImage({required XFile? file}) async {
+  Future<Map?> uploadImage({required XFile? file}) async {
     if (file != null) {
       var data = file.path.split(".");
       final byteData = await file.readAsBytes();
@@ -34,9 +33,10 @@ class UploadProvider with ChangeNotifier {
         print(result.exception!.linkException.toString());
         throw FormatException(result.exception.toString());
       } else {
-        return result.data!["singleUpload"]["url"];
+        print(result.data!["singleUpload"]);
+        return result.data!["singleUpload"];
       }
     }
-    return "";
+    return null;
   }
 }

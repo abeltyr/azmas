@@ -1,4 +1,6 @@
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Providers/user/index.dart';
+import 'package:azmas/Utils/inAppNotification.dart';
 import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/Button/index.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 class AccountSettings extends StatefulWidget {
   @override
@@ -153,25 +156,71 @@ class _AccountSettingsState extends State<AccountSettings> {
                   height: 40,
                   width: 150,
                   child: AzmasButton(
-                    onClick: () {
+                    onClick: () async {
                       keyboardDown();
                       setState(() {
                         validationCheck = true;
                       });
                       if (_formKey.currentState!.validate()) {
-                        //TODO: add the api here//TODO: add the api here
-                        var user = userProfile.get("currentUser");
+                        setState(() {
+                          loading = true;
+                        });
+                        try {
+                          final res = await Provider.of<UserProvider>(context,
+                                  listen: false)
+                              .accountDataUpdate(
+                            email: _emailController.text,
+                            phoneNumber: _phoneNumberController.text,
+                            userName: _userNameController.text,
+                          );
+                          if (!res) throw ("");
 
-                        user!.userName = _userNameController.text;
-                        user.email = _emailController.text;
-                        user.phoneNumber = _phoneNumberController.text;
+                          var user = userProfile.get("currentUser");
 
-                        userProfile.put(
-                          "currentUser",
-                          user,
-                        );
+                          user!.userName = _userNameController.text;
+                          user.email = _emailController.text;
+                          user.phoneNumber = _phoneNumberController.text;
+
+                          userProfile.put(
+                            "currentUser",
+                            user,
+                          );
+                          InAppNotification().showNotification(
+                            context: context,
+                            text: "Updated Your Account Data",
+                            color: PlatformTheme.white,
+                            repeat: false,
+                            textColor: PlatformTheme.positive,
+                            icon: "assets/Animations/GreenCheckMark.json",
+                          );
+                        } catch (e) {
+                          String errorMessage =
+                              "SomeThing Went Wrong. Please Try Again";
+                          if (e.toString().contains(
+                              "Unique constraint failed on the fields: (`phoneNumber`)"))
+                            errorMessage = "The given phone number is taken";
+                          else if (e.toString().contains(
+                              "Unique constraint failed on the fields: (`email`)"))
+                            errorMessage = "The given email is taken";
+                          else if (e.toString().contains(
+                              "Unique constraint failed on the fields: (`userName`)"))
+                            errorMessage = "The given UserName is taken";
+
+                          InAppNotification().showNotification(
+                            context: context,
+                            text: errorMessage,
+                            color: PlatformTheme.white,
+                            textColor: PlatformTheme.fourthColor,
+                            icon: "assets/Animations/ErrorInfo.json",
+                          );
+                          print(e);
+                        }
                       }
+                      setState(() {
+                        loading = false;
+                      });
                     },
+                    loading: loading,
                     title: "Save",
                     color: PlatformTheme.textColor1,
                     borderRadiusData: 15,

@@ -1,4 +1,6 @@
+import 'package:azmas/Model/User/index.dart';
 import 'package:graphql/client.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class Config {
   static final headers = {
@@ -10,11 +12,14 @@ class Config {
   );
 
   static final AuthLink _authLink = AuthLink(
+    headerKey: "authorization",
     getToken: () async {
-      final storage = "LocalStorage.instance";
-      return storage;
+      UserModel? _currentUser = Hive.box<UserModel>('users').get("currentUser");
+      if (_currentUser != null) return _currentUser.token;
+      return null;
     },
   );
+
   static Link _link = _authLink.concat(_httpLink);
 
   static GraphQLClient initializeClient() {

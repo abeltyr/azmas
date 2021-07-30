@@ -26,7 +26,8 @@ class BottomNavigatorWidget extends StatelessWidget {
         height: double.infinity,
         child: CupertinoButton(
           onPressed: () {
-            navBarProvider.updateSelectedScreen(value);
+            if (navBarProvider.selectedScreen != value)
+              navBarProvider.updateSelectedScreen(value);
           },
           child: SvgPicture.asset(
             selectedScreen == value ? bold : broken,
@@ -40,8 +41,8 @@ class BottomNavigatorWidget extends StatelessWidget {
 
     return Positioned(
       bottom: 10,
-      left: 20,
-      right: 20,
+      left: 15,
+      right: 15,
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(

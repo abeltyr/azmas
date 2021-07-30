@@ -132,14 +132,14 @@ class CalenderScreen extends StatelessWidget {
                                 groupId: events[index]!.groupId,
                                 location: events[index]!.location,
                                 onClick: () {
-                                  final eventProvider =
-                                      Provider.of<EventSelectedProvider>(
-                                          context,
-                                          listen: false);
-                                  eventProvider.selectEvent(
-                                      eventData: events[index]);
-                                  Navigator.pushNamed(
-                                      context, EventDetailScreen.routeName);
+                                  // final eventProvider =
+                                  //     Provider.of<EventSelectedProvider>(
+                                  //         context,
+                                  //         listen: false);
+                                  // eventProvider.selectEvent(
+                                  //     eventData: events[index]);
+                                  // Navigator.pushNamed(
+                                  //     context, EventDetailScreen.routeName);
                                 },
                               ),
                             ],

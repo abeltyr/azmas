@@ -1,36 +1,60 @@
 import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Model/User/index.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-enum EventCategory {
-  Education,
-  GetTogether,
-  SchoolEvent,
-  Party,
-  Seminars,
-  Fun,
-}
+part 'index.g.dart';
 
+@HiveType(typeId: 4)
 class EventModel {
+  @HiveField(0)
   String id;
-  String title;
-  String description;
-  String image;
-  String dateTime;
+  @HiveField(1)
+  UserModel? user;
+  @HiveField(2)
+  String creatorId;
+  @HiveField(3)
+  GroupModel? group;
+  @HiveField(4)
   String groupId;
-  GroupModal? group;
-  EventCategory category;
+  @HiveField(5)
+  String title;
+  @HiveField(6)
+  String? description;
+  @HiveField(7)
+  String image;
+  @HiveField(8)
+  String category;
+  @HiveField(9)
+  bool horizontal;
+  @HiveField(10)
+  DateTime eventStartDate;
+  @HiveField(11)
+  DateTime eventEndDate;
+  @HiveField(12)
   String location;
-  int? attended;
+  @HiveField(13)
+  double price;
+  @HiveField(14)
+  DateTime createdAt;
+  @HiveField(15)
+  DateTime updatedAt;
 
   EventModel({
     required this.id,
-    required this.title,
-    required this.description,
-    required this.image,
-    required this.dateTime,
-    required this.groupId,
+    required this.user,
+    required this.creatorId,
     required this.group,
+    required this.groupId,
+    required this.title,
+    this.description,
+    required this.image,
     required this.category,
+    this.horizontal = true,
+    required this.eventStartDate,
+    required this.eventEndDate,
     required this.location,
-    this.attended,
+    required this.price,
+    required this.createdAt,
+    required this.updatedAt,
   });
 }

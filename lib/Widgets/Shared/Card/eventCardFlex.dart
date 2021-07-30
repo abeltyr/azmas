@@ -1,5 +1,4 @@
-import 'package:azmas/Db/moorDatabase.dart';
-import 'package:azmas/Providers/group/index.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
@@ -8,23 +7,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class EventCardFlexWidget extends StatelessWidget {
   final String title;
   final String eventImage;
-  final String description;
+  final String? description;
   final String location;
   final String groupId;
+  final GroupModel? group;
   final DateTime eventStartDate;
   final Function onClick;
 
   EventCardFlexWidget({
     required this.title,
     required this.eventImage,
-    required this.description,
+    this.description,
     required this.location,
     required this.groupId,
+    this.group,
     required this.eventStartDate,
     required this.onClick,
   });
@@ -89,7 +89,7 @@ class EventCardFlexWidget extends StatelessWidget {
                       style: GoogleFonts.lora(
                         color: PlatformTheme.secondaryColorLight,
                         fontWeight: FontWeight.w400,
-                        fontSize: description.length >= 55 ? 12 : 14,
+                        fontSize: description!.length >= 55 ? 12 : 14,
                         wordSpacing: 0.1,
                       ),
                     ),
@@ -136,23 +136,11 @@ class EventCardFlexWidget extends StatelessWidget {
                     color: PlatformTheme.primaryColor,
                     size: 5,
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: FutureBuilder(
-                      future: Provider.of<GroupProvider>(context, listen: false)
-                          .getGroup(groupId),
-                      builder: (context, snapshot) {
-                        Group? group = snapshot.data as Group?;
-                        if (group != null && snapshot.hasData)
-                          return GroupIndictor(
-                            title: "${group.title}",
-                            imageUrl: "${group.avatar}",
-                          );
-                        else
-                          return Container();
-                      },
-                    ),
-                  ),
+                  if (group != null)
+                    GroupIndictor(
+                      title: "${group!.title}",
+                      imageUrl: "${group!.avatar}",
+                    )
                 ],
               ),
             ),

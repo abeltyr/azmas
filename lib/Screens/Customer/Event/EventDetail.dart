@@ -1,4 +1,5 @@
 import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Screens/Error/index.dart';
 import 'package:azmas/Utils/theme.dart';
@@ -21,7 +22,7 @@ class EventDetailScreen extends StatelessWidget {
     final totalHeight = MediaQuery.of(context).size.height;
     final eventProvider =
         Provider.of<EventSelectedProvider>(context, listen: false);
-    Event? event = eventProvider.event;
+    EventModel? event = eventProvider.event;
 
     if (event != null)
       return Scaffold(

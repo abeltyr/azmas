@@ -1,5 +1,6 @@
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/interaction/setting.dart';
+import 'package:azmas/Providers/user/profile.dart';
 import 'package:azmas/Screens/Customer/Account/EditProfile/accountSettings.dart';
 import 'package:azmas/Screens/Customer/Account/EditProfile/personalSettings.dart';
 import 'package:azmas/Screens/Customer/Account/EditProfile/securitySettings.dart';
@@ -8,6 +9,7 @@ import 'package:azmas/Screens/Error/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/settingsTab.dart';
 import 'package:azmas/Widgets/Account/topBar.dart';
+import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:azmas/Widgets/Shared/popup/camera.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,10 @@ class SettingScreen extends StatelessWidget {
       builder: (context, box, widget) {
         var boxData = box as Box<UserModel>;
         UserModel? user = boxData.get("currentUser");
-        if (user != null)
+
+        final userProfileProvider =
+            Provider.of<UserProfileProvider>(context, listen: true);
+        if (user != null && user.token != null)
           return Scaffold(
             backgroundColor: PlatformTheme.primaryColor,
             resizeToAvoidBottomInset: false,
@@ -42,11 +47,11 @@ class SettingScreen extends StatelessWidget {
                     if (!currentFocus.hasPrimaryFocus) {
                       currentFocus.unfocus();
                     }
-
-                    showCupertinoModalBottomSheet(
-                      context: context,
-                      builder: (context) => CameraPopup(),
-                    );
+                    if (!userProfileProvider.loading)
+                      showCupertinoModalBottomSheet(
+                        context: context,
+                        builder: (context) => CameraPopup(),
+                      );
                   },
                   child: Stack(
                     children: [
@@ -70,6 +75,29 @@ class SettingScreen extends StatelessWidget {
                           child: LoadedImageView(imageUrl: user.avatar),
                         ),
                       ),
+                      if (userProfileProvider.loading)
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: PlatformTheme.positive.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                color: PlatformTheme.secondaryColor
+                                    .withOpacity(0.15),
+                                spreadRadius: 2.5,
+                                blurRadius: 5,
+                                offset:
+                                    Offset(0, 3), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: AnimationWidget(
+                            assetData: 'assets/Animations/Loader-1.json',
+                            durationData: Duration(milliseconds: 2500),
+                          ),
+                        ),
                       Positioned(
                         bottom: 0,
                         right: 0,

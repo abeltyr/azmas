@@ -1,6 +1,6 @@
-import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/index.dart';
+import 'package:azmas/Utils/inAppNotification.dart';
 import 'package:azmas/Utils/inputTheme.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Account/topBar.dart';
@@ -20,23 +20,29 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool check = false;
   bool btnLoading = false;
-  String countryCode = "ET";
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _phoneNumberController;
+  late TextEditingController _userNameController;
   late TextEditingController _passwordController;
 
   @override
   void initState() {
     super.initState();
-    _phoneNumberController = new TextEditingController(text: "");
+    _userNameController = new TextEditingController(text: "");
     _passwordController = new TextEditingController(text: "");
   }
 
   @override
   void dispose() {
     super.dispose();
-    _phoneNumberController.dispose();
+    _userNameController.dispose();
     _passwordController.dispose();
+  }
+
+  void keyboardDown() {
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus) {
+      currentFocus.unfocus();
+    }
   }
 
   @override
@@ -105,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: ListView(
                         children: [
                           TextFormField(
-                            controller: _phoneNumberController,
+                            controller: _userNameController,
                             keyboardType: TextInputType.multiline,
                             textInputAction: TextInputAction.next,
                             maxLines: 1,
@@ -119,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             cursorColor: PlatformTheme.accentColorDark,
                             decoration: InputTheme().textInputDecoration(
-                              label: "Phone Number, Username",
+                              label: "Email or Username",
                             ),
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -149,9 +155,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'This is a required field';
-                              }
-                              if (value.length < 8) {
-                                return 'The password is to short';
                               }
                               return null;
                             },
@@ -183,33 +186,55 @@ class _LoginScreenState extends State<LoginScreen> {
                           Container(
                             height: 50,
                             child: AzmasButton(
-                              onClick: () {
-                                Navigator.pop(context);
-                                Provider.of<UserProvider>(context,
-                                        listen: false)
-                                    .setupUser(
-                                  UserModel(
-                                    userName: "Abeltyr",
-                                    avatar:
-                                        "https://source.unsplash.com/random",
-                                    fullName: "Abel lamesgen",
-                                    email: "abellamesgen@gmail.com",
-                                    phoneNumber: "+251911223989",
-                                    birthDate: DateTime.parse(
-                                        "1998-07-24 00:00:00.000"),
-                                    createdAt: DateTime.now(),
-                                    updatedAt: DateTime.now(),
-                                    id: "1",
-                                    gender: "Male",
-                                    instagram: "aveltyr",
-                                    twitter: "aveltyr",
-                                    telegram: "aveltyr",
-                                    verified: true,
-                                  ),
-                                );
+                              onClick: () async {
+                                keyboardDown();
+                                setState(() {
+                                  check = true;
+                                });
+                                if (_formKey.currentState!.validate()) {
+                                  setState(() {
+                                    btnLoading = true;
+                                  });
+                                  try {
+                                    await Provider.of<UserProvider>(context,
+                                            listen: false)
+                                        .login(
+                                      password: _passwordController.text,
+                                      userName: _userNameController.text,
+                                    );
+                                    return Navigator.pop(context);
+                                  } catch (e) {
+                                    String errorMessage =
+                                        "SomeThing Went Wrong. Please Try Again";
+                                    if (e.toString() ==
+                                        "The Provided UserName Input Seems Invalid")
+                                      errorMessage =
+                                          "The Provided UserName Input Seems Invalid";
+                                    else if (e.toString() ==
+                                        "The Given Creditors Seems Wrong")
+                                      errorMessage =
+                                          "The Given Creditors Seems Wrong";
+                                    else if (e.toString() ==
+                                        "The Given Password Seems Wrong")
+                                      errorMessage =
+                                          "The Given Password Seems Wrong";
+                                    InAppNotification().showNotification(
+                                        context: context,
+                                        text: errorMessage,
+                                        color: PlatformTheme.white,
+                                        textColor: PlatformTheme.fourthColor,
+                                        icon:
+                                            "assets/Animations/ErrorInfo.json");
+                                    print(e);
+                                  }
+                                }
+                                setState(() {
+                                  btnLoading = false;
+                                });
                               },
                               title: "Login",
                               color: PlatformTheme.textColor1,
+                              loading: btnLoading,
                             ),
                           ),
                         ],

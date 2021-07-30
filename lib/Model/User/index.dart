@@ -5,19 +5,19 @@ part 'index.g.dart';
 @HiveType(typeId: 1)
 class UserModel {
   @HiveField(0)
-  String? id;
+  String id;
   @HiveField(1)
-  String? fullName;
+  String fullName;
   @HiveField(2)
-  String? phoneNumber;
+  String phoneNumber;
   @HiveField(3)
-  String? email;
+  String email;
   @HiveField(4)
   String userName;
   @HiveField(5)
   String? bio;
   @HiveField(6)
-  String? gender;
+  String gender;
   @HiveField(7)
   DateTime? birthDate;
   @HiveField(8)
@@ -35,18 +35,20 @@ class UserModel {
   @HiveField(14)
   bool? activated;
   @HiveField(15)
-  DateTime? createdAt;
+  String? token;
   @HiveField(16)
+  DateTime? createdAt;
+  @HiveField(17)
   DateTime? updatedAt;
 
   UserModel({
-    this.id,
-    this.fullName,
-    this.phoneNumber,
-    this.email,
+    required this.id,
+    required this.fullName,
+    required this.phoneNumber,
+    required this.email,
     required this.userName,
     this.bio,
-    this.gender,
+    required this.gender,
     this.birthDate,
     required this.avatar,
     this.instagram,
@@ -55,6 +57,7 @@ class UserModel {
     this.facebook,
     this.verified = true,
     this.activated = true,
+    this.token,
     this.createdAt,
     this.updatedAt,
   });

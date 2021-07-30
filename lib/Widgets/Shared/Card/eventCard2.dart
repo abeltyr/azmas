@@ -1,4 +1,5 @@
 import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';
@@ -14,9 +15,10 @@ import 'package:provider/provider.dart';
 class HorizontalEventCard extends StatelessWidget {
   final String title;
   final String eventImage;
-  final String description;
+  final String? description;
   final String location;
   final String groupId;
+  final GroupModel? group;
   final DateTime eventStartDate;
   final Function onClick;
   final bool dateType;
@@ -24,11 +26,12 @@ class HorizontalEventCard extends StatelessWidget {
   HorizontalEventCard({
     required this.title,
     required this.eventImage,
-    required this.description,
+    this.description,
     required this.location,
     required this.groupId,
     required this.eventStartDate,
     required this.onClick,
+    this.group,
     this.dateType = true,
   });
 
@@ -163,20 +166,11 @@ class HorizontalEventCard extends StatelessWidget {
                     color: PlatformTheme.primaryColor,
                     size: 5,
                   ),
-                  FutureBuilder(
-                    future: Provider.of<GroupProvider>(context, listen: false)
-                        .getGroup(groupId),
-                    builder: (context, snapshot) {
-                      Group? group = snapshot.data as Group?;
-                      if (group != null && snapshot.hasData)
-                        return GroupIndictor(
-                          title: "${group.title}",
-                          imageUrl: "${group.avatar}",
-                        );
-                      else
-                        return Container();
-                    },
-                  ),
+                  if (group != null)
+                    GroupIndictor(
+                      title: "${group!.title}",
+                      imageUrl: "${group!.avatar}",
+                    )
                 ],
               ),
             ),
@@ -184,7 +178,7 @@ class HorizontalEventCard extends StatelessWidget {
               right: 0,
               child: Container(
                 height: 25,
-                width: !dateType ? 90 : 100,
+                width: !dateType ? 85 : 105,
                 decoration: BoxDecoration(
                   color: PlatformTheme.accentColorDark,
                   borderRadius: BorderRadius.circular(
@@ -195,19 +189,23 @@ class HorizontalEventCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    dateType
-                        ? SvgPicture.asset(
-                            "assets/Icons/Broken/Calendar.svg",
-                            color: PlatformTheme.white,
-                            height: 16,
-                            width: 16,
-                          )
-                        : SvgPicture.asset(
-                            "assets/Icons/Broken/Time.svg",
-                            color: PlatformTheme.white,
-                            height: 16,
-                            width: 16,
-                          ),
+                    Container(
+                      height: 16,
+                      width: 16,
+                      child: dateType
+                          ? SvgPicture.asset(
+                              "assets/Icons/Broken/Calendar.svg",
+                              color: PlatformTheme.white,
+                              height: 16,
+                              width: 16,
+                            )
+                          : SvgPicture.asset(
+                              "assets/Icons/Broken/Time.svg",
+                              color: PlatformTheme.white,
+                              height: 16,
+                              width: 16,
+                            ),
+                    ),
                     SizedBox(
                       width: 7.5,
                     ),

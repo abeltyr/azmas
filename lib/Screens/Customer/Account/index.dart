@@ -14,7 +14,7 @@ class AccountScreen extends StatelessWidget {
       builder: (context, box, widget) {
         var boxData = box as Box<UserModel>;
         UserModel? user = boxData.get("currentUser");
-        if (user != null)
+        if (user != null && user.token != null)
           return UserProfileScreen(user: user);
         else
           return AuthIndex();
