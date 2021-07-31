@@ -22,18 +22,14 @@ class UploadProvider with ChangeNotifier {
       final QueryResult result = await Config.initializeClient().mutate(
         MutationOptions(
           document: gql(Upload.singleUpload),
-          variables: {
-            'file': multipartFile,
-          },
+          variables: {'file': multipartFile, 'directory': "Profile"},
         ),
       );
       if (result.hasException) {
         print("exception");
-        print(result.exception!.graphqlErrors.toString());
-        print(result.exception!.linkException.toString());
-        throw FormatException(result.exception.toString());
+        print(result.exception!);
+        throw (result.exception!.graphqlErrors[0].message.toString());
       } else {
-        print(result.data!["singleUpload"]);
         return result.data!["singleUpload"];
       }
     }

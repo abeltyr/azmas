@@ -1,7 +1,7 @@
 class Upload {
   static String singleUpload = r'''
-    mutation($file: Upload!,$userId:ID) {
-      singleUpload(file: $file, userId:$userId){
+    mutation($file: Upload!, $directory: String) {
+      singleUpload(file: $file, directory: $directory){
         id
         name
         url
@@ -12,8 +12,8 @@ class Upload {
     }
   ''';
   static String multipleUpload = r'''
-    mutation($files: [Upload!]!,$userId:ID) {
-      multipleUpload(files: $files,userId:$userId){
+    mutation($files: [Upload!]!, $directory: String) {
+      multipleUpload(files: $files, directory:$directory){
         id
         name
         url
