@@ -1,6 +1,5 @@
 import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Event/index.dart';
-import 'package:azmas/main.dart';
 import 'package:flutter/foundation.dart';
 
 class CalenderEventProvider with ChangeNotifier {

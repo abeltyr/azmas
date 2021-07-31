@@ -1,4 +1,3 @@
-import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/user/index.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Login/index.dart';
 import 'package:azmas/Screens/Customer/Account/Auth/Signup/part1.dart';

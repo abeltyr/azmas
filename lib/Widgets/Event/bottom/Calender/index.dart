@@ -1,8 +1,6 @@
 import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Providers/calender/getEvent.dart';
 import 'package:azmas/Providers/calender/index.dart';
-import 'package:azmas/Providers/event/selected.dart';
-import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Event/bottom/Calender/top.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';

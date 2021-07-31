@@ -1,14 +1,7 @@
-import 'package:azmas/Db/moorDatabase.dart';
-import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/Shared/groupIndictor.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
-import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class EventCardFlexLoading extends StatelessWidget {

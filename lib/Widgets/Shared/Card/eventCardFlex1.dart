@@ -1,6 +1,4 @@
-import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Group/index.dart';
-import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Shared/groupIndictor.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
@@ -9,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class EventCardFlex1Widget extends StatelessWidget {
   final String title;
