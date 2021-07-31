@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:azmas/Graphql/user/index.dart';
 import 'package:azmas/Model/User/index.dart';
+import 'package:azmas/Utils/networkUrl.dart';
 import 'package:azmas/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:graphql/client.dart';
@@ -240,25 +241,20 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> profileUpdate({
-    required String uploadFileId,
-    required String password,
-  }) async {
-    final QueryResult result = await Config.initializeClient().mutate(
-      MutationOptions(
-        document: gql(User.profileUpdate),
-        variables: {
-          'profileUpdateUploadFileId': uploadFileId,
-        },
-      ),
-    );
-    if (result.hasException) {
-      print(result.exception!);
-      throw (result.exception!.graphqlErrors[0].message.toString());
-    } else if (result.data!["socailDataUpdate"]) {
-      return result.data!["socailDataUpdate"];
+  Future<void> fetchUser() async {
+    if (await NetworkUrl().checkConnection()) {
+      final QueryResult result = await Config.initializeClient().mutate(
+        MutationOptions(
+          document: gql(User.currentUser),
+        ),
+      );
+      if (result.hasException) {
+        print(result.exception!);
+        throw (result.exception!.graphqlErrors[0].message.toString());
+      } else {
+        setupUser(result.data!["currentUser"]);
+      }
     }
-    return false;
   }
 
   void logout() {
