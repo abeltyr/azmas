@@ -4,7 +4,7 @@ import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Screens/Customer/Event/EventDetail.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Event/countDown.dart';
-import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';
+import 'package:azmas/Widgets/Shared/Card/horizontalEventCard.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCardFlex.dart';
 import 'package:azmas/Widgets/Shared/Card/eventCardFlex1.dart';
 import 'package:azmas/Widgets/Shared/Loading/eventCardLoading.dart';

@@ -1,4 +1,3 @@
-import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Model/GroupMember/index.dart';
@@ -48,8 +47,6 @@ void main() async {
   Hive.registerAdapter(TicketModelAdapter());
   await Hive.openBox<UserModel>('users');
   await Hive.openBox<SettingModel>('settings');
-  await Hive.openBox<List<Group>>('groups');
-  await Hive.openBox<GroupMember>('groupMembers');
   await Hive.openBox<List<EventModel>>('events');
   await Hive.openBox<List<TicketModel>>('tickets');
   runApp(MyApp());

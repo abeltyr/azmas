@@ -14,24 +14,6 @@ PODS:
     - MTBBarcodeScanner
   - shared_preferences (0.0.1):
     - Flutter
-  - sqlite3 (3.35.5):
-    - sqlite3/common (= 3.35.5)
-  - sqlite3/common (3.35.5)
-  - sqlite3/fts5 (3.35.5):
-    - sqlite3/common
-  - sqlite3/json1 (3.35.5):
-    - sqlite3/common
-  - sqlite3/perf-threadsafe (3.35.5):
-    - sqlite3/common
-  - sqlite3/rtree (3.35.5):
-    - sqlite3/common
-  - sqlite3_flutter_libs (0.0.1):
-    - Flutter
-    - sqlite3 (~> 3.35.4)
-    - sqlite3/fts5
-    - sqlite3/json1
-    - sqlite3/perf-threadsafe
-    - sqlite3/rtree
   - url_launcher (0.0.1):
     - Flutter
 
@@ -43,13 +25,11 @@ DEPENDENCIES:
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
-  - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 SPEC REPOS:
   trunk:
     - MTBBarcodeScanner
-    - sqlite3
 
 EXTERNAL SOURCES:
   device_info_plus:
@@ -66,8 +46,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/qr_code_scanner/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
-  sqlite3_flutter_libs:
-    :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
 
@@ -80,8 +58,6 @@ SPEC CHECKSUMS:
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
-  sqlite3: 75da32fd4e3574f6c38566a9f0114cfe792c8db5
-  sqlite3_flutter_libs: aedb7b6ba191f9a052dcef77691cf5d37437431c
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c

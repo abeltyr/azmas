@@ -1,5 +1,5 @@
-import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Event/index.dart';
+import 'package:azmas/Model/Group/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Utils/theme.dart';
@@ -64,7 +64,7 @@ class EventTopBar extends StatelessWidget {
                     future: Provider.of<GroupProvider>(context, listen: false)
                         .getGroup(event!.groupId),
                     builder: (context, snapshot) {
-                      Group? group = snapshot.data as Group?;
+                      GroupModel? group = snapshot.data as GroupModel?;
                       if (group != null && snapshot.hasData)
                         return Container(
                           color: PlatformTheme.primaryColorTransparent,

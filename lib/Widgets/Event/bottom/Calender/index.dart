@@ -1,9 +1,9 @@
-import 'package:azmas/Db/moorDatabase.dart';
+import 'package:azmas/Model/Event/index.dart';
 import 'package:azmas/Providers/calender/getEvent.dart';
 import 'package:azmas/Providers/calender/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Event/bottom/Calender/top.dart';
-import 'package:azmas/Widgets/Shared/Card/eventCard2.dart';
+import 'package:azmas/Widgets/Shared/Card/horizontalEventCard.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
 import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class CalenderScreen extends StatelessWidget {
         Provider.of<CalenderProvider>(context, listen: true);
     final double heightData = MediaQuery.of(context).size.height - 100;
     List<int> dates = [];
-    List<Event?> events = [];
+    List<EventModel?> events = [];
     return AnimatedContainer(
       duration: Duration(
         milliseconds: 10000,
@@ -46,7 +46,7 @@ class CalenderScreen extends StatelessWidget {
               ),
               builder: (ctx, snapData) {
                 if (snapData.hasData)
-                  events = [...snapData.data as List<Event?>, null];
+                  events = [...snapData.data as List<EventModel?>, null];
 
                 if (snapData.connectionState == ConnectionState.done) {
                   if (events.length <= 1)

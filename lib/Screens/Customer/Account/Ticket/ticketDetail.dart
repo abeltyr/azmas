@@ -1,4 +1,4 @@
-import 'package:azmas/Db/moorDatabase.dart';
+
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/EventDetail/date.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
@@ -11,36 +11,8 @@ import 'package:google_fonts/google_fonts.dart';
 class TicketDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ticket = Ticket(
-      id: "13",
-      price: 0,
-      eventStartDate: DateTime.parse("2021-08-21 08:30"),
-      eventEndDate: DateTime.parse("2021-09-22 12:30"),
-      eventId: "13",
-      groupId: "3",
-      used: false,
-      userId: "2",
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-    );
-    final event = Event(
-      id: "13",
-      category: "Fun Event part 1",
-      horizontal: false,
-      price: 0,
-      title: "Water Day",
-      description:
-          "A 4 day vacation to Kuriftu where we gone party have fund and get to know people in your batch. make memories that last a life time.",
-      eventStartDate: DateTime.parse("2021-08-21 08:30"),
-      eventEndDate: DateTime.parse("2021-09-22 12:30"),
-      image:
-          "https://images.unsplash.com/photo-1498747946579-bde604cb8f44?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1789&q=80",
-      groupId: "2",
-      location: "Some Where in AASTU ",
-      attendees: 0,
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-    );
+    var ticket;
+    var event;
     Color textColor = PlatformTheme.textColor1;
     Color cardColor = PlatformTheme.white;
     //TODO: change this to the event end Date

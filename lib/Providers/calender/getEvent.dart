@@ -1,4 +1,3 @@
-import 'package:azmas/Db/moorDatabase.dart';
 import 'package:azmas/Model/Event/index.dart';
 import 'package:flutter/foundation.dart';
 
@@ -9,7 +8,7 @@ class CalenderEventProvider with ChangeNotifier {
     return _days;
   }
 
-  Future<List<Event>> getDays({
+  Future<List<EventModel>> getDays({
     required String month,
     required String year,
   }) async {
