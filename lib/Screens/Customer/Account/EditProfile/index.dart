@@ -61,7 +61,7 @@ class SettingScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: PlatformTheme.secondaryColor
+                              color: PlatformTheme.primaryColorDark
                                   .withOpacity(0.15),
                               spreadRadius: 2.5,
                               blurRadius: 5,
@@ -80,12 +80,13 @@ class SettingScreen extends StatelessWidget {
                           height: 120,
                           width: 120,
                           decoration: BoxDecoration(
-                            color: PlatformTheme.positive.withOpacity(0.3),
+                            color:
+                                PlatformTheme.primaryColorDark.withOpacity(0.3),
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: [
                               BoxShadow(
-                                color: PlatformTheme.secondaryColor
-                                    .withOpacity(0.15),
+                                color: PlatformTheme.secondaryColorTransparent
+                                    .withOpacity(0.5),
                                 spreadRadius: 2.5,
                                 blurRadius: 5,
                                 offset:

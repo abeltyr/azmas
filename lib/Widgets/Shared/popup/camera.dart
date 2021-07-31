@@ -30,14 +30,12 @@ class CameraPopup extends StatelessWidget {
     await userProfileProvider.profileUpdate(uploadFileId: file["id"]);
     final directory = await getApplicationDocumentsDirectory();
     final fileDirectory = directory.path;
-    String filePath =
-        "$fileDirectory/${slugify('Image-${file["url"]}').toString() + "$ext"}";
-    await photo.saveTo(filePath);
+
     var user = userProfile.get("currentUser");
     String deleteFilePath =
         "$fileDirectory/${slugify('Image-${user!.avatar}').toString() + "$ext"}";
     user.avatar = file["url"];
-    userProfile.put(
+    await userProfile.put(
       "currentUser",
       user,
     );

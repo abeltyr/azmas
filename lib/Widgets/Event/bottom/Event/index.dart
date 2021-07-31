@@ -25,6 +25,9 @@ class _EventListsState extends State<EventLists> {
   List<EventModel> events = [];
   double height = 0;
   bool loading = true;
+  bool error = true;
+  bool eventFetched = false;
+  bool loadmore = false;
 
   RefreshController _refreshController = RefreshController(
     initialRefresh: true,
@@ -44,7 +47,10 @@ class _EventListsState extends State<EventLists> {
 
   void _onRefresh() async {
     try {
-      print("double here 1");
+      if (error)
+        setState(() {
+          loading = true;
+        });
       await Future.delayed(Duration(milliseconds: 2000));
       final eventsData =
           await Provider.of<EventProvider>(context, listen: false).fetchEvent(
@@ -58,16 +64,22 @@ class _EventListsState extends State<EventLists> {
           height = height + 163.5;
         else
           height = height + 417.5;
-        print("height, $height");
       }
       if (mounted)
         setState(() {
-          events = events;
+          eventFetched = true;
           loading = false;
+          error = false;
+          loadmore = true;
         });
       _refreshController.refreshCompleted();
     } catch (e) {
       _refreshController.refreshFailed();
+      setState(() {
+        events = [];
+        error = true;
+        loading = false;
+      });
     }
   }
 
@@ -90,7 +102,7 @@ class _EventListsState extends State<EventLists> {
       }
       if (mounted)
         setState(() {
-          events = events;
+          loadmore = eventsData.length == 0 ? false : true;
         });
       _refreshController.loadComplete();
     } catch (e) {
@@ -109,7 +121,7 @@ class _EventListsState extends State<EventLists> {
       ),
       child: SmartRefresher(
         enablePullDown: true,
-        enablePullUp: true,
+        enablePullUp: loadmore,
         header: WaterDropHeader(
           completeDuration: Duration(milliseconds: 1500),
           complete: Container(
@@ -170,7 +182,7 @@ class _EventListsState extends State<EventLists> {
         child: ListView(
           children: [
             EventCountDown(),
-            if (events.length == 0 && !loading)
+            if ((events.length == 0 && eventFetched) || (!loading && error))
               Container(
                 alignment: Alignment.topCenter,
                 padding: EdgeInsets.symmetric(horizontal: 15),
@@ -192,9 +204,9 @@ class _EventListsState extends State<EventLists> {
                   ],
                 ),
               )
-            else if (events.length == 0 && loading)
+            else if (loading)
               Container(
-                height: 520,
+                height: 850,
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
                   children: [
@@ -202,6 +214,7 @@ class _EventListsState extends State<EventLists> {
                     SizedBox(
                       height: 15,
                     ),
+                    Container(height: 330, child: EventCardFlexLoading()),
                     Container(height: 330, child: EventCardFlexLoading()),
                   ],
                 ),
