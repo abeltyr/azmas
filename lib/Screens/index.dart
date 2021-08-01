@@ -1,5 +1,6 @@
 import 'package:azmas/Model/Settings/index.dart';
-import 'package:azmas/Providers/interaction/navbar.dart';
+import 'package:azmas/Providers/navbar/index.dart';
+import 'package:azmas/Providers/navbar/navbar.dart';
 import 'package:azmas/Screens/Customer/Account/index.dart';
 import 'package:azmas/Screens/Customer/Community/index.dart';
 import 'package:azmas/Screens/Customer/Event/index.dart';
@@ -41,6 +42,8 @@ class _IndexScreenState extends State<IndexScreen> {
   @override
   Widget build(BuildContext context) {
     final navBarProvide = Provider.of<NavBarProvider>(context, listen: true);
+    final navBarDataProvide =
+        Provider.of<NavBarDataProvider>(context, listen: true);
     if (navBarProvide.checkIntro) settings = hiveSettings.get("userSettings");
 
     if (settings != null && settings!.intro) {
@@ -54,11 +57,8 @@ class _IndexScreenState extends State<IndexScreen> {
           children: [
             IndexedStack(
               index: navBarProvide.selectedScreen,
-              children: [
-                CommunityScreen(),
-                EventScreen(),
-                AccountScreen(),
-              ],
+              children:
+                  navBarDataProvide.navBar.map((data) => data.screen).toList(),
             ),
             BottomNavigatorWidget(
               selectedScreen: navBarProvide.selectedScreen,

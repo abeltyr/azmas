@@ -13,7 +13,8 @@ import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Providers/images/index.dart';
 import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Providers/interaction/index.dart';
-import 'package:azmas/Providers/interaction/navbar.dart';
+import 'package:azmas/Providers/navbar/index.dart';
+import 'package:azmas/Providers/navbar/navbar.dart';
 import 'package:azmas/Providers/interaction/qrScan.dart';
 import 'package:azmas/Providers/interaction/setting.dart';
 import 'package:azmas/Providers/lang/index.dart';
@@ -71,6 +72,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: NavBarProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: NavBarDataProvider(),
         ),
         ChangeNotifierProvider.value(
           value: InteractionProvider(),

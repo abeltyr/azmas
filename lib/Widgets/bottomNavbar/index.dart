@@ -1,4 +1,5 @@
-import 'package:azmas/Providers/interaction/navbar.dart';
+import 'package:azmas/Providers/navbar/index.dart';
+import 'package:azmas/Providers/navbar/navbar.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,13 @@ import 'package:provider/provider.dart';
 class BottomNavigatorWidget extends StatelessWidget {
   final int selectedScreen;
   const BottomNavigatorWidget({required this.selectedScreen});
-
   @override
   Widget build(BuildContext context) {
-    double widthData = (MediaQuery.of(context).size.width - 40) / 2;
+    final navBarDataProvider =
+        Provider.of<NavBarDataProvider>(context, listen: false);
+
+    double widthData = (MediaQuery.of(context).size.width - 40) /
+        navBarDataProvider.navBar.length;
     final navBarProvider = Provider.of<NavBarProvider>(context, listen: false);
     Widget tab({
       required String bold,
@@ -40,11 +44,11 @@ class BottomNavigatorWidget extends StatelessWidget {
     }
 
     return Positioned(
-      bottom: 10,
+      bottom: 12.5,
       left: 15,
       right: 15,
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width - 30,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           color: PlatformTheme.white,
@@ -58,27 +62,16 @@ class BottomNavigatorWidget extends StatelessWidget {
           ],
         ),
         height: 65,
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            // tab(
-            //   bold: "assets/Icons/Bold/Home.svg",
-            //   broken: "assets/Icons/Broken/Home.svg",
-            //   onClick: () {
-            //     navBarProvider.updateSelectedScreen(0);
-            //   },
-            // ),
-            tab(
-              bold: "assets/Icons/Bold/Calendar.svg",
-              broken: "assets/Icons/Broken/Calendar.svg",
-              value: 1,
-            ),
-            tab(
-              bold: "assets/Icons/Bold/Profile.svg",
-              broken: "assets/Icons/Broken/Profile.svg",
-              value: 2,
-            ),
-          ],
+        child: ListView.builder(
+          padding: EdgeInsets.zero,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: navBarDataProvider.navBar.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (ctx, index) => tab(
+            bold: navBarDataProvider.navBar[index].bold,
+            broken: navBarDataProvider.navBar[index].broken,
+            value: index,
+          ),
         ),
       ),
     );

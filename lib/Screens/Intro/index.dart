@@ -1,5 +1,5 @@
 import 'package:azmas/Model/Settings/index.dart';
-import 'package:azmas/Providers/interaction/navbar.dart';
+import 'package:azmas/Providers/navbar/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
