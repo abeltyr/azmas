@@ -1,15 +1,15 @@
 import 'package:azmas/Model/Event/index.dart';
-import 'package:azmas/Model/Group/index.dart';
-import 'package:azmas/Model/GroupMember/index.dart';
+import 'package:azmas/Model/Community/index.dart';
+import 'package:azmas/Model/CommunityMember/index.dart';
 import 'package:azmas/Model/Settings/index.dart';
 import 'package:azmas/Model/Ticket/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:azmas/Providers/calender/getEvent.dart';
 import 'package:azmas/Providers/calender/index.dart';
+import 'package:azmas/Providers/community/index.dart';
 import 'package:azmas/Providers/countDown/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
-import 'package:azmas/Providers/group/index.dart';
 import 'package:azmas/Providers/images/index.dart';
 import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Providers/interaction/index.dart';
@@ -42,8 +42,8 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(SettingModelAdapter());
-  Hive.registerAdapter(GroupModelAdapter());
-  Hive.registerAdapter(GroupMemberModelAdapter());
+  Hive.registerAdapter(CommunityModelAdapter());
+  Hive.registerAdapter(CommunityMemberModelAdapter());
   Hive.registerAdapter(EventModelAdapter());
   Hive.registerAdapter(TicketModelAdapter());
   await Hive.openBox<UserModel>('users');
@@ -104,7 +104,7 @@ class MyApp extends StatelessWidget {
           value: EventProvider(),
         ),
         ChangeNotifierProvider.value(
-          value: GroupProvider(),
+          value: CommunityProvider(),
         ),
         ChangeNotifierProvider.value(
           value: CalenderEventProvider(),

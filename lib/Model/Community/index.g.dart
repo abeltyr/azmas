@@ -6,17 +6,17 @@ part of 'index.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class GroupModelAdapter extends TypeAdapter<GroupModel> {
+class CommunityModelAdapter extends TypeAdapter<CommunityModel> {
   @override
   final int typeId = 2;
 
   @override
-  GroupModel read(BinaryReader reader) {
+  CommunityModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return GroupModel(
+    return CommunityModel(
       id: fields[0] as String,
       owner: fields[1] as UserModel?,
       ownerId: fields[2] as String,
@@ -34,7 +34,7 @@ class GroupModelAdapter extends TypeAdapter<GroupModel> {
   }
 
   @override
-  void write(BinaryWriter writer, GroupModel obj) {
+  void write(BinaryWriter writer, CommunityModel obj) {
     writer
       ..writeByte(13)
       ..writeByte(0)
@@ -71,7 +71,7 @@ class GroupModelAdapter extends TypeAdapter<GroupModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is GroupModelAdapter &&
+      other is CommunityModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

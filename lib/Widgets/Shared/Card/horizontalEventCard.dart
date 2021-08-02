@@ -1,6 +1,6 @@
-import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Model/Community/index.dart';
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/Shared/groupIndictor.dart';
+import 'package:azmas/Widgets/Shared/communityIndictor.dart';
 import 'package:azmas/Widgets/Shared/brokenLine.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,8 +14,8 @@ class HorizontalEventCard extends StatelessWidget {
   final String eventImage;
   final String? description;
   final String location;
-  final String groupId;
-  final GroupModel? group;
+  final String communityId;
+  final CommunityModel? community;
   final DateTime eventStartDate;
   final Function onClick;
   final bool dateType;
@@ -25,10 +25,10 @@ class HorizontalEventCard extends StatelessWidget {
     required this.eventImage,
     this.description,
     required this.location,
-    required this.groupId,
+    required this.communityId,
     required this.eventStartDate,
     required this.onClick,
-    this.group,
+    this.community,
     this.dateType = true,
   });
 
@@ -163,10 +163,10 @@ class HorizontalEventCard extends StatelessWidget {
                     color: PlatformTheme.primaryColor,
                     size: 5,
                   ),
-                  if (group != null)
+                  if (community != null)
                     GroupIndictor(
-                      title: "${group!.title}",
-                      imageUrl: "${group!.avatar}",
+                      title: "${community!.title}",
+                      imageUrl: "${community!.avatar}",
                     )
                 ],
               ),

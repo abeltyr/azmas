@@ -1,5 +1,5 @@
 import 'package:azmas/Model/Event/index.dart';
-import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Model/Community/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -14,9 +14,9 @@ class TicketModel {
   @HiveField(2)
   String userId;
   @HiveField(3)
-  GroupModel group;
+  CommunityModel community;
   @HiveField(4)
-  String groupId;
+  String communityId;
   @HiveField(5)
   EventModel event;
   @HiveField(6)
@@ -38,8 +38,8 @@ class TicketModel {
     required this.id,
     required this.user,
     required this.userId,
-    required this.group,
-    required this.groupId,
+    required this.community,
+    required this.communityId,
     required this.event,
     required this.eventId,
     required this.eventStartDate,

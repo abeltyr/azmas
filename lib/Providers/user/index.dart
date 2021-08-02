@@ -112,7 +112,7 @@ class UserProvider with ChangeNotifier {
       phoneNumber: res["phoneNumber"],
       email: res["email"],
       userName: res["userName"],
-      avatar: res["avatar"]["url"],
+      avatar: res["avatar"]!["url"],
       birthDate: DateTime.parse(res["birthDate"]),
       instagram: res["instagram"],
       facebook: res["facebook"],
@@ -250,7 +250,7 @@ class UserProvider with ChangeNotifier {
       );
       if (result.hasException) {
         print(result.exception!);
-        throw (result.exception!.graphqlErrors[0].message.toString());
+        userProfile.delete("currentUser");
       } else {
         setupUser(result.data!["currentUser"]);
       }

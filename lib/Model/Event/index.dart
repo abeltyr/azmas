@@ -1,4 +1,4 @@
-import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Model/Community/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -13,9 +13,9 @@ class EventModel {
   @HiveField(2)
   String creatorId;
   @HiveField(3)
-  GroupModel? group;
+  CommunityModel? community;
   @HiveField(4)
-  String groupId;
+  String communityId;
   @HiveField(5)
   String title;
   @HiveField(6)
@@ -43,8 +43,8 @@ class EventModel {
     required this.id,
     required this.user,
     required this.creatorId,
-    required this.group,
-    required this.groupId,
+    required this.community,
+    required this.communityId,
     required this.title,
     this.description,
     required this.image,

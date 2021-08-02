@@ -38,7 +38,7 @@ class GroupButton extends StatelessWidget {
               width: 30,
               child: LoadedImageView(
                 fitData: BoxFit.fill,
-                imageUrl: event!.group!.avatar,
+                imageUrl: event!.community!.avatar,
               ),
             ),
           ),

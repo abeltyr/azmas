@@ -4,10 +4,10 @@ class Event {
       event(id: $eventId) {
         id
         creatorId
-        groupId
-        group {
+        communityId
+        community {
           id
-          groupName
+          communityName
           ownerId
           title
           description
@@ -38,10 +38,10 @@ class Event {
       events(filter: $eventsFilter) {
         id
         creatorId
-        groupId
-        group {
+        communityId
+        community {
           id
-          groupName
+          communityName
           ownerId
           title
           description
@@ -72,7 +72,7 @@ class Event {
       createEvent(data: $createEventData) {
         id
         creatorId
-        groupId
+        communityId
         title
         description
         horizontal
@@ -93,7 +93,7 @@ class Event {
       updateEvent(id: $updateEventId, data: $updateEventData) {
         id
         creatorId
-        groupId
+        communityId
         title
         description
         horizontal

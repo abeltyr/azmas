@@ -6,22 +6,22 @@ part of 'index.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class GroupMemberModelAdapter extends TypeAdapter<GroupMemberModel> {
+class CommunityMemberModelAdapter extends TypeAdapter<CommunityMemberModel> {
   @override
   final int typeId = 3;
 
   @override
-  GroupMemberModel read(BinaryReader reader) {
+  CommunityMemberModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return GroupMemberModel(
+    return CommunityMemberModel(
       id: fields[0] as String,
       user: fields[1] as UserModel,
       userId: fields[2] as String,
-      group: fields[3] as GroupModel,
-      groupId: fields[4] as String,
+      community: fields[3] as CommunityModel,
+      communityId: fields[4] as String,
       banned: fields[5] as bool,
       admin: fields[6] as bool,
       createdAt: fields[7] as DateTime,
@@ -30,7 +30,7 @@ class GroupMemberModelAdapter extends TypeAdapter<GroupMemberModel> {
   }
 
   @override
-  void write(BinaryWriter writer, GroupMemberModel obj) {
+  void write(BinaryWriter writer, CommunityMemberModel obj) {
     writer
       ..writeByte(9)
       ..writeByte(0)
@@ -40,9 +40,9 @@ class GroupMemberModelAdapter extends TypeAdapter<GroupMemberModel> {
       ..writeByte(2)
       ..write(obj.userId)
       ..writeByte(3)
-      ..write(obj.group)
+      ..write(obj.community)
       ..writeByte(4)
-      ..write(obj.groupId)
+      ..write(obj.communityId)
       ..writeByte(5)
       ..write(obj.banned)
       ..writeByte(6)
@@ -59,7 +59,7 @@ class GroupMemberModelAdapter extends TypeAdapter<GroupMemberModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is GroupMemberModelAdapter &&
+      other is CommunityMemberModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

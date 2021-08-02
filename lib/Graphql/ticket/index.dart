@@ -4,7 +4,7 @@ class Ticket {
       ticket(id: $ticketId) {
         id
         userId
-        groupId
+        communityId
         eventId
         price
         used
@@ -19,7 +19,7 @@ class Ticket {
       tickets(filter: $ticketsFilter, eventId: $ticketsEventId) {
         id
         userId
-        groupId
+        communityId
         eventId
         price
         used
@@ -34,7 +34,7 @@ class Ticket {
       createTicket(data: $createTicketData) {
         id
         userId
-        groupId
+        communityId
         eventId
         price
         used
@@ -49,7 +49,7 @@ class Ticket {
       updateTicket(id: $updateTicketId, data: $updateTicketData) {
         id
         userId
-        groupId
+        communityId
         eventId
         price
         used

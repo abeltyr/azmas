@@ -20,8 +20,8 @@ class TicketModelAdapter extends TypeAdapter<TicketModel> {
       id: fields[0] as String,
       user: fields[1] as UserModel,
       userId: fields[2] as String,
-      group: fields[3] as GroupModel,
-      groupId: fields[4] as String,
+      community: fields[3] as CommunityModel,
+      communityId: fields[4] as String,
       event: fields[5] as EventModel,
       eventId: fields[6] as String,
       eventStartDate: fields[7] as DateTime,
@@ -44,9 +44,9 @@ class TicketModelAdapter extends TypeAdapter<TicketModel> {
       ..writeByte(2)
       ..write(obj.userId)
       ..writeByte(3)
-      ..write(obj.group)
+      ..write(obj.community)
       ..writeByte(4)
-      ..write(obj.groupId)
+      ..write(obj.communityId)
       ..writeByte(5)
       ..write(obj.event)
       ..writeByte(6)

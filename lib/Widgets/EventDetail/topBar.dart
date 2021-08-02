@@ -1,7 +1,7 @@
 import 'package:azmas/Model/Event/index.dart';
-import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Model/Community/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
-import 'package:azmas/Providers/group/index.dart';
+import 'package:azmas/Providers/community/index.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/cupertino.dart';
@@ -61,18 +61,20 @@ class EventTopBar extends StatelessWidget {
                   ),
                 ),
                 child: FutureBuilder(
-                    future: Provider.of<GroupProvider>(context, listen: false)
-                        .getGroup(event!.groupId),
+                    future:
+                        Provider.of<CommunityProvider>(context, listen: false)
+                            .getCommunity(event!.communityId),
                     builder: (context, snapshot) {
-                      GroupModel? group = snapshot.data as GroupModel?;
-                      if (group != null && snapshot.hasData)
+                      CommunityModel? community =
+                          snapshot.data as CommunityModel?;
+                      if (community != null && snapshot.hasData)
                         return Container(
                           color: PlatformTheme.primaryColorTransparent,
                           height: 30,
                           width: 30,
                           child: LoadedImageView(
                             fitData: BoxFit.fill,
-                            imageUrl: group.avatar,
+                            imageUrl: community.avatar,
                           ),
                         );
                       else

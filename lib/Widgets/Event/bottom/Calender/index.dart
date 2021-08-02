@@ -127,7 +127,7 @@ class CalenderScreen extends StatelessWidget {
                                 description: events[index]!.description,
                                 eventStartDate: events[index]!.eventStartDate,
                                 eventImage: events[index]!.image,
-                                groupId: events[index]!.groupId,
+                                communityId: events[index]!.communityId,
                                 location: events[index]!.location,
                                 onClick: () {
                                   // final eventProvider =

@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'index.g.dart';
 
 @HiveType(typeId: 2)
-class GroupModel {
+class CommunityModel {
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -32,7 +32,7 @@ class GroupModel {
   @HiveField(12)
   DateTime updatedAt;
 
-  GroupModel({
+  CommunityModel({
     required this.id,
     this.owner,
     required this.ownerId,

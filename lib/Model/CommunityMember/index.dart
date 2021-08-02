@@ -1,11 +1,11 @@
-import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Model/Community/index.dart';
 import 'package:azmas/Model/User/index.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'index.g.dart';
 
 @HiveType(typeId: 3)
-class GroupMemberModel {
+class CommunityMemberModel {
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -13,9 +13,9 @@ class GroupMemberModel {
   @HiveField(2)
   String userId;
   @HiveField(3)
-  GroupModel group;
+  CommunityModel community;
   @HiveField(4)
-  String groupId;
+  String communityId;
   @HiveField(5)
   bool banned;
   @HiveField(6)
@@ -25,12 +25,12 @@ class GroupMemberModel {
   @HiveField(8)
   DateTime updatedAt;
 
-  GroupMemberModel({
+  CommunityMemberModel({
     required this.id,
     required this.user,
     required this.userId,
-    required this.group,
-    required this.groupId,
+    required this.community,
+    required this.communityId,
     this.banned = false,
     this.admin = false,
     required this.createdAt,

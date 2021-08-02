@@ -233,11 +233,11 @@ class _EventListsState extends State<EventLists> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: HorizontalEventCard(
                           title: events[index].title,
-                          group: events[index].group,
+                          community: events[index].community,
                           description: events[index].description,
                           eventStartDate: events[index].eventStartDate,
                           eventImage: events[index].image,
-                          groupId: events[index].groupId,
+                          communityId: events[index].communityId,
                           location: events[index].location,
                           onClick: () {
                             final eventProvider =
@@ -254,12 +254,12 @@ class _EventListsState extends State<EventLists> {
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: EventCardFlexWidget(
-                          group: events[index].group,
+                          community: events[index].community,
                           title: events[index].title,
                           description: events[index].description,
                           eventStartDate: events[index].eventStartDate,
                           eventImage: events[index].image,
-                          groupId: events[index].groupId,
+                          communityId: events[index].communityId,
                           location: events[index].location,
                           onClick: () {
                             final eventProvider =
@@ -276,12 +276,12 @@ class _EventListsState extends State<EventLists> {
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: EventCardFlex1Widget(
-                          group: events[index].group,
+                          community: events[index].community,
                           title: events[index].title,
                           description: events[index].description,
                           eventStartDate: events[index].eventStartDate,
                           eventImage: events[index].image,
-                          groupId: events[index].groupId,
+                          communityId: events[index].communityId,
                           location: events[index].location,
                           onClick: () {
                             final eventProvider =

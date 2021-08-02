@@ -20,8 +20,8 @@ class EventModelAdapter extends TypeAdapter<EventModel> {
       id: fields[0] as String,
       user: fields[1] as UserModel?,
       creatorId: fields[2] as String,
-      group: fields[3] as GroupModel?,
-      groupId: fields[4] as String,
+      community: fields[3] as CommunityModel?,
+      communityId: fields[4] as String,
       title: fields[5] as String,
       description: fields[6] as String?,
       image: fields[7] as String,
@@ -47,9 +47,9 @@ class EventModelAdapter extends TypeAdapter<EventModel> {
       ..writeByte(2)
       ..write(obj.creatorId)
       ..writeByte(3)
-      ..write(obj.group)
+      ..write(obj.community)
       ..writeByte(4)
-      ..write(obj.groupId)
+      ..write(obj.communityId)
       ..writeByte(5)
       ..write(obj.title)
       ..writeByte(6)

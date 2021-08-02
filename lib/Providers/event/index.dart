@@ -1,6 +1,6 @@
 import 'package:azmas/Graphql/event/index.dart';
 import 'package:azmas/Model/Event/index.dart';
-import 'package:azmas/Model/Group/index.dart';
+import 'package:azmas/Model/Community/index.dart';
 import 'package:azmas/client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -53,24 +53,24 @@ class EventProvider with ChangeNotifier {
             eventEndDate: DateTime.parse(data["eventEndDate"]),
             price: 100.00,
             // double.parse(data["price"]),
-            group: GroupModel(
-              id: data["group"]!["id"],
+            community: CommunityModel(
+              id: data["community"]!["id"],
               avatar:
                   "https://images.unsplash.com/photo-1477414956199-7dafc86a4f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
-              // data["group"]!["avatar"],
-              background: data["group"]!["background"],
-              category: data["group"]!["category"],
-              description: data["group"]!["description"],
-              title: data["group"]!["title"],
-              activated: data["group"]!["activated"],
-              public: data["group"]!["public"],
-              ownerId: data["group"]!["ownerId"],
-              verified: data["group"]!["verified"],
-              // owner: data["group"]!["owner"],
-              createdAt: DateTime.parse(data["group"]!["createdAt"]),
-              updatedAt: DateTime.parse(data["group"]!["updatedAt"]),
+              // data["community"]!["avatar"],
+              background: data["community"]!["background"],
+              category: data["community"]!["category"],
+              description: data["community"]!["description"],
+              title: data["community"]!["title"],
+              activated: data["community"]!["activated"],
+              public: data["community"]!["public"],
+              ownerId: data["community"]!["ownerId"],
+              verified: data["community"]!["verified"],
+              // owner: data["community"]!["owner"],
+              createdAt: DateTime.parse(data["community"]!["createdAt"]),
+              updatedAt: DateTime.parse(data["community"]!["updatedAt"]),
             ),
-            groupId: data["groupId"],
+            communityId: data["communityId"],
             user: data["user"],
             image:
                 "https://images.unsplash.com/photo-1477414956199-7dafc86a4f1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
