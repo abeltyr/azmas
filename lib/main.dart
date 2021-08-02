@@ -11,6 +11,7 @@ import 'package:azmas/Providers/countDown/index.dart';
 import 'package:azmas/Providers/event/index.dart';
 import 'package:azmas/Providers/event/selected.dart';
 import 'package:azmas/Providers/images/index.dart';
+import 'package:azmas/Providers/interaction/communityScreen.dart';
 import 'package:azmas/Providers/interaction/eventScreen.dart';
 import 'package:azmas/Providers/interaction/index.dart';
 import 'package:azmas/Providers/navbar/index.dart';
@@ -120,6 +121,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: UserProfileProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: CommunityInteractionProvider(),
         ),
       ],
       child: Consumer<LanguageProvider>(

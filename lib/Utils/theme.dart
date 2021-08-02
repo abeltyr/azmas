@@ -17,6 +17,10 @@ class PlatformTheme {
   static const Color accentColorLight = Color(0xff37393B);
   static const Color accentColorDark = Color(0xff33403C);
 
+  static const Color darkPrimaryColor = Color(0xFF2E2F38);
+  static const Color darkPrimaryColorLight = Color(0xFF8D8D9D);
+  static const Color darkPrimaryColorDark = Color(0xFF5C5D6C);
+
   static const Color thirdColor = Color(0xFF272938);
   static const Color thirdColorTransparent = Color(0x55272938);
 
@@ -36,9 +40,9 @@ class PlatformTheme {
 class DarkerPlatformTheme {
   static const Color white = Color(0xFFFFFFFF);
 
-  static const Color primaryColor = Color(0xFF0A0C10);
-  static const Color primaryColorLight = Color(0xFFFEFEFE);
-  static const Color primaryColorDark = Color(0xFFF6F5F8);
+  static const Color primaryColor = Color(0xFF2E2F38);
+  static const Color primaryColorLight = Color(0xFF8D8D9D);
+  static const Color primaryColorDark = Color(0xFF5C5D6C);
 
   static const Color darkerColor = Color(0xFFEEF0F4);
 

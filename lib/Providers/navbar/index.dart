@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class NavBarProvider with ChangeNotifier {
-  int _selectedScreen = 0;
+  int _selectedScreen = 1;
   bool _checkIntro = false;
 
   int get selectedScreen {

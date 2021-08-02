@@ -1,56 +1,78 @@
+import 'package:azmas/Providers/interaction/communityScreen.dart';
 import 'package:azmas/Utils/theme.dart';
+import 'package:azmas/Widgets/Community/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CommunityTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final communityProvider =
+        Provider.of<CommunityInteractionProvider>(context, listen: true);
+    final widthData = communityProvider.selectedTab < 2
+        ? (MediaQuery.of(context).size.width - 30) / 3.4
+        : (MediaQuery.of(context).size.width - 30) / 4;
     return Container(
-      margin: EdgeInsets.only(top: 30),
+      margin: EdgeInsets.only(top: 35),
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      height: 55,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      height: 50,
+      child: Stack(
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7.5),
-                color: PlatformTheme.white,
+          AnimatedContainer(
+            margin: EdgeInsets.only(
+              top: 7.5,
+              bottom: 7.5,
+              left: communityProvider.selectedTab < 2
+                  ? (widthData * communityProvider.selectedTab) + 7.5
+                  : (MediaQuery.of(context).size.width - 22.5) - widthData,
+            ),
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: PlatformTheme.darkPrimaryColor,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  10,
+                ),
               ),
-              child: Icon(
-                CupertinoIcons.back,
-                size: 25,
-                color: PlatformTheme.secondaryColor,
-              ),
+            ),
+            width: widthData - 15,
+            duration: Duration(
+              milliseconds: 150,
             ),
           ),
-          Container(),
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7.5),
-                color: PlatformTheme.white,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  CommunityTopButton(
+                    numValue: 0,
+                    title: "Explore",
+                  ),
+                  CommunityTopButton(
+                    numValue: 1,
+                    title: "Following",
+                  ),
+                ],
               ),
-              child: Icon(
-                CupertinoIcons.rectangle_on_rectangle_angled,
-                size: 25,
-                color: PlatformTheme.textColor2,
+              Container(
+                margin: EdgeInsets.only(
+                  left: 0,
+                ),
+                width: 1,
+                color: PlatformTheme.darkPrimaryColor,
+                height: 25,
               ),
-            ),
+              CommunityTopButton(
+                numValue: 2,
+                title: "Blogs",
+              ),
+            ],
           ),
         ],
       ),

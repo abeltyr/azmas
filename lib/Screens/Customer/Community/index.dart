@@ -1,5 +1,5 @@
 import 'package:azmas/Utils/theme.dart';
-// import 'package:azmas/Widgets/Community/topBar.dart';
+import 'package:azmas/Widgets/Community/topBar.dart';
 import 'package:flutter/material.dart';
 
 class CommunityScreen extends StatelessWidget {
@@ -16,25 +16,25 @@ class CommunityScreen extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                Container(
-                  height: 400,
-                  width: 550,
-                  color: PlatformTheme.textColor1,
-                ),
-                Container(
-                  height: 400,
-                  width: 550,
-                  color: PlatformTheme.textColor2,
-                ),
-                Container(
-                  height: 400,
-                  width: 550,
-                  color: PlatformTheme.textColor1,
-                )
+                // Container(
+                //   height: 400,
+                //   width: 550,
+                //   color: PlatformTheme.textColor1,
+                // ),
+                // Container(
+                //   height: 400,
+                //   width: 550,
+                //   color: PlatformTheme.textColor2,
+                // ),
+                // Container(
+                //   height: 400,
+                //   width: 550,
+                //   color: PlatformTheme.textColor1,
+                // )
               ],
             ),
           ),
-          // CommunityTopBar(),
+          CommunityTopBar(),
         ],
       ),
     );
