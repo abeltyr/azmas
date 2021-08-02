@@ -137,7 +137,7 @@ class EventCardFlexWidget extends StatelessWidget {
                     size: 5,
                   ),
                   if (community != null)
-                    GroupIndictor(
+                    CommunityIndictor(
                       title: "${community!.title}",
                       imageUrl: "${community!.avatar}",
                     )

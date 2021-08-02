@@ -1,40 +1,38 @@
+import 'package:azmas/Providers/interaction/communityScreen.dart';
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/Community/topBar.dart';
+import 'package:azmas/Widgets/Community/Bottom/Blog/index.dart';
+import 'package:azmas/Widgets/Community/Bottom/Explore/index.dart';
+import 'package:azmas/Widgets/Community/Bottom/Following/index.dart';
+import 'package:azmas/Widgets/Community/Top/topBar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CommunityScreen extends StatelessWidget {
   static const routeName = "/community";
 
   @override
   Widget build(BuildContext context) {
+    final communityProvider =
+        Provider.of<CommunityInteractionProvider>(context, listen: true);
     return Scaffold(
       backgroundColor: PlatformTheme.primaryColor,
-      body: Stack(
+      body: Column(
         children: [
+          CommunityTopBar(),
           Container(
-            padding: EdgeInsets.only(top: 32.5),
-            child: ListView(
-              padding: EdgeInsets.zero,
+            padding: EdgeInsets.symmetric(
+              horizontal: 15,
+            ),
+            height: MediaQuery.of(context).size.height - 85,
+            child: IndexedStack(
+              index: communityProvider.selectedTab,
               children: [
-                // Container(
-                //   height: 400,
-                //   width: 550,
-                //   color: PlatformTheme.textColor1,
-                // ),
-                // Container(
-                //   height: 400,
-                //   width: 550,
-                //   color: PlatformTheme.textColor2,
-                // ),
-                // Container(
-                //   height: 400,
-                //   width: 550,
-                //   color: PlatformTheme.textColor1,
-                // )
+                ExploreScreen(),
+                FollowingScreen(),
+                BlogScreen(),
               ],
             ),
           ),
-          CommunityTopBar(),
         ],
       ),
     );

@@ -3,11 +3,11 @@ import 'package:azmas/Widgets/image/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CommunityIndictor extends StatelessWidget {
+class CommunityPostIndictor extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String description;
-  const CommunityIndictor({
+  const CommunityPostIndictor({
     required this.imageUrl,
     required this.title,
     this.description = "Event By",
@@ -47,6 +47,19 @@ class CommunityIndictor extends StatelessWidget {
             children: [
               Container(
                 child: Text(
+                  "$title",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.lora(
+                    color: PlatformTheme.secondaryColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    wordSpacing: 1,
+                  ),
+                ),
+              ),
+              Container(
+                child: Text(
                   "$description",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -55,19 +68,6 @@ class CommunityIndictor extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.italic,
                     fontSize: 11,
-                    wordSpacing: 1,
-                  ),
-                ),
-              ),
-              Container(
-                child: Text(
-                  "$title",
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.lora(
-                    color: PlatformTheme.secondaryColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
                     wordSpacing: 1,
                   ),
                 ),

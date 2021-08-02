@@ -9,7 +9,7 @@ class CommunityTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final communityProvider =
-        Provider.of<CommunityInteractionProvider>(context, listen: true);
+        Provider.of<CommunityInteractionProvider>(context, listen: false);
     final widthData = communityProvider.selectedTab < 2
         ? (MediaQuery.of(context).size.width - 30) / 3.4
         : (MediaQuery.of(context).size.width - 30) / 4;
