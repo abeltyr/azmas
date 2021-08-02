@@ -1,5 +1,5 @@
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/Community/topBar.dart';
+// import 'package:azmas/Widgets/Community/topBar.dart';
 import 'package:flutter/material.dart';
 
 class CommunityScreen extends StatelessWidget {
@@ -34,7 +34,7 @@ class CommunityScreen extends StatelessWidget {
               ],
             ),
           ),
-          CommunityTopBar(),
+          // CommunityTopBar(),
         ],
       ),
     );

@@ -7,7 +7,8 @@ class Config {
     "Content-Type": "application/json",
   };
   static final _httpLink = HttpLink(
-    'http://192.168.0.170:4000/graphql',
+    'https://azmas.herokuapp.com/graphql',
+    // 'http://192.168.0.170:4000/graphql',
     defaultHeaders: headers,
   );
 
