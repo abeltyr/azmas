@@ -16,63 +16,62 @@ class GroupIndictor extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 40,
+      padding: EdgeInsets.symmetric(horizontal: 15),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.only(left: 15),
-            child: Text(
-              "Event By",
-              style: GoogleFonts.lora(
-                color: PlatformTheme.secondaryColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
-                wordSpacing: 0.1,
+          ClipRRect(
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                5,
+              ),
+            ),
+            child: Container(
+              color: PlatformTheme.primaryColorTransparent,
+              height: 30,
+              width: 30,
+              child: LoadedImageView(
+                fitData: BoxFit.fill,
+                imageUrl: imageUrl,
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.all(2.5),
-            margin: EdgeInsets.only(right: 15),
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(
-                      50,
-                    ),
-                  ),
-                  child: Container(
-                    color: PlatformTheme.primaryColorTransparent,
-                    height: 30,
-                    width: 30,
-                    child: LoadedImageView(
-                      fitData: BoxFit.fill,
-                      imageUrl: imageUrl,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Container(
-                  width: 10.0 * title.length < 120 ? 10.0 * title.length : 120,
-                  child: Text(
-                    "$title",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.lora(
-                      color: PlatformTheme.secondaryColor,
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 16,
-                      wordSpacing: 1,
-                    ),
+          SizedBox(
+            width: 10,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: Text(
+                  "Event By",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.lora(
+                    color: PlatformTheme.secondaryColor,
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 11,
+                    wordSpacing: 1,
                   ),
                 ),
-              ],
-            ),
-          )
+              ),
+              Container(
+                child: Text(
+                  "$title",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.lora(
+                    color: PlatformTheme.secondaryColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    wordSpacing: 1,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -10,6 +10,22 @@ class Event {
           communityName
           ownerId
           title
+          avatar {
+            size
+            ext
+            mime
+            url
+            name
+            id
+          }
+          background {
+            size
+            ext
+            mime
+            url
+            name
+            id
+          }
           description
           public
           activated
@@ -18,6 +34,14 @@ class Event {
           category
           createdAt
           updatedAt
+        }
+        image {
+          size
+          ext
+          mime
+          url
+          name
+          id
         }
         title
         description
@@ -44,6 +68,22 @@ class Event {
           communityName
           ownerId
           title
+          avatar {
+            size
+            ext
+            mime
+            url
+            name
+            id
+          }
+          background {
+            size
+            ext
+            mime
+            url
+            name
+            id
+          }
           description
           public
           activated
@@ -52,6 +92,14 @@ class Event {
           category
           createdAt
           updatedAt
+        }
+        image {
+          size
+          ext
+          mime
+          url
+          name
+          id
         }
         title
         description
@@ -73,6 +121,44 @@ class Event {
         id
         creatorId
         communityId
+        community {
+          id
+          communityName
+          ownerId
+          title
+          avatar {
+            size
+            ext
+            mime
+            url
+            name
+            id
+          }
+          background {
+            size
+            ext
+            mime
+            url
+            name
+            id
+          }
+          description
+          public
+          activated
+          verified
+          influencer
+          category
+          createdAt
+          updatedAt
+        }
+        image {
+          size
+          ext
+          mime
+          url
+          name
+          id
+        }
         title
         description
         horizontal
@@ -94,6 +180,44 @@ class Event {
         id
         creatorId
         communityId
+        community {
+          id
+          communityName
+          ownerId
+          title
+          avatar {
+            size
+            ext
+            mime
+            url
+            name
+            id
+          }
+          background {
+            size
+            ext
+            mime
+            url
+            name
+            id
+          }
+          description
+          public
+          activated
+          verified
+          influencer
+          category
+          createdAt
+          updatedAt
+        }
+        image {
+          size
+          ext
+          mime
+          url
+          name
+          id
+        }
         title
         description
         horizontal
