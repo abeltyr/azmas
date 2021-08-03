@@ -23,7 +23,8 @@ class CommunityScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               horizontal: 15,
             ),
-            height: MediaQuery.of(context).size.height - 85,
+            margin: EdgeInsets.only(bottom: 40),
+            height: MediaQuery.of(context).size.height - 125,
             child: IndexedStack(
               index: communityProvider.selectedTab,
               children: [

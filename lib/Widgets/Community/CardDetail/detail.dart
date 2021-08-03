@@ -1,36 +1,13 @@
 import 'package:azmas/Utils/theme.dart';
+import 'package:azmas/Widgets/Shared/save.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-class CommunityDetail extends StatefulWidget {
-  final bool saved;
-  const CommunityDetail({this.saved = false});
-
-  @override
-  _CommunityDetailState createState() => _CommunityDetailState();
-}
-
-class _CommunityDetailState extends State<CommunityDetail>
-    with TickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+class CommunityDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool savedData = widget.saved;
     return Container(
       height: 35,
       padding: EdgeInsets.symmetric(
@@ -65,45 +42,7 @@ class _CommunityDetailState extends State<CommunityDetail>
               ),
             ],
           ),
-          GestureDetector(
-            onTap: () {
-              if (!savedData) {
-                _controller.forward();
-                savedData = true;
-              } else {
-                _controller.reset();
-                savedData = false;
-              }
-            },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 27.5,
-                  width: 27.5,
-                  child: Lottie.asset(
-                    'assets/Animations/Bookmark.json',
-                    controller: _controller,
-                    onLoaded: (composition) {
-                      // Configure the AnimationController with the duration of the
-                      // Lottie file and start the animation.
-                      _controller..duration = const Duration(milliseconds: 250);
-                    },
-                  ),
-                ),
-                Text(
-                  "Save",
-                  style: GoogleFonts.lora(
-                    color: PlatformTheme.darkPrimaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    wordSpacing: 1,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ],
-            ),
-          )
+          SaveWidget(),
         ],
       ),
     );
