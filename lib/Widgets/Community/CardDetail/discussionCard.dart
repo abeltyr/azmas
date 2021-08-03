@@ -92,19 +92,24 @@ class Discussion extends StatelessWidget {
               height: 200,
               padding: EdgeInsets.symmetric(horizontal: 15),
               width: double.infinity,
-              color: PlatformTheme.primaryColorTransparent,
               child: ClipRRect(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     7.5,
                   ),
                 ),
-                child: LoadedImageView(
-                  fitData: BoxFit.fill,
-                  imageUrl: imageData,
+                child: Container(
+                  color: PlatformTheme.primaryColorTransparent,
+                  child: LoadedImageView(
+                    fitData: BoxFit.fill,
+                    imageUrl: imageData,
+                  ),
                 ),
               ),
             ),
+          SizedBox(
+            height: 5,
+          ),
           BrokenLine(
             color: PlatformTheme.primaryColor,
             size: 5,

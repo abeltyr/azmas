@@ -1,10 +1,9 @@
-import 'package:azmas/Providers/interaction/communityScreen.dart';
 import 'package:azmas/Utils/theme.dart';
+import 'package:azmas/Widgets/Community/CardDetail/community.dart';
 import 'package:azmas/Widgets/Community/CardDetail/discussionCard.dart';
 import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -19,15 +18,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
   bool error = true;
   bool loadmore = false;
 
-  late RefreshController _refreshController;
+  late RefreshController _refreshController = RefreshController(
+    initialRefresh: true,
+  );
+
   @override
   void initState() {
     super.initState();
-    final communityProvider =
-        Provider.of<CommunityInteractionProvider>(context, listen: false);
-    _refreshController = RefreshController(
-      initialRefresh: communityProvider.selectedTab == 0,
-    );
   }
 
   @override
@@ -166,10 +163,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
           padding: EdgeInsets.zero,
           itemCount: 20,
           itemBuilder: (ctx, index) {
-            return Discussion(
-              image: "https://source.unsplash.com/1600x900/?nature",
+            return CommunityCard(
+              profile1: "https://source.unsplash.com/1600x900/?nature",
+              profile2: "https://source.unsplash.com/1600x900/?nature",
+              profile3: "https://source.unsplash.com/1600x900/?nature",
               communityAvatar: "https://source.unsplash.com/1600x900/?nature",
-              // title: "Lorem Ipsum is simply dummy text of the printing and ",
+              title: "Azmas",
               communityName: "Azmas",
               postTime: DateTime.parse("2021-08-03"),
               poster: "Abel",

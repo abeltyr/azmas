@@ -1,10 +1,8 @@
-import 'package:azmas/Providers/interaction/communityScreen.dart';
 import 'package:azmas/Utils/theme.dart';
 import 'package:azmas/Widgets/Community/CardDetail/postCard.dart';
 import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class BlogScreen extends StatefulWidget {
@@ -19,15 +17,13 @@ class _BlogScreenState extends State<BlogScreen> {
   bool error = true;
   bool loadmore = false;
 
-  late RefreshController _refreshController;
+  late RefreshController _refreshController = RefreshController(
+    initialRefresh: true,
+  );
+
   @override
   void initState() {
     super.initState();
-    final communityProvider =
-        Provider.of<CommunityInteractionProvider>(context, listen: false);
-    _refreshController = RefreshController(
-      initialRefresh: communityProvider.selectedTab == 2,
-    );
   }
 
   @override

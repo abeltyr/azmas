@@ -1,17 +1,16 @@
 import 'package:azmas/Utils/theme.dart';
-import 'package:azmas/Widgets/Community/CardDetail/community.dart';
 import 'package:azmas/Widgets/Community/CardDetail/discussionCard.dart';
 import 'package:azmas/Widgets/Shared/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class FollowingScreen extends StatefulWidget {
+class CommunityDetail extends StatefulWidget {
   @override
-  _FollowingScreenState createState() => _FollowingScreenState();
+  _CommunityDetailState createState() => _CommunityDetailState();
 }
 
-class _FollowingScreenState extends State<FollowingScreen> {
+class _CommunityDetailState extends State<CommunityDetail> {
   bool loading = true;
   bool error = true;
   bool loadmore = false;
@@ -161,12 +160,10 @@ class _FollowingScreenState extends State<FollowingScreen> {
           padding: EdgeInsets.zero,
           itemCount: 20,
           itemBuilder: (ctx, index) {
-            return CommunityCard(
-              profile1: "https://source.unsplash.com/1600x900/?nature",
-              profile2: "https://source.unsplash.com/1600x900/?nature",
-              profile3: "https://source.unsplash.com/1600x900/?nature",
+            return Discussion(
+              image: "https://source.unsplash.com/1600x900/?nature",
               communityAvatar: "https://source.unsplash.com/1600x900/?nature",
-              title: "Azmas",
+              // title: "Lorem Ipsum is simply dummy text of the printing and ",
               communityName: "Azmas",
               postTime: DateTime.parse("2021-08-03"),
               poster: "Abel",
